@@ -1,0 +1,29 @@
+.sidebar{
+    width: 300px;
+    // width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    // border: 1px solid red;
+    position:relative;
+    background-color: var(--primary-color);
+}
+.collapse-btn {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    right: -15px;
+    top: 10px;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    z-index: 1000;
+    border: 1px solid var(--secondary-color-2);
+  
+  }
+  .collapsed{
+    width: 70px;
+  }
