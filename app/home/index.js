@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { Loading } from "@carbon/react";
 import "./layout.scss";
 import SideBar from "../../components/sidebar";
 import Header from "../../components/header";
@@ -11,7 +12,8 @@ import Chats from "../../components/chats";
 import Appointments from "../../components/appointments";
 import Help from "../../components/help";
 import Dashboard from "../../components/Dashboard";
-
+import nprogress from 'nprogress';
+import 'nprogress/nprogress.css';
 function Container() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -56,8 +58,14 @@ function Container() {
   }, []);
 
   const handleMenuItemClick = (item) => {
+    nprogress.start(); 
     setSelectedItem(item);
     localStorage.setItem("selectedItem", item);
+
+
+    setTimeout(() => {
+      nprogress.done(); 
+    }, 1000); 
   };
 
   const navLink = [
@@ -107,52 +115,57 @@ function Container() {
 
   return (
     <div className="layout">
-      <SideBar isCollapsed={isCollapsed}>
-        <div className="logo-info">
-          <div className="logo">
-            <img src="../logov2.svg" alt="logo" />
-          </div>
-          <div className={`doctor ${isLoading ? "loading" : ""}`}>
-            {isCollapsed ? (
-              <Button hasIconOnly renderIcon={Bee} iconDescription="Add" />
-            ) : isLoading ? (
-              <ButtonSkeleton className="button-transition" width="150px" />
-            ) : (
-              <Button className="button-transition">Speak to a doctor</Button>
-            )}
-          </div>
-        </div>
-        <div className="menus">
-          <Menu>
-            {navLink.map(({ path, name, icon }) => (
-              <div
-                key={name}
-                onClick={() => handleMenuItemClick(path)}
-                className={`menu-item ${
-                  selectedItem === path ? "selected" : ""
-                }`}
-              >
+      {isLoading && <Loading description="Please wait" withOverlay={true} />}
+      {!isLoading && (
+        <>
+          <SideBar isCollapsed={isCollapsed}>
+            <div className="logo-info">
+              <div className="logo">
+                <img src="../logov2.svg" alt="logo" />
+              </div>
+              <div className={`doctor ${isLoading ? "loading" : ""}`}>
                 {isCollapsed ? (
-                  <>{icon}</>
+                  <Button hasIconOnly renderIcon={Bee} iconDescription="Add" />
+                ) : isLoading ? (
+                  <ButtonSkeleton kind="secondary" className="button-transition" width="150px" />
                 ) : (
-                  <>
-                    {icon}
-                    {name}
-                  </>
+                  <Button kind="secondary" className="button-transition">Speak to a doctor</Button>
                 )}
               </div>
-            ))}
-          </Menu>
-        </div>
-      </SideBar>
-      <div className="container_comp">
-        <section className="header-section">
-          <Header />
-        </section>
-        <section className="content-section">
-          <Content>{renderContent()}</Content>
-        </section>
-      </div>
+            </div>
+            <div className="menus">
+              <Menu>
+                {navLink.map(({ path, name, icon }) => (
+                  <div
+                    key={name}
+                    onClick={() => handleMenuItemClick(path)}
+                    className={`menu-item ${
+                      selectedItem === path ? "selected" : ""
+                    }`}
+                  >
+                    {isCollapsed ? (
+                      <>{icon}</>
+                    ) : (
+                      <>
+                        {icon}
+                        {name}
+                      </>
+                    )}
+                  </div>
+                ))}
+              </Menu>
+            </div>
+          </SideBar>
+          <div className="container_comp">
+            <section className="header-section">
+              <Header />
+            </section>
+            <section className="content-section">
+              <Content>{renderContent()}</Content>
+            </section>
+          </div>
+        </>
+      )}
     </div>
   );
 }
