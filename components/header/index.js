@@ -10,7 +10,8 @@ import {
   Settings,
   UserAvatarFilled,
 } from "@carbon/icons-react";
-import { Tooltip } from "@carbon/react";
+import { Button, Modal, Tooltip } from "@carbon/react";
+
 function Header() {
   const [expanded, setExpanded] = useState(false);
   const expand = () => {
@@ -46,6 +47,7 @@ function Header() {
           </div>
         </section>
       </div>
+     
       <div className="moreotions">
         <div className={`user_info ${expanded ? "expanded" : ""}`}>
           <section className="user-details">

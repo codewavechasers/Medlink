@@ -7,16 +7,18 @@ import Header from "../../components/header";
 import Content from "../../components/content";
 import { Menu, MenuItem } from "../../components/menu";
 import { Button, ButtonSkeleton } from "@carbon/react";
-import { Bee, Calendar, Chat, Workspace } from "@carbon/icons-react";
-import Chats from "../../components/chats";
-import Appointments from "../../components/appointments";
-import Help from "../../components/help";
-import Dashboard from "../../components/Dashboard";
+import { Bee, Calendar, Chat, Workspace, Medication } from "@carbon/icons-react";
+import Chats from "../chats";
+import Appointments from "../appointments";
+import Help from "../help";
+import Dashboard from "../Dashboard";
 import nprogress from 'nprogress';
 import 'nprogress/nprogress.css';
+
 function Container() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [contentLoading, setContentLoading] = useState(false);
   const [selectedItem, setSelectedItem] = useState("Dashboard");
 
   const updateCollapsedState = () => {
@@ -58,14 +60,19 @@ function Container() {
   }, []);
 
   const handleMenuItemClick = (item) => {
-    nprogress.start(); 
+    nprogress.start();
+    setContentLoading(true); 
     setSelectedItem(item);
     localStorage.setItem("selectedItem", item);
-
-
+    
     setTimeout(() => {
-      nprogress.done(); 
+      nprogress.done();
+      setContentLoading(false); 
     }, 1000); 
+  };
+
+  const handleMedicationClick = () => {
+    handleMenuItemClick("Medication");
   };
 
   const navLink = [
@@ -89,6 +96,7 @@ function Container() {
       path: "Help",
       icon: <Chat size={32} />,
     },
+   
     {
       name: "More",
       path: "More",
@@ -97,9 +105,13 @@ function Container() {
   ];
 
   const renderContent = () => {
+    if (contentLoading) {
+      return <Loading description="Loading content" withOverlay={false} />;
+    }
+
     switch (selectedItem) {
       case "Dashboard":
-        return <Dashboard />;
+        return <Dashboard onMedicationClick={handleMedicationClick} />;
       case "Chats":
         return <Chats />;
       case "Appointments":
@@ -109,7 +121,7 @@ function Container() {
       case "More":
         return <div>More Content</div>;
       default:
-        return <Dashboard />;
+        return <Dashboard onMedicationClick={handleMedicationClick} />;
     }
   };
 
@@ -139,9 +151,7 @@ function Container() {
                   <div
                     key={name}
                     onClick={() => handleMenuItemClick(path)}
-                    className={`menu-item ${
-                      selectedItem === path ? "selected" : ""
-                    }`}
+                    className={`menu-item ${selectedItem === path ? "selected" : ""}`}
                   >
                     {isCollapsed ? (
                       <>{icon}</>
