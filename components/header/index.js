@@ -10,7 +10,13 @@ import {
   Settings,
   UserAvatarFilled,
 } from "@carbon/icons-react";
-import { Button, Modal, Tooltip } from "@carbon/react";
+import {
+  Button,
+  ContainedList,
+  ContainedListItem,
+  Modal,
+  Tooltip,
+} from "@carbon/react";
 
 function Header() {
   const [expanded, setExpanded] = useState(false);
@@ -31,7 +37,7 @@ function Header() {
             onClick={expand}
           />
         </section>
-        <section className="profile-info">
+        <section className="profile-information">
           <div className="info">
             <h3>Anotida Expected</h3>
             <small>Zambia</small>
@@ -47,15 +53,28 @@ function Header() {
           </div>
         </section>
       </div>
-     
-      <div className="moreotions">
+
+      <ContainedList
+        className={`user_info ${expanded ? "expanded" : ""}`}
+        label="My Information"
+        style={{
+          position: "absolute",
+          zIndex: "19000",
+          right: "0",
+          height: "auto",
+          width: "auto",
+          top: "100px",
+          background: "var(--primary-color-2)",
+        }}
+        size="lg"
+      >
         <div className={`user_info ${expanded ? "expanded" : ""}`}>
           <section className="user-details">
-          <UserAvatarFilled
-            className="user-image"
-            style={{ cursor: "pointer" }}
-          />            
-          <div className="details">
+            <UserAvatarFilled
+              className="user-image"
+              style={{ cursor: "pointer" }}
+            />
+            <div className="details">
               <h2 className="user_name">Anotida Expected</h2>
               <p className="phone">075894394304</p>
             </div>
@@ -65,13 +84,16 @@ function Header() {
               <ul>
                 <li>
                   <span>About</span>
-                  <InformationSquare size={32} />                </li>
+                  <InformationSquare size={32} />{" "}
+                </li>
                 <li>
                   <span>Settings</span>
-                  <Settings size={32} />                </li>
+                  <Settings size={32} />{" "}
+                </li>
                 <li>
                   <span>Log out</span>
-                  <Logout size={32}/>                </li>
+                  <Logout size={32} />{" "}
+                </li>
               </ul>
             </section>
             <section className="privacy">
@@ -79,7 +101,7 @@ function Header() {
             </section>
           </div>
         </div>
-      </div>
+      </ContainedList>
     </div>
   );
 }

@@ -7,19 +7,39 @@ import Header from "../../components/header";
 import Content from "../../components/content";
 import { Menu, MenuItem } from "../../components/menu";
 import { Button, ButtonSkeleton } from "@carbon/react";
-import { Bee, Calendar, Chat, Workspace, Medication } from "@carbon/icons-react";
+import {
+  Bee,
+  Calendar,
+  Chat,
+  Workspace,
+  Medication,
+} from "@carbon/icons-react";
 import Chats from "../chats";
 import Appointments from "../appointments";
 import Help from "../help";
 import Dashboard from "../Dashboard";
-import nprogress from 'nprogress';
-import 'nprogress/nprogress.css';
+import nprogress from "nprogress";
+import "nprogress/nprogress.css";
 
 function Container() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [contentLoading, setContentLoading] = useState(false);
   const [selectedItem, setSelectedItem] = useState("Dashboard");
+  const [isMobile, setisMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 760) {
+        setisMobile(true);
+      } else {
+        setisMobile(false);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const updateCollapsedState = () => {
     const collapsedState = localStorage.getItem("collapsed");
@@ -61,14 +81,14 @@ function Container() {
 
   const handleMenuItemClick = (item) => {
     nprogress.start();
-    setContentLoading(true); 
+    setContentLoading(true);
     setSelectedItem(item);
     localStorage.setItem("selectedItem", item);
-    
+
     setTimeout(() => {
       nprogress.done();
-      setContentLoading(false); 
-    }, 1000); 
+      setContentLoading(false);
+    }, 1000);
   };
 
   const handleMedicationClick = () => {
@@ -96,7 +116,7 @@ function Container() {
       path: "Help",
       icon: <Chat size={32} />,
     },
-   
+
     {
       name: "More",
       path: "More",
@@ -127,10 +147,26 @@ function Container() {
 
   return (
     <div className="layout">
+      {isMobile ? (
+        <Menu>
+          {navLink.map(({ path, name, icon }) => (
+            <div
+              key={name}
+              onClick={() => handleMenuItemClick(path)}
+              className={`menu-item ${selectedItem === path ? "selected" : ""}`}
+            >
+              {isCollapsed ? <>{icon}</> : <>{icon}</>}
+            </div>
+          ))}
+        </Menu>
+      ) : (
+        ""
+      )}
+
       {isLoading && <Loading description="Please wait" withOverlay={true} />}
       {!isLoading && (
         <>
-          <SideBar isCollapsed={isCollapsed}>
+          <SideBar className="desk_nav" isCollapsed={isCollapsed}>
             <div className="logo-info">
               <div className="logo">
                 <img src="../logov2.svg" alt="logo" />
@@ -139,9 +175,15 @@ function Container() {
                 {isCollapsed ? (
                   <Button hasIconOnly renderIcon={Bee} iconDescription="Add" />
                 ) : isLoading ? (
-                  <ButtonSkeleton kind="secondary" className="button-transition" width="150px" />
+                  <ButtonSkeleton
+                    kind="secondary"
+                    className="button-transition"
+                    width="150px"
+                  />
                 ) : (
-                  <Button kind="secondary" className="button-transition">Speak to a doctor</Button>
+                  <Button kind="secondary" className="button-transition">
+                    Speak to a doctor
+                  </Button>
                 )}
               </div>
             </div>
@@ -151,7 +193,9 @@ function Container() {
                   <div
                     key={name}
                     onClick={() => handleMenuItemClick(path)}
-                    className={`menu-item ${selectedItem === path ? "selected" : ""}`}
+                    className={`menu-item ${
+                      selectedItem === path ? "selected" : ""
+                    }`}
                   >
                     {isCollapsed ? (
                       <>{icon}</>

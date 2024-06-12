@@ -26,3 +26,9 @@
   .collapsed{
     width: 70px;
   }
+@media screen and (max-width:760px) {
+  .sidebar{
+    display: none;
+  }
+  
+}

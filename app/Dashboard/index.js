@@ -8,16 +8,19 @@ import {
   Tile,
   TileAboveTheFoldContent,
   TileBelowTheFoldContent,
+  Heading,
 } from "@carbon/react";
 import Table from "../../components/Table";
-import nprogress from 'nprogress';
-import 'nprogress/nprogress.css';
-import MedicationHub from './medication';
-import NextAppointments from './next-appointment';
+import nprogress from "nprogress";
+import "nprogress/nprogress.css";
+import HealthStatus from "./Healthstatus";
+import NextAppointments from "./next-appointment";
+import MedicationHub from "./MedicationHub";
 
 function Dashboard() {
-  const [showMedication, setShowMedication] = useState(false);
+  const [showHealthStatus, setshowHealthStatus] = useState(false);
   const [showAppointment, setShowAppointment] = useState(false);
+  const [showMedicationHub, setshowMedicationHub] = useState(false);
   const [contentLoading, setContentLoading] = useState(false);
 
   useEffect(() => {
@@ -28,10 +31,10 @@ function Dashboard() {
     }
   }, [contentLoading]);
 
-  const handleMedicationClick = () => {
+  const handleHealthStatusClick = () => {
     setContentLoading(true);
     setTimeout(() => {
-      setShowMedication(true);
+      setshowHealthStatus(true);
       setContentLoading(false);
     }, 1000); // Simulate loading time
   };
@@ -43,11 +46,19 @@ function Dashboard() {
       setContentLoading(false);
     }, 1000); // Simulate loading time
   };
+  const handleMedicationhubClick = () => {
+    setContentLoading(true);
+    setTimeout(() => {
+      setshowMedicationHub(true);
+      setContentLoading(false);
+    }, 1000); // Simulate loading time
+  };
 
   const handleBackToDashboard = () => {
     setContentLoading(true);
     setTimeout(() => {
-      setShowMedication(false);
+      setshowHealthStatus(false);
+      setshowMedicationHub(false);
       setShowAppointment(false);
       setContentLoading(false);
     }, 1000); // Simulate loading time
@@ -57,42 +68,35 @@ function Dashboard() {
     return <Loading description="Loading content" withOverlay={true} />;
   }
 
-  if (showMedication) {
-    return (
-      <MedicationHub handleBackToDashboard={handleBackToDashboard} />
-    );
+  if (showHealthStatus) {
+    return <HealthStatus handleBackToDashboard={handleBackToDashboard} />;
   }
 
   if (showAppointment) {
-    return (
-      <NextAppointments handleBackToDashboard={handleBackToDashboard} />
-    );
+    return <NextAppointments handleBackToDashboard={handleBackToDashboard} />;
+  }
+  if (showMedicationHub) {
+    return <MedicationHub handleBackToDashboard={handleBackToDashboard} />;
   }
 
   return (
-    <div className="dashboard">
-      <div style={{ height: "35%" }}>
-        <section className="page-title">Welcome Back, Ano </section>
-        <section style={{ width: "100%", height: "80%" }}>
-          <div
-            className="med_cards"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "50px",
-              justifyContent: "flex-start",
-              position: "relative",
-              backgroundColor: "transparent",
-              height: "100%",
-            }}
-          >
-            <Tile id="tile-1" style={{ width: "100%", height: "100%" }}>
+    <div className="medlink-dashboard">
+      <Heading className="dash-title">Welcome Back, Ano</Heading>
+      <div className="dashboard-body">
+        <div className="top-dash">
+          <div className="med_cards">
+            <Tile
+              onClick={handleHealthStatusClick} // Add onClick handler here
+              id="tile-1"
+              className="med-card"
+              style={{ cursor: "pointer", width: "100%" }}
+            >
               Your Overall Health
               <br />
               <br />
               <ProgressBar helperText="Health status" value={75} />{" "}
             </Tile>
-            <Tile id="tile-2" style={{ width: "100%", height: "100%" }}>
+            <Tile id="tile-2" style={{ width: "100%" }} className="med-card">
               Notice Board
               <br />
               <br />
@@ -108,35 +112,22 @@ function Dashboard() {
               </p>
             </Tile>
           </div>
-        </section>
-      </div>
-      <main className="main_dash">
-        <div className="appoint-medic">
-          <div style={{ width: "100%" }} className="app-med-card">
+        </div>
+        <main className="main_dash">
+          <div className="appoint-medic">
             <ExpandableTile
               id="expandable-tile-1"
               tileCollapsedIconText="Check your next Appointment"
               tileExpandedIconText="Check your next Appointment"
-              style={{ height: "100%" }}
               expanded={true}
-              onClick={handleAppointmentClick} // Add onClick handler here
+              onClick={handleAppointmentClick}
+              className="app-card"
             >
               <TileAboveTheFoldContent>
-                <div
-                  style={{
-                    height: "100%",
-                    textAlign: "left",
-                  }}
-                >
-                  Next Appointment
-                </div>
+                <div>Next Appointment</div>
               </TileAboveTheFoldContent>
               <TileBelowTheFoldContent>
-                <div
-                  style={{
-                    height: "400px",
-                  }}
-                >
+                <div>
                   <div className="date">
                     <h3 style={{ fontSize: "5rem", fontWeight: "bolder" }}>
                       28
@@ -146,15 +137,13 @@ function Dashboard() {
                 </div>
               </TileBelowTheFoldContent>
             </ExpandableTile>
-          </div>
-          <div style={{ width: "100%" }} className="app-med-card">
             <ExpandableTile
+              className="app-card"
               id="expandable-tile-2"
               tileCollapsedIconText="Check all about your medication"
               tileExpandedIconText="Check all about your medication"
-              style={{ height: "100%" }}
               expanded={true}
-              onClick={handleMedicationClick} // Add onClick handler here
+              onClick={handleMedicationhubClick} // Add onClick handler here
             >
               <TileAboveTheFoldContent>
                 <div
@@ -169,7 +158,7 @@ function Dashboard() {
               <TileBelowTheFoldContent>
                 <div
                   style={{
-                    height: "400px",
+                    height: "auto",
                   }}
                 >
                   <div className="med-below">
@@ -207,19 +196,19 @@ function Dashboard() {
                         }}
                       >
                         3
-                      </span>{" "}
+                      </span>
                     </small>
-                  </div>{" "}
+                  </div>
                 </div>
               </TileBelowTheFoldContent>
             </ExpandableTile>
           </div>
-        </div>
-        <div className="doctor-notes">
-          <h4>Doctors notes</h4>
-          <Table />
-        </div>
-      </main>
+          <div className="doctor-notes">
+            <Heading className="table-heading">Doctors notes</Heading>
+            <Table />
+          </div>
+        </main>
+      </div>
     </div>
   );
 }

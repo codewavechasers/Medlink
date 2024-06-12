@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   TableContainer,
   TableToolbar,
@@ -20,9 +20,9 @@ import {
   TableCell,
   TableExpandedRow,
   DataTable,
+  Pagination,
 } from "@carbon/react";
 import { TrashCan, Save, Download } from "@carbon/icons-react";
-// import "./yourStyles.scss";
 
 const MyTable = () => {
   const insertInRandomPosition = (array, element) => {
@@ -31,78 +31,25 @@ const MyTable = () => {
   };
 
   const initialRows = [
-    {
-      id: "1",
-      name: "Load Balancer 1",
-      protocol: "HTTP",
-      port: 80,
-      rule: "Round robin",
-      attached_groups: "Kevin’s VM Groups",
-      status: "Active",
-    },
-    {
-      id: "2",
-      name: "Load Balancer 2",
-      protocol: "HTTP",
-      port: 443,
-      rule: "Round robin",
-      attached_groups: "Maureen’s VM Groups",
-      status: "Active",
-    },
-    {
-      id: "3",
-      name: "Load Balancer 2",
-      protocol: "HTTP",
-      port: 443,
-      rule: "Round robin",
-      attached_groups: "Maureen’s VM Groups",
-      status: "Active",
-    },
-    {
-      id: "4",
-      name: "Load Balancer 2",
-      protocol: "HTTP",
-      port: 443,
-      rule: "Round robin",
-      attached_groups: "Maureen’s VM Groups",
-      status: "Active",
-    },
-    {
-      id: "5",
-      name: "Load Balancer 2",
-      protocol: "HTTP",
-      port: 443,
-      rule: "Round robin",
-      attached_groups: "Maureen’s VM Groups",
-      status: "Active",
-    },
+    { id: "1", name: "Load Balancer 1", protocol: "HTTP", port: 80, rule: "Round robin", attached_groups: "Kevin’s VM Groups", status: "Active" },
+    { id: "2", name: "Load Balancer 2", protocol: "HTTP", port: 443, rule: "Round robin", attached_groups: "Maureen’s VM Groups", status: "Active" },
+    { id: "3", name: "Load Balancer 3", protocol: "HTTP", port: 443, rule: "Round robin", attached_groups: "Maureen’s VM Groups", status: "Active" },
+    { id: "4", name: "Load Balancer 4", protocol: "HTTP", port: 443, rule: "Round robin", attached_groups: "Maureen’s VM Groups", status: "Active" },
+    { id: "5", name: "Load Balancer 5", protocol: "HTTP", port: 443, rule: "Round robin", attached_groups: "Maureen’s VM Groups", status: "Active" },
+    { id: "6", name: "Load Balancer 6", protocol: "HTTP", port: 443, rule: "Round robin", attached_groups: "Maureen’s VM Groups", status: "Active" },
+    { id: "7", name: "Load Balancer 7", protocol: "HTTP", port: 443, rule: "Round robin", attached_groups: "Maureen’s VM Groups", status: "Active" },
+    { id: "8", name: "Load Balancer 8", protocol: "HTTP", port: 443, rule: "Round robin", attached_groups: "Maureen’s VM Groups", status: "Active" },
+    { id: "9", name: "Load Balancer 9", protocol: "HTTP", port: 443, rule: "Round robin", attached_groups: "Maureen’s VM Groups", status: "Active" },
+    { id: "10", name: "Load Balancer 10", protocol: "HTTP", port: 443, rule: "Round robin", attached_groups: "Maureen’s VM Groups", status: "Active" },
   ];
 
   const initialHeaders = [
-    {
-      key: "name",
-      header: "Name",
-    },
-    {
-      key: "protocol",
-      header: "Protocol",
-    },
-    {
-      key: "port",
-      header: "Port",
-    },
-    {
-      key: "rule",
-      header: "Rule",
-    },
-    {
-      key: "attached_groups",
-      header: "Attached Groups",
-    },
-    {
-      key: "status",
-      header: "Status",
-    },
+    { key: "name", header: "Name" },
+    { key: "protocol", header: "Protocol" },
+    { key: "port", header: "Port" },
+    { key: "rule", header: "Rule" },
+    { key: "attached_groups", header: "Attached Groups" },
+    { key: "status", header: "Status" },
   ];
 
   class DynamicRows extends React.Component {
@@ -110,6 +57,8 @@ const MyTable = () => {
       rows: initialRows,
       headers: initialHeaders,
       id: initialRows.length,
+      currentPage: 1,
+      itemsPerPage: 5,
     };
 
     handleOnHeaderAdd = () => {
@@ -157,115 +106,131 @@ const MyTable = () => {
       });
     };
 
+    handlePageChange = ({ page, pageSize }) => {
+      this.setState({ currentPage: page, itemsPerPage: pageSize });
+    };
+
     render() {
+      const { rows, headers, currentPage, itemsPerPage } = this.state;
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const paginatedRows = rows.slice(startIndex, startIndex + itemsPerPage);
+
       return (
-        <DataTable
-          rows={this.state.rows}
-          headers={this.state.headers}
-          render={({
-            rows,
-            headers,
-            getHeaderProps,
-            getSelectionProps,
-            getToolbarProps,
-            getBatchActionProps,
-            getRowProps,
-            getExpandedRowProps,
-            onInputChange,
-            selectedRows,
-            getTableProps,
-            getTableContainerProps,
-          }) => {
-            const batchActionProps = getBatchActionProps();
-            return (
-              <TableContainer
-                // title="DataTable"
-                // description="Use the toolbar menu to add rows and headers"
-                {...getTableContainerProps()}
-              >
-                <TableToolbar {...getToolbarProps()}>
-                  <TableBatchActions {...getBatchActionProps()}>
-                    <TableBatchAction
-                      renderIcon={TrashCan}
-                      iconDescription="Delete the selected rows"
-                      onClick={() => batchActionClick(selectedRows)}
-                      tabIndex={batchActionProps.shouldShowBatchActions ? 0 : -1}
+        <>
+          <DataTable
+            rows={paginatedRows}
+            headers={headers}
+            render={({
+              rows,
+              headers,
+              getHeaderProps,
+              getSelectionProps,
+              getToolbarProps,
+              getBatchActionProps,
+              getRowProps,
+              getExpandedRowProps,
+              onInputChange,
+              selectedRows,
+              getTableProps,
+              getTableContainerProps,
+            }) => {
+              const batchActionProps = getBatchActionProps();
+              return (
+                <TableContainer {...getTableContainerProps()} style={{height:"100%",width:"100%"}}>
+                  <TableToolbar {...getToolbarProps()}>
+                    <TableBatchActions {...getBatchActionProps()}>
+                      <TableBatchAction
+                        renderIcon={TrashCan}
+                        iconDescription="Delete the selected rows"
+                        onClick={() => batchActionClick(selectedRows)}
+                        tabIndex={batchActionProps.shouldShowBatchActions ? 0 : -1}
+                      >
+                        Delete
+                      </TableBatchAction>
+                      <TableBatchAction
+                        renderIcon={Save}
+                        iconDescription="Save the selected rows"
+                        onClick={() => batchActionClick(selectedRows)}
+                        tabIndex={batchActionProps.shouldShowBatchActions ? 0 : -1}
+                      >
+                        Save
+                      </TableBatchAction>
+                      <TableBatchAction
+                        renderIcon={Download}
+                        iconDescription="Download the selected rows"
+                        onClick={() => batchActionClick(selectedRows)}
+                        tabIndex={batchActionProps.shouldShowBatchActions ? 0 : -1}
+                      >
+                        Download
+                      </TableBatchAction>
+                    </TableBatchActions>
+                    <TableToolbarContent
+                      aria-hidden={batchActionProps.shouldShowBatchActions}
                     >
-                      Delete
-                    </TableBatchAction>
-                    <TableBatchAction
-                      renderIcon={Save}
-                      iconDescription="Save the selected rows"
-                      onClick={() => batchActionClick(selectedRows)}
-                      tabIndex={batchActionProps.shouldShowBatchActions ? 0 : -1}
-                    >
-                      Save
-                    </TableBatchAction>
-                    <TableBatchAction
-                      renderIcon={Download}
-                      iconDescription="Download the selected rows"
-                      onClick={() => batchActionClick(selectedRows)}
-                      tabIndex={batchActionProps.shouldShowBatchActions ? 0 : -1}
-                    >
-                      Download
-                    </TableBatchAction>
-                  </TableBatchActions>
-                  <TableToolbarContent
-                    aria-hidden={batchActionProps.shouldShowBatchActions}
-                  >
-                    <TableToolbarSearch
-                      tabIndex={batchActionProps.shouldShowBatchActions ? -1 : 0}
-                      onChange={onInputChange}
-                    />
-                    <TableToolbarMenu
-                      tabIndex={batchActionProps.shouldShowBatchActions ? -1 : 0}
-                    >
-                      <TableToolbarAction onClick={this.handleOnRowAdd}>
-                        Add row
-                      </TableToolbarAction>
-                      <TableToolbarAction onClick={this.handleOnHeaderAdd}>
-                        Add header
-                      </TableToolbarAction>
-                    </TableToolbarMenu>
-                  </TableToolbarContent>
-                </TableToolbar>
-                <Table {...getTableProps()} aria-label="sample table">
-                  <TableHead>
-                    <TableRow>
-                      <TableExpandHeader aria-label="expand row" />
-                      <TableSelectAll {...getSelectionProps()} />
-                      {headers.map((header, i) => (
-                        <TableHeader key={i} {...getHeaderProps({ header })}>
-                          {header.header}
-                        </TableHeader>
+                      <TableToolbarSearch
+                        tabIndex={batchActionProps.shouldShowBatchActions ? -1 : 0}
+                        onChange={onInputChange}
+                      />
+                      <TableToolbarMenu
+                        tabIndex={batchActionProps.shouldShowBatchActions ? -1 : 0}
+                      >
+                        <TableToolbarAction onClick={this.handleOnRowAdd}>
+                          Add row
+                        </TableToolbarAction>
+                        <TableToolbarAction onClick={this.handleOnHeaderAdd}>
+                          Add header
+                        </TableToolbarAction>
+                      </TableToolbarMenu>
+                    </TableToolbarContent>
+                  </TableToolbar>
+                  <Table {...getTableProps()} aria-label="sample table">
+                    <TableHead>
+                      <TableRow>
+                        <TableExpandHeader aria-label="expand row" />
+                        <TableSelectAll {...getSelectionProps()} />
+                        {headers.map((header, i) => (
+                          <TableHeader key={i} {...getHeaderProps({ header })}>
+                            {header.header}
+                          </TableHeader>
+                        ))}
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {rows.map((row) => (
+                        <React.Fragment key={row.id}>
+                          <TableExpandRow {...getRowProps({ row })}>
+                            <TableSelectRow {...getSelectionProps({ row })} />
+                            {row.cells.map((cell) => (
+                              <TableCell key={cell.id}>{cell.value}</TableCell>
+                            ))}
+                          </TableExpandRow>
+                          <TableExpandedRow
+                            colSpan={headers.length + 3}
+                            className="demo-expanded-td"
+                            {...getExpandedRowProps({ row })}
+                          >
+                            <h6>Expandable row content</h6>
+                            <div>Description here</div>
+                          </TableExpandedRow>
+                        </React.Fragment>
                       ))}
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {rows.map((row) => (
-                      <React.Fragment key={row.id}>
-                        <TableExpandRow {...getRowProps({ row })}>
-                          <TableSelectRow {...getSelectionProps({ row })} />
-                          {row.cells.map((cell) => (
-                            <TableCell key={cell.id}>{cell.value}</TableCell>
-                          ))}
-                        </TableExpandRow>
-                        <TableExpandedRow
-                          colSpan={headers.length + 3}
-                          className="demo-expanded-td"
-                          {...getExpandedRowProps({ row })}
-                        >
-                          <h6>Expandable row content</h6>
-                          <div>Description here</div>
-                        </TableExpandedRow>
-                      </React.Fragment>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            );
-          }}
-        />
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              );
+            }}
+          />
+          <Pagination
+            backwardText="Previous page"
+            forwardText="Next page"
+            itemsPerPageText="Items per page:"
+            onChange={this.handlePageChange}
+            page={currentPage}
+            pageSize={itemsPerPage}
+            pageSizes={[5]}
+            totalItems={this.state.rows.length}
+          />
+        </>
       );
     }
   }

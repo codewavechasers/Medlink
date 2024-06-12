@@ -1,0 +1,126 @@
+.my-tile{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  // max-height: 100%;
+  padding: 10px;
+  border: 1px solid var(--primary-color-2);
+  background-color: rgba(234, 234, 234, 0.91);
+  width: auto;
+}
+.left-top-content{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: left;
+  justify-content: space-between;
+  gap: 1em;
+  flex-direction: column;
+  padding: 0 10px;
+}
+.right-bottom-content{
+  width: 20%;
+  height: 100%;
+  padding: 0 10px;
+
+}
+.uses{
+  padding: 5px;
+  border: 1px solid var(--text-color);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  // width: auto;
+  height: auto;
+  gap: 20px;
+  z-index: 2000;
+}
+.right-bottom-content{
+  display: none;
+  
+}
+.icons-right{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: flex-end;
+  height: auto;
+  gap: 20px;
+}
+.med-description{
+  max-height: 200px;
+  height: 50%;
+  padding: 5px;
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: left;
+  justify-content: flex-start;
+gap: 20px;
+flex-direction: column;
+border-radius: 10px;
+font-size: auto;
+}
+.refillButton{
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  // border: 1px solid red;
+}
+.head-title{
+  font-weight: bold;
+}
+.change-tile{
+  width: 100%;
+  // max-width: 600px;
+}
+.change-left-content{
+  width: 40%;
+}
+.change-right-content{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: auto;
+  flex-direction: column;
+  height: 100%;
+  border-left: 1px solid var(--secondary-color-2);
+}
+.flex-modal{
+  display: flex;
+  align-items: left;
+  justify-content: flex-start;
+  gap: 1em;
+  width: 100%;
+height: auto;
+}
+.refill-form, .refill-image{
+  width: 50%;
+  // border: 1px solid red;
+}
+.refill-image{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow around the element */
+
+}
+.refill-text{
+  position: absolute;
+  // display: flex;
+  // align-items: left;
+  // justify-content: center;
+  bottom: 20px;
+  color: var(--secondary-color-2);
+  font-size: 30px;
+  padding: 10px;
+  // margin: 20px 10px;
+  // border: 2px solid red;
+  width: 100%;
+}
