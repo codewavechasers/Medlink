@@ -126,7 +126,7 @@ function Container() {
 
   const renderContent = () => {
     if (contentLoading) {
-      return <Loading description="Loading content" withOverlay={false} />;
+      return <Loading description="Loading content" withOverlay={true} />;
     }
 
     switch (selectedItem) {
@@ -173,7 +173,11 @@ function Container() {
               </div>
               <div className={`doctor ${isLoading ? "loading" : ""}`}>
                 {isCollapsed ? (
-                  <Button hasIconOnly renderIcon={Bee} iconDescription="Add" />
+                  <Button
+                    hasIconOnly
+                    renderIcon={Bee}
+                    iconDescription="WhatsonX AI"
+                  />
                 ) : isLoading ? (
                   <ButtonSkeleton
                     kind="secondary"
@@ -215,7 +219,7 @@ function Container() {
               <Header />
             </section>
             <section className="content-section">
-              <Content>{renderContent()}</Content>
+            <Content>{renderContent()}</Content>
             </section>
           </div>
         </>

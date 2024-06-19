@@ -8,23 +8,25 @@
   flex-direction: column;
 }
 .medication-hub-container {
-  height: 100%;
+  height: auto;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 3em;
   padding: 1em;
+  overflow: auto;
 }
 .overall-health,
 .body-segment {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   flex-direction: column;
   height: 100%;
 }
 .overall-health {
-  width: 100%;
+  width: 50%;
   gap: 3em;
   justify-content: space-between;
 
@@ -36,24 +38,27 @@
   width: 100%;
 }
 .health-status {
-  height: 20%;
+  height: 30%;
+  border: 1px solid red;
 }
 .health-segments {
-  height: 100%;
+  height: 70%;
+  border: 1px solid red;
+
 }
 .check-up {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: auto;
+  height: 20%;
 //   border: 1px solid blue;
 }
 .body-segment {
-  width: 30%;
-//   border: 3px solid brown;
+  width: 50%;
   justify-content: flex-start;
   gap: 1em;
+  height: 100%;
 }
 
 .body-part {
@@ -62,7 +67,7 @@
     justify-content: space-between;
     flex-direction: column;
     width: 100%;
-    height: 50%;
+    height: 80%;
     background-color: var(--secondary-color-2);
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
@@ -74,6 +79,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  // height: 20%;
 }
 .patient-image{
     display: flex;
@@ -82,4 +88,32 @@
     height: 100%;
     width: 100%;
     // border: 1px solid green;
+}
+@media screen and (max-width:1200px) {
+  .medications-hub{
+    
+
+  }
+
+  .overall-health, .body-segment{
+    width: 100%;
+    position: relative;
+  }
+  .medication-hub-container{
+
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    overflow: auto;
+  }
+  .health-status,.health-segments{
+    height: auto;
+  }
+  
+}
+@media screen and (max-width:760px) {
+  .items{
+    font-size: 10px;
+  }
+  
 }

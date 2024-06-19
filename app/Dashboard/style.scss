@@ -78,6 +78,26 @@
 .app-card {
     height: 50%;
 }
+.card-header{
+  font-weight: bold;
+}
+.floating-doctor{
+  display: none;
+}
+@media screen and (max-width:760px) {
+  .floating-doctor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 100px;
+    right: 30px;
+    z-index: 2000;
+    border-radius: 50%;
+    box-shadow: 2px 2px 3px var(--primary-color);
+  }
+  
+}
 
 @media screen and (max-width: 1200px) {
     .medlink-dashboard{

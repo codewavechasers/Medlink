@@ -1,6 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Heading, SkeletonPlaceholder, Tooltip } from "@carbon/react";
-import { BreakingChange, ChevronLeft, ChevronRight, Favorite, Hearing, ShoppingBag } from "@carbon/icons-react";
+import {
+  BreakingChange,
+  ChevronLeft,
+  ChevronRight,
+  Favorite,
+  Hearing,
+  ShoppingBag,
+} from "@carbon/icons-react";
 import { motion, AnimatePresence } from "framer-motion";
 import TitlePanel from "@/components/TitlePanel";
 import BackButton from "@/components/Button/back";
@@ -18,20 +25,32 @@ function MedicationHub({ handleBackToDashboard }) {
     { time: "2024-06-09T11:00:00", description: "Team Standup" },
     { time: "2024-06-09T14:00:00", description: "Client Call" },
     { time: "2024-06-09T16:00:00", description: "Project Review" },
+    { time: "2024-06-09T17:00:00", description: "Project Review" },
+    { time: "2024-06-09T15:00:00", description: "Project Review" },
+    { time: "2024-06-09T18:00:00", description: "Project Review" },
+    { time: "2024-06-09T19:00:00", description: "Project Review" },
+    { time: "2024-06-09T20:00:00", description: "Project Review" },
   ];
 
   const tiles = [
     {
       id: "tile-1",
       heading: "Paracetamol",
-      firstUseIcon:(
+      firstUseIcon: (
         <Tooltip label="Helps Bones" enterDelayMs={0} leaveDelayMs={300}>
           <Favorite />
         </Tooltip>
       ),
       secondUseIcon: (
-        <Tooltip label="Helps Brain" enterDelayMs={0} leaveDelayMs={300}><Hearing /></Tooltip>),
-      thirdUseIcon: (<Tooltip label="Helps Heart" enterDelayMs={0} leaveDelayMs={300}><BreakingChange /></Tooltip>),
+        <Tooltip label="Helps Brain" enterDelayMs={0} leaveDelayMs={300}>
+          <Hearing />
+        </Tooltip>
+      ),
+      thirdUseIcon: (
+        <Tooltip label="Helps Heart" enterDelayMs={0} leaveDelayMs={300}>
+          <BreakingChange />
+        </Tooltip>
+      ),
       spoons: "2",
       afterBefore: "After",
       AmPm: "Pm",
@@ -42,14 +61,21 @@ function MedicationHub({ handleBackToDashboard }) {
     {
       id: "tile-2",
       heading: "Ibuprofen",
-      firstUseIcon:(
+      firstUseIcon: (
         <Tooltip label="Helps Bones" enterDelayMs={0} leaveDelayMs={300}>
           <Favorite />
         </Tooltip>
       ),
       secondUseIcon: (
-        <Tooltip label="Helps Brain" enterDelayMs={0} leaveDelayMs={300}><Hearing /></Tooltip>),
-      thirdUseIcon: (<Tooltip label="Helps Heart" enterDelayMs={0} leaveDelayMs={300}><BreakingChange /></Tooltip>),
+        <Tooltip label="Helps Brain" enterDelayMs={0} leaveDelayMs={300}>
+          <Hearing />
+        </Tooltip>
+      ),
+      thirdUseIcon: (
+        <Tooltip label="Helps Heart" enterDelayMs={0} leaveDelayMs={300}>
+          <BreakingChange />
+        </Tooltip>
+      ),
       spoons: "1",
       afterBefore: "Before",
       AmPm: "Am",
@@ -60,14 +86,21 @@ function MedicationHub({ handleBackToDashboard }) {
     {
       id: "tile-5",
       heading: "Flagyl",
-      firstUseIcon:(
+      firstUseIcon: (
         <Tooltip label="Helps Bones" enterDelayMs={0} leaveDelayMs={300}>
           <Favorite />
         </Tooltip>
       ),
       secondUseIcon: (
-        <Tooltip label="Helps Brain" enterDelayMs={0} leaveDelayMs={300}><Hearing /></Tooltip>),
-      thirdUseIcon: (<Tooltip label="Helps Heart" enterDelayMs={0} leaveDelayMs={300}><BreakingChange /></Tooltip>),
+        <Tooltip label="Helps Brain" enterDelayMs={0} leaveDelayMs={300}>
+          <Hearing />
+        </Tooltip>
+      ),
+      thirdUseIcon: (
+        <Tooltip label="Helps Heart" enterDelayMs={0} leaveDelayMs={300}>
+          <BreakingChange />
+        </Tooltip>
+      ),
       spoons: "1",
       afterBefore: "Before",
       AmPm: "Am",
@@ -78,14 +111,21 @@ function MedicationHub({ handleBackToDashboard }) {
     {
       id: "tile-3",
       heading: "Piriton",
-      firstUseIcon:(
+      firstUseIcon: (
         <Tooltip label="Helps Bones" enterDelayMs={0} leaveDelayMs={300}>
           <Favorite />
         </Tooltip>
       ),
       secondUseIcon: (
-        <Tooltip label="Helps Brain" enterDelayMs={0} leaveDelayMs={300}><Hearing /></Tooltip>),
-      thirdUseIcon: (<Tooltip label="Helps Heart" enterDelayMs={0} leaveDelayMs={300}><BreakingChange /></Tooltip>),
+        <Tooltip label="Helps Brain" enterDelayMs={0} leaveDelayMs={300}>
+          <Hearing />
+        </Tooltip>
+      ),
+      thirdUseIcon: (
+        <Tooltip label="Helps Heart" enterDelayMs={0} leaveDelayMs={300}>
+          <BreakingChange />
+        </Tooltip>
+      ),
       spoons: "1",
       afterBefore: "Before",
       AmPm: "Am",
@@ -96,14 +136,21 @@ function MedicationHub({ handleBackToDashboard }) {
     {
       id: "tile-4",
       heading: "Cetrizine",
-      firstUseIcon:(
+      firstUseIcon: (
         <Tooltip label="Helps Bones" enterDelayMs={0} leaveDelayMs={300}>
           <Favorite />
         </Tooltip>
       ),
       secondUseIcon: (
-        <Tooltip label="Helps Brain" enterDelayMs={0} leaveDelayMs={300}><Hearing /></Tooltip>),
-      thirdUseIcon: (<Tooltip label="Helps Heart" enterDelayMs={0} leaveDelayMs={300}><BreakingChange /></Tooltip>),
+        <Tooltip label="Helps Brain" enterDelayMs={0} leaveDelayMs={300}>
+          <Hearing />
+        </Tooltip>
+      ),
+      thirdUseIcon: (
+        <Tooltip label="Helps Heart" enterDelayMs={0} leaveDelayMs={300}>
+          <BreakingChange />
+        </Tooltip>
+      ),
       spoons: "1",
       afterBefore: "Before",
       AmPm: "Am",
@@ -123,7 +170,7 @@ function MedicationHub({ handleBackToDashboard }) {
     currentPage * pageSize
   );
 
-  const [expandedTile, setExpandedTile] = useState(tiles[0].id);
+  const [expandedTile, setExpandedTile] = useState(null);
 
   const handleExpand = (id) => {
     setExpandedTile(expandedTile === id ? null : id);
@@ -148,7 +195,19 @@ function MedicationHub({ handleBackToDashboard }) {
       }, 1000); // Simulating a delay of 1 second for demonstration
     }
   };
-
+const [isMobile, setMobile] = useState(false);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 760) {
+        setMobile(true);
+      } else {
+        setMobile(false);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
     <motion.div
       className="medicationHub"
@@ -159,26 +218,46 @@ function MedicationHub({ handleBackToDashboard }) {
       <TitlePanel>
         <div className="button-area">
           <BackButton onClick={handleBackToDashboard} />
-          <Heading style={{ fontWeight: "bold" }}>Medication Hub</Heading>
+          <Heading className="med-title" style={{ fontWeight: "bold" }}>Medication Hub</Heading>
         </div>
         <div className="medic-annotations">
-          <Button
-            kind="secondary"
-            size="sm"
-            hasIcon
-            iconDescription="prescription"
-          >
-            Prescription
-          </Button>
-          <Button
-            size="sm"
-            hasIcon
-            renderIcon={ShoppingBag}
-            kind="tertiary"
-            iconDescription="TrashCan"
-          >
-            Over the shelf
-          </Button>
+          {isMobile ? (
+            <Button
+              kind="secondary"
+              hasIconOnly
+              renderIcon={ShoppingBag}
+              iconDescription="prescription"
+              size="sm"
+            />
+          ) : (
+            <Button
+              kind="secondary"
+              size="sm"
+              renderIcon={ShoppingBag}
+              iconDescription="prescription"
+            >
+              Prescription
+            </Button>
+          )}
+          {isMobile ? (
+            <Button
+            hasIconOnly
+              renderIcon={ShoppingBag}
+              kind="tertiary"
+              iconDescription="over the shelf"
+              size="sm"
+            />
+          ) : (
+            <Button
+              size="sm"
+              hasIcon
+              renderIcon={ShoppingBag}
+              kind="tertiary"
+              iconDescription="TrashCan"
+            >
+              Over the shelf
+            </Button>
+          )}
         </div>
       </TitlePanel>
       <div className="my-timeline">
@@ -187,9 +266,7 @@ function MedicationHub({ handleBackToDashboard }) {
       <div className="my-prescriptions">
         <AnimatePresence>
           {loading ? (
-            <SkeletonPlaceholder
-              style={{ width: "100%", height: "100%" }}
-            />
+            <SkeletonPlaceholder style={{ width: "100%", height: "100%" }} />
           ) : (
             visibleTiles.map((tile) => (
               <motion.div
@@ -198,7 +275,7 @@ function MedicationHub({ handleBackToDashboard }) {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
               >
-                    <MyExpandableTile
+                <MyExpandableTile
                   id={tile.id}
                   heading={tile.heading}
                   firstUseIcon={tile.firstUseIcon}

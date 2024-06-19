@@ -70,7 +70,7 @@ function MedicalStatus({ handleBackToDashboard }) {
           {paginatedResults.map((item, key) => (
             <ContainedListItem
               key={key}
-              style={{ border: "1px solid whitesmoke" }}
+              style={{ border: "1px solid whitesmoke", fontSize: "16px" }}
             >
               <div
                 style={{
@@ -86,25 +86,29 @@ function MedicalStatus({ handleBackToDashboard }) {
                     justifyContent: "space-between",
                     gap: "10px",
                   }}
+                   className="items"
                 >
                   <img
                     src={item.image}
                     alt="item"
                     style={{ width: "50px", height: "50px" }}
                   />
-                  <p>{item.description}</p>
+                  <p  className="items">{item.description}</p>
                 </div>
 
                 <div
+                 className="items"
                   style={{
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "space-between",
                     gap: "10px",
+                    fontSize: "10px",
                   }}
                 >
-                  <p>{item.date}</p>
+                  <p className="items" >{item.date}</p>
                   <Link
+                   className="items"
                     href="#"
                     renderIcon={() => <ArrowRight aria-label="Arrow Right" />}
                   >
@@ -172,16 +176,14 @@ function MedicalStatus({ handleBackToDashboard }) {
           }}
         >
           <BackButton onClick={handleBackToDashboard} />
-          <Heading style={{ fontWeight: "bold" }}>
-            Health Check: You are doing Great!
-          </Heading>
+          <Heading style={{ fontWeight: "bold" }}>Health Check</Heading>
         </div>
         <div
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "flex-start",
-            width: "20%",
+            width: "auto",
             height: "auto",
           }}
         >
@@ -211,7 +213,11 @@ function MedicalStatus({ handleBackToDashboard }) {
         </div>
         <div className="body-segment">
           <div className="body-part">
-            <img className="patient-image" src="../human.svg" alt="human body"/>
+            <img
+              className="patient-image"
+              src="../human.svg"
+              alt="human body"
+            />
             <div className="navigate-body">
               <SkipBackFilled size={32} />
               <SkipForwardFilled size={32} />

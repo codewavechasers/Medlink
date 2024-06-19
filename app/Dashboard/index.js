@@ -9,7 +9,9 @@ import {
   TileAboveTheFoldContent,
   TileBelowTheFoldContent,
   Heading,
+  Button,
 } from "@carbon/react";
+import { Bee } from "@carbon/icons-react";
 import Table from "../../components/Table";
 import nprogress from "nprogress";
 import "nprogress/nprogress.css";
@@ -81,6 +83,8 @@ function Dashboard() {
 
   return (
     <div className="medlink-dashboard">
+      <div className="floating-doctor">                  <Button hasIconOnly renderIcon={Bee} iconDescription="WhatsonX AI" />
+      </div>
       <Heading className="dash-title">Welcome Back, Ano</Heading>
       <div className="dashboard-body">
         <div className="top-dash">
@@ -91,21 +95,21 @@ function Dashboard() {
               className="med-card"
               style={{ cursor: "pointer", width: "100%" }}
             >
-              Your Overall Health
+              <Heading className="card-header">Your Overall Health</Heading>
               <br />
               <br />
               <ProgressBar helperText="Health status" value={75} />{" "}
             </Tile>
             <Tile id="tile-2" style={{ width: "100%" }} className="med-card">
-              Notice Board
+              <Heading className="card-header">Notice Board</Heading>
               <br />
               <br />
               <p
                 style={{
-                  padding: "5px",
-                  width: "100%",
+                  display: "flex",
+                  alignItems: "center",
                   background: "var(--secondary-color)",
-                  fontSize: "auto",
+                  paddingLeft: "10px",
                 }}
               >
                 The new flu medication will roll out early next week
@@ -124,7 +128,7 @@ function Dashboard() {
               className="app-card"
             >
               <TileAboveTheFoldContent>
-                <div>Next Appointment</div>
+                <Heading className="card-header">Next Appointment</Heading>
               </TileAboveTheFoldContent>
               <TileBelowTheFoldContent>
                 <div>
@@ -152,7 +156,7 @@ function Dashboard() {
                     textAlign: "left",
                   }}
                 >
-                  Your Medication
+                  <Heading className="card-header"> Your Medication</Heading>
                 </div>
               </TileAboveTheFoldContent>
               <TileBelowTheFoldContent>

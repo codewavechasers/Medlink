@@ -31,24 +31,22 @@ const MyTable = () => {
   };
 
   const initialRows = [
-    { id: "1", name: "Load Balancer 1", protocol: "HTTP", port: 80, rule: "Round robin", attached_groups: "Kevin’s VM Groups", status: "Active" },
-    { id: "2", name: "Load Balancer 2", protocol: "HTTP", port: 443, rule: "Round robin", attached_groups: "Maureen’s VM Groups", status: "Active" },
-    { id: "3", name: "Load Balancer 3", protocol: "HTTP", port: 443, rule: "Round robin", attached_groups: "Maureen’s VM Groups", status: "Active" },
-    { id: "4", name: "Load Balancer 4", protocol: "HTTP", port: 443, rule: "Round robin", attached_groups: "Maureen’s VM Groups", status: "Active" },
-    { id: "5", name: "Load Balancer 5", protocol: "HTTP", port: 443, rule: "Round robin", attached_groups: "Maureen’s VM Groups", status: "Active" },
-    { id: "6", name: "Load Balancer 6", protocol: "HTTP", port: 443, rule: "Round robin", attached_groups: "Maureen’s VM Groups", status: "Active" },
-    { id: "7", name: "Load Balancer 7", protocol: "HTTP", port: 443, rule: "Round robin", attached_groups: "Maureen’s VM Groups", status: "Active" },
-    { id: "8", name: "Load Balancer 8", protocol: "HTTP", port: 443, rule: "Round robin", attached_groups: "Maureen’s VM Groups", status: "Active" },
-    { id: "9", name: "Load Balancer 9", protocol: "HTTP", port: 443, rule: "Round robin", attached_groups: "Maureen’s VM Groups", status: "Active" },
-    { id: "10", name: "Load Balancer 10", protocol: "HTTP", port: 443, rule: "Round robin", attached_groups: "Maureen’s VM Groups", status: "Active" },
+    { id: "1", name: "Dr. Keter", protocol: "HTTP", port: 80,  status: "Active" },
+    { id: "2", name: "Dr. Keter", protocol: "HTTP", port: 443,   status: "Active" },
+    { id: "3", name: "Dr. Keter", protocol: "HTTP", port: 443,   status: "Active" },
+    { id: "4", name: "Dr. Keter", protocol: "HTTP", port: 443,   status: "Active" },
+    { id: "5", name: "Dr. Keter", protocol: "HTTP", port: 443,   status: "Active" },
+    { id: "6", name: "Dr. Keter", protocol: "HTTP", port: 443,   status: "Active" },
+    { id: "7", name: "Dr. Keter", protocol: "HTTP", port: 443,   status: "Active" },
+    { id: "8", name: "Dr. Keter", protocol: "HTTP", port: 443,   status: "Active" },
+    { id: "9", name: "Dr. Keter", protocol: "HTTP", port: 443,   status: "Active" },
+    { id: "10", name: "Dr. Keter0", protocol: "HTTP", port: 443,   status: "Active" },
   ];
 
   const initialHeaders = [
     { key: "name", header: "Name" },
     { key: "protocol", header: "Protocol" },
     { key: "port", header: "Port" },
-    { key: "rule", header: "Rule" },
-    { key: "attached_groups", header: "Attached Groups" },
     { key: "status", header: "Status" },
   ];
 
@@ -183,8 +181,8 @@ const MyTable = () => {
                       </TableToolbarMenu>
                     </TableToolbarContent>
                   </TableToolbar>
-                  <Table {...getTableProps()} aria-label="sample table">
-                    <TableHead>
+                  <Table {...getTableProps()} aria-label="Doctor's Notes">
+                    <TableHead style={{fontSize:"10px"}} >
                       <TableRow>
                         <TableExpandHeader aria-label="expand row" />
                         <TableSelectAll {...getSelectionProps()} />
@@ -195,7 +193,7 @@ const MyTable = () => {
                         ))}
                       </TableRow>
                     </TableHead>
-                    <TableBody>
+                    <TableBody style={{fontSize:"10px"}} >
                       {rows.map((row) => (
                         <React.Fragment key={row.id}>
                           <TableExpandRow {...getRowProps({ row })}>

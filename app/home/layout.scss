@@ -103,7 +103,9 @@
   border-bottom: 1px solid var(--secondary-color-2);
   height: 100%;
 }
-
+.floating-doctor{
+  display: none;
+}
 @media screen and (max-width: 760px) {
   .content-section {
     margin-bottom: 50px;
@@ -114,4 +116,5 @@
     justify-content: center;
     border-left: 1px solid var(--secondary-color-2);
   }
+  
 }

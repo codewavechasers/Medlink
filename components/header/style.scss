@@ -158,3 +158,18 @@
   width: 100px;
   height: auto;
 }
+@media screen and (max-width:760px) {
+  .profile{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .info{
+    display: none;
+  }
+  .notification{
+    display: none;
+  }
+  
+}

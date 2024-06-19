@@ -10,7 +10,7 @@ const Timeline = ({ appointments }) => {
     }));
 
     return (
-        <div style={{width:"auto", maxWidth:"100%", height: "auto", overflow:"auto" }}>
+        <div style={{width:"auto", maxWidth:"100%", height: "auto", overflow:"hidden",zIndex:"2000" }}>
             <Chrono items={items} mode="HORIZONTAL" />
         </div>
     );

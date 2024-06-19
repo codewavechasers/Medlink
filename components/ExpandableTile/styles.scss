@@ -1,14 +1,18 @@
-.my-tile{
+.my-tile {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  // max-height: 100%;
   padding: 10px;
   border: 1px solid var(--primary-color-2);
   background-color: rgba(234, 234, 234, 0.91);
   width: auto;
+  flex-wrap: wrap;
 }
-.left-top-content{
+.flex-modal{
+  display: flex;
+  gap: 20px;
+}
+.left-top-content {
   width: 100%;
   height: 100%;
   display: flex;
@@ -18,29 +22,30 @@
   flex-direction: column;
   padding: 0 10px;
 }
-.right-bottom-content{
+
+.right-bottom-content {
   width: 20%;
   height: 100%;
   padding: 0 10px;
-
 }
-.uses{
+
+.uses {
   padding: 5px;
   border: 1px solid var(--text-color);
   border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  // width: auto;
   height: auto;
   gap: 20px;
   z-index: 2000;
 }
-.right-bottom-content{
+
+.right-bottom-content {
   display: none;
-  
 }
-.icons-right{
+
+.icons-right {
   display: flex;
   align-items: center;
   width: 100%;
@@ -48,7 +53,8 @@
   height: auto;
   gap: 20px;
 }
-.med-description{
+
+.med-description {
   max-height: 200px;
   height: 50%;
   padding: 5px;
@@ -57,31 +63,40 @@
   display: flex;
   align-items: left;
   justify-content: flex-start;
-gap: 20px;
-flex-direction: column;
-border-radius: 10px;
-font-size: auto;
+  gap: 20px;
+  flex-direction: column;
+  border-radius: 10px;
+  font-size: auto;
 }
-.refillButton{
+.refill-form{
+  width: 50%;
+}
+.refill-image{
+  width: 50%;
+}
+
+.refillButton {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
   flex-direction: column;
   height: 100%;
   width: 100%;
-  // border: 1px solid red;
 }
-.head-title{
+
+.head-title {
   font-weight: bold;
 }
-.change-tile{
+
+.change-tile {
   width: 100%;
-  // max-width: 600px;
 }
-.change-left-content{
-  width: 40%;
+
+.change-left-content {
+  width: 100%;
 }
-.change-right-content{
+
+.change-right-content {
   width: 100%;
   display: flex;
   align-items: center;
@@ -91,36 +106,40 @@ font-size: auto;
   height: 100%;
   border-left: 1px solid var(--secondary-color-2);
 }
-.flex-modal{
-  display: flex;
-  align-items: left;
-  justify-content: flex-start;
-  gap: 1em;
-  width: 100%;
-height: auto;
-}
-.refill-form, .refill-image{
-  width: 50%;
-  // border: 1px solid red;
-}
-.refill-image{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds a shadow around the element */
 
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .refill-form, .refill-image{
+    width: 100%;
+  }
+  .flex-modal{
+    display: flex;
+    flex-direction: column;
+  }
+  .my-tile {
+    flex-direction: column;
+  }
+
+  .change-left-content {
+    width: 100%;
+  }
+
+  .change-right-content {
+    width: 100%;
+  }
 }
-.refill-text{
-  position: absolute;
-  // display: flex;
-  // align-items: left;
-  // justify-content: center;
-  bottom: 20px;
-  color: var(--secondary-color-2);
-  font-size: 30px;
-  padding: 10px;
-  // margin: 20px 10px;
-  // border: 2px solid red;
-  width: 100%;
+
+/* Responsive design for PC */
+@media (min-width: 769px) {
+  .my-tile {
+    flex-direction: row;
+  }
+
+  .change-left-content {
+    width: 40%;
+  }
+
+  .change-right-content {
+    width: 60%;
+  }
 }
