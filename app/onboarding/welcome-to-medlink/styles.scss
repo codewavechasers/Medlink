@@ -1,0 +1,141 @@
+.welcome-page {
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.onboarding-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.navigations {
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navigations ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.navigations ul li {
+  cursor: pointer;
+  color: var(--text-color-3);
+}
+.navigations ul li:hover {
+  color: var(--secondary-color-2);
+  font-weight: bold;
+  border-bottom: 2px solid var(--text-color-3);
+}
+.logo {
+  width: 70px;
+  height: 70px;
+}
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.left-header {
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 100px;
+}
+.welcome {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  height: auto;
+  width: 100%;
+  padding: 20px;
+  box-shadow: 2px 4px 7px var(--tertiary-color);
+}
+.welcome-text {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+.head-text {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 2px;
+}
+.descriptive-text {
+  font-size: 25px;
+}
+.welcome-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: auto;
+  height: 400px;
+  box-shadow: 2px 4px 7px var(--text-color-3);
+}
+.welcome-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.about {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  height: auto;
+  background-color: var(--tertiary-color);
+}
+.content-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.heading {
+  text-align: center;
+  color: var(--text-color-3);
+  font-size: 25px;
+  padding: 10px;
+  font-weight: bold;
+  width: auto;
+}
+.flex-icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  // gap: 20px;
+//   width: a;
+}
+.about-icons {
+  display: flex;
+  align-self: center;
+  justify-content: flex-end;
+  gap: 20px;
+}
+.icon{
+    cursor: pointer;
+    // color: var(--text-color-3);
+    font-weight: bolder;
+}

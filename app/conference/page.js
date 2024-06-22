@@ -1,10 +1,9 @@
-"use client"
 import React from 'react'
-import Chats from './'
+import Conference from './index'
 function page() {
   return (
     <div>
-      <Chats/>
+      <Conference/>
     </div>
   )
 }

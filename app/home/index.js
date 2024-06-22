@@ -13,6 +13,8 @@ import {
   Chat,
   Workspace,
   Medication,
+  Person,
+  Video,
 } from "@carbon/icons-react";
 import Chats from "../chats";
 import Appointments from "../appointments";
@@ -20,7 +22,7 @@ import Help from "../help";
 import Dashboard from "../Dashboard";
 import nprogress from "nprogress";
 import "nprogress/nprogress.css";
-
+import Conferencing from '../conference'
 function Container() {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -72,6 +74,18 @@ function Container() {
       window.removeEventListener("localStorageChange", handleStorageChange);
     };
   }, []);
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 1260) {
+        setIsCollapsed(true);
+      } else {
+        setIsCollapsed(false);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -114,14 +128,15 @@ function Container() {
     {
       name: "Help Desk",
       path: "Help",
-      icon: <Chat size={32} />,
+      icon: <Person size={32} />,
+    },
+    {
+      name: "Media Consultation",
+      path: "conferencing",
+      icon: <Video size={32} />,
     },
 
-    {
-      name: "More",
-      path: "More",
-      icon: <Chat size={32} />,
-    },
+   
   ];
 
   const renderContent = () => {
@@ -138,8 +153,8 @@ function Container() {
         return <Appointments />;
       case "Help":
         return <Help />;
-      case "More":
-        return <div>More Content</div>;
+      case "conferencing":
+        return <Conferencing />;
       default:
         return <Dashboard onMedicationClick={handleMedicationClick} />;
     }

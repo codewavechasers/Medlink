@@ -1,5 +1,6 @@
-import React from "react";
+import {React, useEffect} from "react";
 import './styles.scss'
+
 function Menu({ children }) {
   return (
     <div className="menu">
@@ -11,6 +12,7 @@ function Menu({ children }) {
 }
 
 function MenuItem({ item, icon }) {
+  
   return (
     <div className="menu-item">
       <span className="menu-item-icon">{icon}</span>

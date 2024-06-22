@@ -1,6 +1,6 @@
 import { Button } from '@carbon/react'
 import React from 'react'
-
+import './styles.scss'
 function Intergrations() {
   return (
     <section className="intergration-apis">
@@ -68,6 +68,7 @@ function Intergrations() {
         <Button kind="tertiary">Learn More</Button>
       </div>
     </div>
+
   </section>
   )
 }

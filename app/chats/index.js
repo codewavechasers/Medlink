@@ -5,6 +5,7 @@ import { Button, Heading } from "@carbon/react";
 import Features from "../../components/Features";
 import Intergrations from "../../components/intergrations";
 import TechTrust from "../../components/Tech-trust";
+import MoreEnquiry from "../../components/more-inquiry";
 function Chats() {
   useEffect(() => {
     window.watsonAssistantChatOptions = {
@@ -70,6 +71,7 @@ function Chats() {
       <Features />
       <TechTrust />
       <Intergrations />
+      <MoreEnquiry/>
     </div>
   );
 }

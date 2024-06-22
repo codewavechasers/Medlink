@@ -17,7 +17,18 @@ function SideBar({ children, isCollapsed: initialIsCollapsed }) {
     localStorage.setItem("collapsed", JSON.stringify(newCollapseState));
     window.dispatchEvent(new Event("localStorageChange"));
   };
-
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 1260) {
+        setIsCollapsed(true);
+      } else {
+        setIsCollapsed(false);
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
     <div className={`sidebar ${isCollapsed ? "collapsed" : ""}`}>
       <div className="collapse-btn">

@@ -1,10 +1,9 @@
-"use client"
 import React from 'react'
-import Chats from './'
+
 function page() {
   return (
     <div>
-      <Chats/>
+      sign up
     </div>
   )
 }

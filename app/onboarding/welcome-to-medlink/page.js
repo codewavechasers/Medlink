@@ -1,10 +1,10 @@
 "use client"
 import React from 'react'
-import Chats from './'
+import Welcome from './index'
 function page() {
   return (
     <div>
-      <Chats/>
+     <Welcome/>
     </div>
   )
 }

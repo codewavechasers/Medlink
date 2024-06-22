@@ -132,11 +132,11 @@ function Dashboard() {
               </TileAboveTheFoldContent>
               <TileBelowTheFoldContent>
                 <div>
-                  <div className="date">
+                  <div className="dates">
                     <h3 style={{ fontSize: "5rem", fontWeight: "bolder" }}>
                       28
                     </h3>
-                    <small style={{ fontSize: "2rem" }}>March</small>
+                    <small style={{ fontSize: "20px" }}>March</small>
                   </div>
                 </div>
               </TileBelowTheFoldContent>
@@ -181,7 +181,8 @@ function Dashboard() {
                         cursor: "pointer",
                         background: "var(--secondary-color)",
                         zIndex: "20",
-                        width: "50%",
+                        maxWidth:"300px",
+                        width: "100%",
                         fontWeight: "bold",
                       }}
                     >
@@ -213,6 +214,7 @@ function Dashboard() {
           </div>
         </main>
       </div>
+
     </div>
   );
 }
