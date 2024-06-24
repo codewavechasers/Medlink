@@ -25,6 +25,8 @@ function Welcome() {
         </section>
       </Header>
       <section className="welcome">
+       
+        <div className="welcome-image">
         <div className="welcome-text">
           <Heading className="head-text">
             The Best things in life are free
@@ -39,7 +41,6 @@ function Welcome() {
             </Button>
           </div>
         </div>
-        <div className="welcome-image">
           <img src="../../../medlink.png" alt="welcome image" />
         </div>
       </section>

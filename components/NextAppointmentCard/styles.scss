@@ -35,8 +35,11 @@
     height: 100px;
     border-radius: 10px;
 }
-.icons{
+.edit-icons{
     display: flex;
     align-items: center;
     gap: 10px;
+}
+.edit-icon{
+    cursor: pointer;
 }

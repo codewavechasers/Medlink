@@ -127,7 +127,6 @@ function NextAppointments({ handleBackToDashboard }) {
       twitterLink: "#",
       instagramLink: "#",
     },
-    // Add more doctor objects as needed
   ];
 
   const appointments = [
@@ -137,7 +136,6 @@ function NextAppointments({ handleBackToDashboard }) {
     { id: 4, doctorName: "Dr. Michael Brown", date: "2024-06-23", time: "01:00 PM" },
     { id: 5, doctorName: "Dr. Sarah Green", date: "2024-06-24", time: "02:00 PM" },
     { id: 6, doctorName: "Dr. William Black", date: "2024-06-25", time: "03:00 PM" },
-    // Add more appointments as needed
   ];
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -227,7 +225,7 @@ function NextAppointments({ handleBackToDashboard }) {
         page={currentDoctorPage}
         pageNumberText="Page Number"
         pageSize={itemsPerPage}
-        pageSizes={[itemsPerPage]} // Add this line to fix the error
+        pageSizes={[itemsPerPage]} 
         onChange={handleDoctorPageChange}
       />
 
@@ -251,7 +249,7 @@ function NextAppointments({ handleBackToDashboard }) {
         page={currentAppointmentPage}
         pageNumberText="Page Number"
         pageSize={itemsPerPage}
-        pageSizes={[itemsPerPage]} // Add this line to fix the error
+        pageSizes={[itemsPerPage]}
         onChange={handleAppointmentPageChange}
       />
     </div>

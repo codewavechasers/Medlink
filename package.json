@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@arco-design/web-react": "^2.63.0",
     "@carbon/icons-react": "^11.42.0",
     "@carbon/react": "^1.59.0",
     "framer-motion": "^11.2.10",

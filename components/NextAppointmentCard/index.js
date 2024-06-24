@@ -11,9 +11,9 @@ function NextAppCard() {
         <Heading className='name'>Dr. Keter</Heading>
         <p>ADV: 29th May 2024</p>
       </div>
-      <div className='icons'>
-      <TrashCan style={{color:"red"}}/>
-      <Information />
+      <div className='edit-icons'>
+      <TrashCan className='edit-icon' style={{color:"red"}}/>
+      <Information className='edit-icon' />
       </div>
     </div>
   )

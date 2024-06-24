@@ -57,17 +57,21 @@
   gap: 20px;
   height: auto;
   width: 100%;
-  padding: 20px;
+  // padding: 20px;
   box-shadow: 2px 4px 7px var(--tertiary-color);
 }
 .welcome-text {
-  width: 50%;
+  position: absolute;
+  // width: 50%;
+  left: 5%;
+
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 30px;
+  z-index: 10;
 }
 .head-text {
   font-size: 30px;
@@ -82,19 +86,34 @@
 .descriptive-text {
   font-size: 25px;
 }
+
 .welcome-image {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50%;
+  width: 100%;
   height: auto;
   height: 400px;
-  box-shadow: 2px 4px 7px var(--text-color-3);
-}
-.welcome-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  padding-top: 20px;
+  // box-shadow: 2px 4px 7px var(--text-color-3);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    pointer-events: none; 
+  }
 }
 .about {
   display: flex;
@@ -125,8 +144,6 @@
   align-items: center;
   justify-content: space-between;
   width: 50%;
-  // gap: 20px;
-//   width: a;
 }
 .about-icons {
   display: flex;
@@ -136,6 +153,5 @@
 }
 .icon{
     cursor: pointer;
-    // color: var(--text-color-3);
     font-weight: bolder;
 }
