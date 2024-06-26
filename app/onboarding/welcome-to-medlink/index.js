@@ -3,6 +3,7 @@ import "./styles.scss";
 import Header from "../internals/header";
 import { Button, Heading } from "@carbon/react";
 import { PillsSubtract, User } from "@carbon/icons-react";
+import Link from "next/link";
 function Welcome() {
   return (
     <div className="welcome-page">
@@ -19,28 +20,31 @@ function Welcome() {
             </ul>
           </div>
           <div className="onboarding-buttons">
-            <Button kind="secondary"> Sign in</Button>
-            <Button kind="primary"> Sign up</Button>
+            <Link href="http://localhost:3000/onboarding/welcome-to-medlink/auth/sign-in">
+              <Button size="sm" kind="secondary"> Sign in</Button>
+            </Link>
+            <Link href="http://localhost:3000/onboarding/welcome-to-medlink/auth/sign-up">
+              <Button size="sm" kind="primary"> Sign up</Button>
+            </Link>
           </div>
         </section>
       </Header>
-      <section className="welcome">
-       
+      {/* <section className="welcome">
         <div className="welcome-image">
-        <div className="welcome-text">
-          <Heading className="head-text">
-            The Best things in life are free
-          </Heading>
-          <p className="descriptive-text">Get access to healthcare for you</p>
-          <div className="onboarding-buttons">
-            <Button kind="secondary" size="sm">
-              Create Account
-            </Button>
-            <Button kind="ghost" size="sm">
-              See offers
-            </Button>
+          <div className="welcome-text">
+            <Heading className="head-text">
+              The Best things in life are free
+            </Heading>
+            <p className="descriptive-text">Get access to healthcare for you</p>
+            <div className="onboarding-buttons">
+              <Button kind="secondary" size="sm">
+                Create Account
+              </Button>
+              <Button kind="ghost" size="sm">
+                See offers
+              </Button>
+            </div>
           </div>
-        </div>
           <img src="../../../medlink.png" alt="welcome image" />
         </div>
       </section>
@@ -55,7 +59,7 @@ function Welcome() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

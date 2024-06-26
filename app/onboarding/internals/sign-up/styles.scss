@@ -1,0 +1,70 @@
+.back{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.log-in{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.logo {
+    width: 70px;
+    height: 70px;
+  }
+  .logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .link{
+    font-weight: bold;
+  }
+  .sign-up-container{
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+  }
+ .sign-up-container img{
+  width: 50%;
+  height: 500px;
+
+ }
+ .join-us{
+  // border-left: 1px solid var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  width: 50%;
+ }
+ .signup-title{
+  font-weight: bolder;
+  text-align: left;
+  width: 100%;
+  padding-bottom: 20px;
+  font-size: 18px;
+ }
+ .signup-description{
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 2px;
+ }
+ .sign-up-option{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap:20px;
+  flex-direction: column;
+  height: auto;
+ }

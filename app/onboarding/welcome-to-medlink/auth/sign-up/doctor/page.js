@@ -1,10 +1,10 @@
-"use client"
 import React from 'react'
-import SignUp from './index'
+import Doctor from './index'
+import './styles.scss'
 function page() {
   return (
     <div>
-      <SignUp/>
+      <Doctor/>
     </div>
   )
 }
