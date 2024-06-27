@@ -25,12 +25,16 @@
   justify-content: space-between;
   gap: 20px;
 }
+.index-bg{
+  background-image: url('../../../public//img//img1.jpg')
+
+}
 .navigations ul li {
   cursor: pointer;
   color: var(--text-color-3);
 }
 .navigations ul li:hover {
-  color: var(--secondary-color-2);
+  // color: var(--secondary-color-2);
   font-weight: bold;
   border-bottom: 2px solid var(--text-color-3);
 }
@@ -155,3 +159,21 @@
     cursor: pointer;
     font-weight: bolder;
 }
+.welcome-body{
+  width: 100%;
+}
+
+.carousel .control-arrow {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.carousel .thumb {
+  border-color: var(--primary-color);
+}
+
+.carousel .control-dots .dot {
+  background-color: var(--primary-color);
+}
+
+////////////////
