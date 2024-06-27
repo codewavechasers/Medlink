@@ -1,13 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from 'react-dom';
 import "./styles.sass"; 
 import "./styles.scss";
-import { Button, Modal, TextInput, Select, SelectItem } from "@carbon/react";
+import { Button, Modal } from "@carbon/react";
 import Link from "next/link";
 import Head from "next/head";
 import { Space, PageHeader, Typography, Steps } from "@arco-design/web-react";
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { useRouter } from 'next/navigation';
+import { ArrowRight } from "@carbon/icons-react";
 
 const Step = Steps.Step;
 
@@ -27,31 +29,47 @@ const ModalStateManager = ({ renderLauncher: LauncherContent, children: ModalCon
   );
 };
 
-const FeaturesModal = ({ open, setOpen }) => (
-  <Modal
-    modalHeading="Explore Features"
-    modalLabel="Medlink"
-    primaryButtonText="Close"
-    secondaryButtonText=""
-    open={open}
-    onRequestClose={() => setOpen(false)}
-  >
-    <Carousel showThumbs={false}>
-      <div>
-        <h3>Register and Schedule Appointments</h3>
-        <p>Seamlessly book virtual or physical appointments.</p>
-      </div>
-      <div>
-        <h3>Connect with Doctors</h3>
-        <p>Experience real-time consultations.</p>
-      </div>
-      <div>
-        <h3>Manage Prescriptions and Reminders</h3>
-        <p>Set reminders for your medications.</p>
-      </div>
-    </Carousel>
-  </Modal>
-);
+const FeaturesModal = ({ open, setOpen }) => {
+  const router = useRouter();
+
+  const handleReturn = () => {
+    setOpen(false);
+  };
+
+  const handleSkip = () => {
+    router.push('/onboarding/welcome-to-medlink/auth/sign-up');
+  };
+
+  return (
+    <Modal
+      modalHeading="Explore Features - You can swipe"
+      modalLabel="Medlink"
+      primaryButtonText="Skip"
+      secondaryButtonText="Return"
+      open={open}
+      onRequestSubmit={handleSkip}
+      onSecondarySubmit={handleReturn}
+    >
+      <Carousel showThumbs={false} className="carousel">
+        <div className="feature">
+          <h3>Register and Schedule Appointments</h3>
+          <p>Seamlessly book virtual or physical appointments.</p>
+          <img src="../../../auth-img/img1.jpg" />
+        </div>
+        <div className="feature">
+          <h3>Connect with Doctors</h3>
+          <p>Experience real-time consultations.</p>
+          <img src="../../../auth-img/img1.jpg" />
+        </div>
+        <div className="feature">
+          <h3>Manage Prescriptions and Reminders</h3>
+          <p>Set reminders for your medications.</p>
+          <img src="../../../auth-img/img1.jpg" />
+        </div>
+      </Carousel>
+    </Modal>
+  );
+};
 
 function Welcome() {
   return (
@@ -103,8 +121,8 @@ function Welcome() {
           />
           <div className="index-bg">
             <Typography.Title className="tc" type="secondary">
-              <p>Your Health, Simplified</p>
-              <p className="mark">
+              <p className="p-tags">Your Health, Simplified</p>
+              <p className="mark p-tags">
                 Bridging the Gap Between Patients and Doctors Virtually
               </p>
             </Typography.Title>
@@ -151,11 +169,11 @@ function Welcome() {
           </div>
 
           <div className="index-footer">
-            <div>
+            <div style={{fontSize:"1.5rem", marginBottom:"20px"}}>
               <strong>Medlink</strong> | Your Virtual Medical Clinic
             </div>
-            <Link href="/applications">
-              <Button type="text" kind="tertiary" size="sm">Get started free</Button>
+            <Link href="../../../onboarding/welcome-to-medlink/auth/sign-in">
+              <Button type="text" kind="secondary" renderIcon={ArrowRight} size="sm">Get started free</Button>
             </Link>
           </div>
         </div>

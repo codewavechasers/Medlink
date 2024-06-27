@@ -1,7 +1,6 @@
 import React from "react";
 import "./styles.scss";
 import OnboardingHeader from "@/app/onboarding/internals/header";
-import { Button, ClickableTile, Heading } from "@carbon/react";
 import Link from "next/link";
 import { ArrowLeft, Hospital, HospitalBed } from "@carbon/icons-react";
 import Image from "next/image";
@@ -41,12 +40,12 @@ function SignUp() {
           <ArrowLeft size={32} /> Back
         </section></Link>
         <section className="log-in">
-          <Heading className="log-in">
+          <h4 className="log-in">
             Already have an Account?{" "}
             <Link className="link" href="../../welcome-to-medlink/auth/sign-in">
               Sign in
             </Link>
-          </Heading>
+          </h4>
         </section>
       </OnboardingHeader>
       <section className="sign-up-container">
@@ -57,12 +56,12 @@ function SignUp() {
           alt="sign-up-image"
         /> */}
         <section className="join-us">
-          <Heading className="signup-title">Join Us</Heading>
-          <Heading className="signup-description">
+          <h4 className="signup-title">Join Us</h4>
+          <h4 className="signup-description">
             We cater for clinicians and patients because we believe <br /> in providing
             access for all.
-          </Heading>
-          <Heading>Please select an option</Heading>
+          </h4>
+          <h4>Please select an option</h4>
           <div className="sign-up-option">
             {optionList.map((option) => (
               <OptionCard

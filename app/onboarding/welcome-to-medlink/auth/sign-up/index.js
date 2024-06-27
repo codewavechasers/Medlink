@@ -1,7 +1,6 @@
 import React from "react";
 import "./styles.scss";
 import OnboardingHeader from "@/app/onboarding/internals/header";
-import { Button, Heading } from "@carbon/react";
 import Link from "next/link";
 import { ArrowLeft } from "@carbon/icons-react";
 import Image from "next/image";
@@ -22,12 +21,12 @@ function SignUp() {
           <ArrowLeft size={32} /> Back
         </section>
         <section className="log-in">
-          <Heading className="log-in">
-            Already have an Account?{" "}
+          <h4 className="log-in">
+            Already have an Account?
             <Link className="link" href="#">
               Sign in
             </Link>
-          </Heading>
+          </h4>
         </section>
       </OnboardingHeader>
       <section className="sign-up-container">

@@ -8,7 +8,6 @@ import {
   Button,
   Select,
   SelectItem,
-  Heading,
   TextInput,
   Form,
   DatePicker,
@@ -199,12 +198,12 @@ function Patient() {
               <BackBtn /> Back
             </Link>
           </section>
-          <Heading>Personal Information</Heading>
+          <h4>Personal Information</h4>
         </Header>
         <section className="reg-form">
           <div className="cont">
-          <Heading className="reg-title">Register Patient Account</Heading>
-          <Heading>Please fill in your details.</Heading>
+          <h4 className="reg-title">Register Patient Account</h4>
+          <h4>Please fill in your details.</h4>
           <div className="my-form">
             <Form aria-label="Registration form" className="form">
               {renderFormFields()}
