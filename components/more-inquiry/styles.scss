@@ -5,6 +5,9 @@
     justify-content: space-between;
     height: auto;
     padding: 10px;
+    background-color: var(--secondary-color-2);
+    border-top: 1px dashed var(--primary-color);
+
 }
 .subscribe-form{
     display: flex;

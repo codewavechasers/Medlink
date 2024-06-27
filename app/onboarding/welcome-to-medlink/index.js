@@ -20,10 +20,10 @@ function Welcome() {
             </ul>
           </div>
           <div className="onboarding-buttons">
-            <Link href="http://localhost:3000/onboarding/welcome-to-medlink/auth/sign-in">
+            <Link href="../../../onboarding/welcome-to-medlink/auth/sign-in">
               <Button size="sm" kind="secondary"> Sign in</Button>
             </Link>
-            <Link href="http://localhost:3000/onboarding/welcome-to-medlink/auth/sign-up">
+            <Link href="../../../onboarding/welcome-to-medlink/auth/sign-up">
               <Button size="sm" kind="primary"> Sign up</Button>
             </Link>
           </div>

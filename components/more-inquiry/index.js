@@ -21,9 +21,9 @@ function MoreEnquiry() {
         </Form>
       </div>
       <div className="med-social-links">
-        <LogoTwitter className="logo-med" href="https://twitter.com" size={64}/>
-        <LogoInstagram href="https://instagram.com" className="logo-med" size={64}/>
-        <LogoFacebook href="https://facebook.com" className="logo-med" size={64}/>
+        <LogoTwitter className="logo-med" href="https://twitter.com" style={{color:"#008AD8"}} size={64}/>
+        <LogoInstagram href="https://instagram.com" className="logo-med" style={{color:"#d62976"}} size={64}/>
+        <LogoFacebook href="https://facebook.com" className="logo-med" style={{color:"#1877f2"}} size={64}/>
       </div>
 
       <div className="copyright">copyright © 2024. Powered by Watson - IBM</div>

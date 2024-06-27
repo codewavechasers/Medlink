@@ -201,6 +201,7 @@ function Doctor() {
           <Heading>Personal Information</Heading>
         </Header>
         <section className="reg-form">
+          <div className="cont">
           <Heading className="reg-title">Register Clinician Account</Heading>
           <Heading>Please fill in your details.</Heading>
           <div className="my-form">
@@ -243,6 +244,8 @@ function Doctor() {
               </div>
             </Form>
           </div>
+          </div>
+         
           <Footer />
         </section>
       </div>

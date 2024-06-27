@@ -9,11 +9,13 @@
 
 .patient-reg {
   width: 100%;
-  height: auto;
+  height: 100vh;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: auto;
+  overflow: hidden;
+
 }
 
 .reg-body {
@@ -107,11 +109,18 @@ border-left: 1px dashed var(--primary-color);
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-direction: column;
-//   border-radius: 10px;
-  padding: 10px;
   background-color: var(--tertiary-color);
+  height: calc(100vh - 10vh);
+}
+.cont{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: auto;
+  flex-direction: column;
 }
 .form{
     padding-top: 20px;
