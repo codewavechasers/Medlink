@@ -1,0 +1,61 @@
+.help-card{
+    width: 350px;
+    // max-width: 200px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    border-radius: 10px;
+    background-color: var(--secondary-color-2);
+    padding: 10px;
+    box-shadow: 2px 4px 10px var(--text-color-3);
+    cursor: pointer;
+    flex-direction: column;
+}
+.help-card:hover{
+    box-shadow: 1px 2px 3px var(--text-color-3);
+}
+.icon-section{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    color: var(--text-color-3);
+}
+.title-section{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: bold;
+    width: auto;
+    flex-wrap: nowrap;
+    text-align: center;
+}
+.description-section{
+    width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+
+}
+.description-section p{
+    text-align: left;
+    color: var(--text-color-3);
+    font-size: 13px;
+}
+@media screen and (max-width:870px) {
+    .help-card{
+        width: 200px;
+    }
+    
+}
+@media screen  and (max-width:550px){ 
+    .help-card{
+        width: 100%;
+    }
+    
+}

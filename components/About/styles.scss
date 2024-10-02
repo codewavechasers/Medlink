@@ -1,0 +1,19 @@
+.about-content{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background-color: transparent !important;
+    
+}
+
+.about-svg{
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('../../public/svg/about.svg');
+    height: auto;
+    width: 50%;
+border: 1px solid red;
+}

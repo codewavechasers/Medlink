@@ -1,0 +1,228 @@
+.welcome-page {
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.onboarding-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.navigations {
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navigations ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.index-bg{
+  background-image: url('../../../public/img//img1.jpg')
+
+}
+.navigations ul li {
+  cursor: pointer;
+  color: var(--text-color-3);
+}
+.navigations ul li:hover {
+  // color: var(--secondary-color-2);
+  font-weight: bold;
+  border-bottom: 2px solid var(--text-color-3);
+}
+.logo {
+  width: 50px;
+  height: 50px;
+}
+.logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.left-header {
+  width: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 100px;
+}
+.welcome {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  height: auto;
+  width: 100%;
+  // padding: 20px;
+  box-shadow: 2px 4px 7px var(--tertiary-color);
+}
+.welcome-text {
+  position: absolute;
+  // width: 50%;
+  left: 5%;
+
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  z-index: 10;
+}
+.head-text {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 2px;
+}
+.descriptive-text {
+  font-size: 25px;
+}
+
+.welcome-image {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+  height: 400px;
+  padding-top: 20px;
+  // box-shadow: 2px 4px 7px var(--text-color-3);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    pointer-events: none; 
+  }
+}
+.about {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  height: auto;
+  background-color: var(--tertiary-color);
+}
+.content-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.heading {
+  text-align: center;
+  color: var(--text-color-3);
+  font-size: 25px;
+  padding: 10px;
+  font-weight: bold;
+  width: auto;
+}
+.flex-icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+}
+.about-icons {
+  display: flex;
+  align-self: center;
+  justify-content: flex-end;
+  gap: 20px;
+}
+.icon{
+    cursor: pointer;
+    font-weight: bolder;
+}
+.welcome-body{
+  width: 100%;
+}
+.feature{
+  height: 500px;
+  display: flex;
+  align-items:center;
+  justify-content: space-between;  
+  gap: 20px;
+  flex-direction: column;
+  width: 100%;
+}
+.p-tags{
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+.feature-img{
+  height: auto;
+  width: 100%;
+  max-height: 400px;
+}
+.feature-modal{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.index-about{
+  height: auto;
+  width: 100%;
+  padding: 20px;
+  background: var(--tertiary-color);
+
+}
+.logo-sec{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: auto;
+}
+.btn-sec{
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  // width: 100%;
+  // border: 2px solid red;
+  width: auto;
+}
+.medlink-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  // border: 2px solid blue;
+  width: auto;
+}
+@media screen and (max-width:750px) {
+  .medlink-header{
+    display: flex;
+    flex-direction: column;
+  }
+
+  
+}
+
+////////////////

@@ -1,0 +1,41 @@
+{
+  "name": "medlink-v2",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@carbon/icons-react": "^11.42.0",
+    "@carbon/react": "^1.61.0",
+    "axios": "^1.7.2",
+    "framer-motion": "^11.2.10",
+    "medlink-v2": "file:",
+    "next": "14.2.3",
+    "next-auth": "^4.24.7",
+    "nprogress": "^0.2.0",
+    "peerjs": "^1.5.4",
+    "react": "^18",
+    "react-chrono": "^2.6.1",
+    "react-dom": "^18",
+    "react-responsive-carousel": "^3.2.23",
+    "sass": "^1.77.4",
+    "styled-components": "^6.1.11",
+    "sweetalert2": "^11.12.3",
+    "swiper": "^11.1.4",
+    "yup": "^1.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}

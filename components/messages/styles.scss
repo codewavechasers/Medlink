@@ -1,0 +1,10 @@
+
+.messages{
+    width: 25em;
+}
+@media screen and (max-width:500px) {
+    .messages{
+        width: 100%;
+    }
+    
+}

@@ -1,0 +1,49 @@
+.medicationHub{
+    width: 100%;
+    // height: auto; //
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    // overflow: auto ; //
+}
+.button-area,.medic-annotations{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+.my-timeline{
+    
+    width: 100%;
+    height: auto;
+}
+
+.my-prescriptions{
+    width: 100%;
+    min-height: 30%;
+    height: auto;
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 1em;
+    background-color: var(--secondary-color-2);
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+.pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:20px;
+}
+@media screen and (max-width:760px) {
+    .my-prescriptions{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .med-title{
+        font-size: 16px;
+    }
+    
+}

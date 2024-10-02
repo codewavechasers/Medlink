@@ -1,0 +1,29 @@
+.chats {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+.chat-cont {
+  width: 100%;
+}
+.images {
+  height: auto;
+  position: relative;
+}
+
+.chat-int {
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+

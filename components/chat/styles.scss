@@ -1,0 +1,80 @@
+.my-chat {
+  width: 100%;
+  height: calc(100vh - 10vh);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  // border: 2px solid blue;
+  position: relative;
+}
+.chat-nav {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  // border: 1px solid red;
+  gap: 20px;
+  padding: 10px;
+  margin-top: 50px;
+  box-sizing: border-box;
+}
+.chat-interface {
+  height: 100%;
+  width: 80%;
+  // border: 1px solid blue;
+  display: flex;
+  align-items: flex-start;
+  // padding: 20px;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: var(--secondary-color-2);
+}
+.my-tags {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 20px;
+}
+.chat-input {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+//   border: 1px solid blue;
+}
+.send-btn {
+  width: auto;
+  background-color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  height: auto;
+  justify-content: center;
+  padding: 5px;
+  cursor: pointer;
+}
+.chat-heading {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--tertiary-color);
+}
+.chattings {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  gap: 30vh;
+  padding: 20px;
+}
+.chat-btns {
+  width: 100%;
+}

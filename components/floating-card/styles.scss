@@ -1,0 +1,11 @@
+.floating-card{
+    position: absolute;
+    height: auto;
+    width: auto;
+    background-color: var(--secondary-color-2);
+    z-index: 5000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+}

@@ -1,0 +1,42 @@
+/* components/Timeline.module.css */
+.timelineWrapper {
+    position: relative;
+    margin: 20px 0;
+    padding: 10px 0;
+}
+
+.timelineWrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #cfcfcf;
+    left: 20px;
+    margin-left: -1px;
+}
+
+.event {
+    position: relative;
+    margin: 10px 0;
+    padding-left: 40px;
+}
+
+.dot {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #4caf50;
+    border-radius: 50%;
+    top: 0;
+    left: 13px;
+}
+
+.time {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.description {
+    color: #555;
+}

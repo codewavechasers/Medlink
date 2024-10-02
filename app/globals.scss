@@ -1,0 +1,28 @@
+@use '@carbon/react';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+*{
+    transition: .3s linear !important;
+    // user-select: none;
+    // overflow: auto;
+}
+
+:root {
+    --primary-color: #A4BCD2;
+    --primary-color-2: #E4F2FF;
+    --secondary-color: #D2DEE9;
+    --secondary-color-2: #FFFFFF;
+    --text-color: #455C71;
+    --text-color-2: #344657;
+    --text-color-3: #788CA0;
+    --tertiary-color:rgba(234, 234, 234, 0.91);
+  }
+
+  .image{
+    height: auto;
+    width: auto;
+
+  }

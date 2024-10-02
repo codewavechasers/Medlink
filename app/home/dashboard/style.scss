@@ -1,0 +1,159 @@
+.medlink-dashboard {
+  height: auto;
+  overflow: auto;
+  width: 100%;
+// border: 20px solid red;
+  padding: 1em;
+}
+.dash-title {
+  width: 100%;
+  padding: 1em 0;
+  font-weight: bold;
+  height: auto;
+  font-size: 20px;
+}
+.dashboard-body {
+  width: 100%;
+  height: auto;
+  min-height: 90%;
+}
+
+.top-dash {
+  width: 100%;
+  height: auto; //
+  min-height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.med_cards {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  grid-gap: 1em;
+  margin-bottom: 2em;
+}
+.med-card {
+  width: 100%;
+  height: 200px;
+  display: grid;
+}
+
+.main_dash {
+  width: 100%;
+  height: auto; //
+  min-height: 70%;
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+}
+.doctor-notes {
+  width: 75%;
+  height: auto;
+  display: flex;
+//   align-items: start;
+//   justify-content: flex-start;
+  flex-direction: column;
+}
+.table-heading {
+  width: 100%;
+  font-size: 18px;
+  color: var(--primary-color);
+  background-color: var(--text-color);
+  height: auto;
+  padding: 20px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.appoint-medic {
+    height: 100%;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: stretch;
+}
+.app-card {
+    height: 100%;
+    // border: 2px solid red;
+    flex: 1;
+
+}
+.card-header{
+  font-weight: bold;
+}
+.floating-doctor{
+  display: none;
+}
+@media screen and (max-width:760px) {
+  .floating-doctor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 100px;
+    right: 30px;
+    z-index: 2000;
+    border-radius: 50%;
+    box-shadow: 2px 2px 3px var(--primary-color);
+  }
+  .medlink-dashboard{
+    padding: 0;
+  }
+  .dash-title{
+    padding-left: 10px ;
+  }
+  
+}
+
+@media screen and (max-width: 1200px) {
+    .medlink-dashboard{
+        height: auto;
+        overflow: auto;
+    }
+  .med_cards {
+    display: flex;
+    flex-direction: column;
+  }
+  .main_dash{
+    display: flex;
+// align-items: center;
+flex-direction: column;
+  }
+  .appoint-medic{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 5px;
+    flex-direction: row;
+  }
+  .app-card{
+    height: 100%;
+    width: 50%;
+  }
+  .doctor-notes{
+    overflow: auto;
+    width: 100%;
+  }
+}
+
+.dates {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+}
+
+.med-below {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-direction: column;
+  margin-top: 30px;
+}
