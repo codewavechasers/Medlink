@@ -144,17 +144,17 @@ WSGI_APPLICATION = "MedlinkBackend.wsgi.application"
 DATABASES = {
     "default": {
         'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': os.getenv('DBNAME'),
-        # 'USER': os.getenv('USERNAME'),
-        # 'PASSWORD': os.getenv('DB_PASSWORD'),
-        # 'HOST': os.getenv('HOST'), 
-        # 'PORT': os.getenv('PORT'),
+        'NAME': os.getenv('DBNAME'),
+        'USER': os.getenv('USERNAME'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('HOST'), 
+        'PORT': os.getenv('PORT'),
         
-        'NAME': 'medlink',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': 3306
+        # 'NAME': 'medlink',
+        # 'USER': 'root',
+        # 'PASSWORD': '',
+        # 'HOST': 'localhost',
+        # 'PORT': 3306
         
     }
 }
