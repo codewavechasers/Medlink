@@ -35,4 +35,5 @@ RUN python manage.py collectstatic --noinput
 
 EXPOSE 8080
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8080"]
+# Run database migrations and start the server
+CMD ["bash", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8080"]
