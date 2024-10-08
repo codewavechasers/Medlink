@@ -1,0 +1,43 @@
+.more-inquiry{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    padding: 10px;
+    background-color: var(--secondary-color-2);
+    border-top: 1px dashed var(--primary-color);
+
+}
+.subscribe-form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+.med-social-links{
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+.logo-med{
+    color: var(--primary-color);
+    cursor: pointer;
+}
+.logo-med:hover{
+    transform: scale(1.1);
+    color: var(--secondary-color);
+}
+@media screen and (max-width:760px) {
+    .more-inquiry{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 20px;
+        flex-direction: column;
+    }
+    
+}

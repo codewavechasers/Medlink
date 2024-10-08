@@ -1,0 +1,35 @@
+.mobilesidebar{
+    width: 100%;
+    // min-width: 300px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    position:relative;
+    gap: 50px;
+    background-color: var(--primary-color);
+}
+.collapse-btn {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    right: -15px;
+    top: 10px;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    z-index: 1000 !important;
+    border: 1px solid var(--secondary-color-2);
+  
+  }
+  .collapsed{
+    width: 70px;
+  }
+@media screen and (max-width:760px) {
+  .sidebar{
+    // display: none;
+  }
+  
+}

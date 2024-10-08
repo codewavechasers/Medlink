@@ -1,0 +1,119 @@
+.app-doctors{
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    height: fit-content;
+    border-radius: 10px;
+    background-color: var(--secondary);
+}
+.doc-image{
+    width: 100%;
+    // height: 200px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: cover;
+    // border: 1px solid red;
+}
+.img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.bottom-section{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 10px;
+}
+.doc-info{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    flex-direction: column;
+    width: 100%;
+}
+.doc-name{
+    font-size:15px;
+    font-weight: bold;
+}
+.doc-rates{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.doc-speciality{
+    font-size: 13px;
+}
+.rating{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.appointment-dates{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+}
+.date{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    // gap: 10px;
+    height: 50px;
+    width: 100px;
+    border: 1px solid var(--text-color);
+    background-color: var(--secondary-color-2);
+    cursor: pointer;
+    padding: 10px;
+}
+.day{
+    font-weight: bold;
+    font-size: 10px;
+}
+.actual-date{
+    font-size: 9px;
+}
+
+.date.selected {
+    background-color: #0072c3; // Change this to your desired selected color
+    color: #fff;
+  }
+  
+  .star {
+    color: #ccc;
+  }
+  
+  .star.filled {
+    color: #f5c518; // Gold color for filled stars
+  }
+.footer-section{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+@media screen and (max-width:720px) {
+    .app-doctors{
+        width: 100%;
+
+    }
+    .appointment-dates{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+}

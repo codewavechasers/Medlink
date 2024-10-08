@@ -1,0 +1,217 @@
+
+.flexleft1 {
+  width: auto;
+  display: flex;
+  align-items: center;
+  gap: 100px;
+  justify-content: center;
+}
+.patientreg1 {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: auto;
+  overflow: hidden;
+
+}
+
+.regbody1 {
+  width: 80%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+//   gap: 1em;
+  flex-direction: column;
+}
+
+.regprogress1 {
+  width: 20%;
+  height: 100vh;
+//   border: 1px solid blue;
+border-left: 1px dashed var(--primary-color);
+  background-color: var(--secondary-color-2);
+  padding: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progressstep1 {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.progressstep1:last-child {
+  margin-bottom: 0;
+}
+
+.progressstep1::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  width: 2px;
+  height: calc(100% - 20px);
+  background-color: #cfcfcf;
+  z-index: -1;
+}
+
+.progressstep1:first-child::before {
+  height: 50%;
+  top: 50%;
+}
+
+.progressstep1:last-child::before {
+  height: 50%;
+}
+
+.progressstep1.complete::before {
+  background-color: #4caf50;
+}
+
+.progressdot1 {
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: 2px solid #cfcfcf;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.progressstep1.complete .progressdot1 {
+  border-color: #4caf50;
+}
+
+.progressstep1title {
+  margin-left: 10px;
+}
+.regtitle1 {
+  width: 50%;
+  font-weight: bold;
+  font-size: 20px;
+  padding: 20px 0;
+}
+.myform1 {
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+}
+
+.svgpart1{
+  height: 100%;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../../../../../../public/svg/createaccount.svg');
+  background-color: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  // border: 1px solid red;
+}
+.cont1{
+  width: 40%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: auto;
+  flex-direction: column;
+  background-color: var(--tertiary-color);
+}
+.regform1 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  // flex-direction: column;
+  background-color: var(--tertiary-color);
+  height: calc(100vh - 10vh);
+  overflow: auto;
+}
+.form1{
+    padding-top: 20px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    padding: 10px;
+    // background-color: var(--secondary-color-2);
+    margin: 20px;
+}
+.flexbtns1{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 30px;
+}
+.inputsfields1{
+    margin-bottom: 20px;
+}
+
+
+.signinprogress1 {
+  width: 500px;
+  height: auto;
+  box-shadow: 2px 4px 10px var(--text-color-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  cursor: pointer;
+  // background-color: rgba(255, 255, 255, 0.8); 
+  background-color: var(--secondary-color-2);
+}
+.logoprogress1{
+  width: 200px;
+  height: 100px;
+}
+.myprogress1{
+  width: 100%;
+}
+
+@media screen and (max-width:1300px) {
+  .patientreg1 {
+    overflow: auto;
+  }
+.regform1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  flex-direction: column;
+}
+.svgpart1{
+  height: 50vh;
+  position: relative;
+}
+.cont1, .svgpart1{
+  width: 100%;
+}
+  
+}
+
+@media screen and (max-width:900px) {
+  .patientreg1{
+    overflow-x: hidden;
+  }
+  .regbody1{
+    width: 95%;
+  }
+  .regprogress1{
+    display: none;
+  }
+  
+}

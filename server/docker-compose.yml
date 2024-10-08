@@ -1,0 +1,92 @@
+
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: "${DBNAME}"
+      MYSQL_USER: "${USERNAME}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+    volumes:
+      - db-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - backend
+
+  redis:
+    image: redis:6.2
+    ports:
+      - "6379:6379"
+    networks:
+      - backend
+
+  web:
+    build: .
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8080"
+    volumes:
+      - .:/app
+      - ./staticfiles:/app/staticfiles
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - redis
+    environment:
+      DBNAME: "medlink"
+      USERNAME: "root"
+      DB_PASSWORD: ""
+      HOST: "db"
+      PORT: "3306"
+      ENCRYPTION_KEY: "${ENCRYPTION_KEY}"
+      RESEND_API_KEY: "${RESEND_API_KEY}"
+      CELERY_BROKER_URL: "redis://redis:6379/0"
+      CELERY_RESULT_BACKEND: "redis://redis:6379/0"
+    networks:
+      - backend
+
+  celery:
+    build: .
+    command: celery -A MedlinkBackend worker --loglevel=info -P solo
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
+      - web
+    environment:
+      DBNAME: "medlink"
+      USERNAME: "root"
+      DB_PASSWORD: ""
+      HOST: "db"
+      PORT: "3306"
+      CELERY_BROKER_URL: "redis://redis:6379/0"
+      CELERY_RESULT_BACKEND: "redis://redis:6379/0"
+    networks:
+      - backend
+
+  celery-beat:
+    build: .
+    command: celery -A MedlinkBackend beat --loglevel=info
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
+      - web
+    environment:
+      DBNAME: "medlink"
+      USERNAME: "root"
+      DB_PASSWORD: ""
+      HOST: "db"
+      PORT: "3306"
+      CELERY_BROKER_URL: "redis://redis:6379/0"
+      CELERY_RESULT_BACKEND: "redis://redis:6379/0"
+    networks:
+      - backend
+
+volumes:
+  db-data:
+
+networks:
+  backend:

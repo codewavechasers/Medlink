@@ -1,0 +1,102 @@
+.signin-container{
+    height: calc(100vh - 10vh);
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // background-image: url('../../../../../public/auth-img/bg2.jpg');
+    // background-position: center;
+    // background-size: cover;
+    // background-repeat: no-repeat;
+}
+.log-in{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: auto;
+}
+.logo{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+.back{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+.link{
+    font-weight: bold;
+    width: auto;
+}
+.request-form{
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    text-align: center;
+    flex-direction: column;
+    padding: 10px;
+    // background-color: var(--secondary-color-2);
+    // box-shadow: 2px 4px 10px var(--text-color-3);
+    position: relative;
+}
+.form{
+    width: 100%;
+    height:calc(100vh - 10vh);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.btns, .inputs, .input-fields{
+    width: 100%;
+}
+.svg-part{
+    height: 100%;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../../../../../public/svg/signin2.svg');
+    background-color: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    // border: 1px solid red;
+}
+.form-part{
+    width: 40%;
+    height: 100%;
+    // padding: 20px;
+    background-color: var(--tertiary-color) ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    // border: 1px solid black;
+
+}
+@media screen and (max-width:900px) {
+    .signin-container{
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+    }
+    .svg-part{
+        height: 50vh;
+        width: 100%;
+        // border: 2px solid blue;
+
+    }
+    .form-part{
+        width: 100vw;
+        height: auto;
+        
+    }
+}

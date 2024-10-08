@@ -1,0 +1,17 @@
+.quick-link{
+    width: 350px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    border-radius: 10px;
+    background-color: var(--secondary-color-2);
+    padding: 10px;
+    box-shadow: 2px 4px 10px var(--text-color-3);
+    cursor: pointer;
+    flex-direction: column;
+}
+.quick-link:hover{
+    box-shadow: 1px 2px 3px var(--text-color-3);
+}

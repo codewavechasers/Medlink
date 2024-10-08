@@ -1,0 +1,124 @@
+.Appointments {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  .app-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+.heading{
+  font-weight: bold;
+  width: 50%;
+}
+.no-results{
+  width: 100%;
+}
+  .appointment-hub {
+    display: flex;
+    align-items: flex-start;
+    padding: 20px;
+    justify-content: flex-start;
+    gap: 30px;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--secondary-color-2);
+  }
+
+  .tags {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+
+
+    .tag {
+      cursor: pointer;
+      &.selected {
+        background-color: #0072c3; // Change this to your desired selected color
+        color: #fff;
+      }
+    }
+  }
+
+  .doctors-available {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+}
+
+.app-doctors {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  .doc-image {
+    width: 100%;
+    height: auto;
+    img {
+      width: 100%;
+      border-radius: 5px;
+    }
+  }
+
+  .bottom-section {
+    width: 100%;
+    .doc-info {
+      text-align: center;
+    }
+
+    .appointment-dates {
+      display: flex;
+      justify-content: space-around;
+      .date {
+        cursor: pointer;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+        &.selected {
+          background-color: #0072c3;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .rating {
+    display: flex;
+    justify-content: center;
+    .star {
+      color: #ccc;
+      &.filled {
+        color: #f5c518; // Gold color for filled stars
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .tags {
+    flex-wrap: wrap;
+  }
+
+  .doctors-available {
+    flex-direction: column;
+  }
+
+  .app-doctors {
+    max-width: 100%;
+  }
+}

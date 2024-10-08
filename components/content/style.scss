@@ -1,0 +1,11 @@
+.content{
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    background-color: rgba(234, 234, 234, 0.91);
+    // border: 1px solid rgb(16, 51, 177);
+}
