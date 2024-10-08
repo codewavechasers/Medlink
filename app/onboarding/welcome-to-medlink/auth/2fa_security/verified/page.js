@@ -1,53 +1,15 @@
-"use client";
-import { React, useState } from "react";
-import PasswordComplete from "./index";
-import "./styles.scss";
-import Link from "next/link";
-import { ArrowLeft } from "@carbon/icons-react";
-import Image from "next/image";
-import OnboardingHeader from "@/app/onboarding/internals/header";
-import { Heading, Loading } from "@carbon/react";
-function Page() {
-  const [isLoading, setIsLoading] = useState(false);
+import React from 'react'
+import Verified from "./verified"
+export const metadata = {
+  title: "2FA Verified | Medlink",
+  description: "Your two-factor authentication has been successfully verified. You can now access your Medlink account securely.",
+};
+function VerifiedPage() {
   return (
     <div>
-      <div style={{ overflowX: "hidden" }}>
-        <OnboardingHeader>
-          <div className="logo">
-            <Image
-              width={70}
-              height={70}
-              src="/logov2.svg"
-              alt="logo"
-              className="logo-image"
-            />
-            <Link href="../../../welcome-to-medlink/auth/sign-in">
-              {" "}
-              <section className="back" onClick={() => setIsLoading(true)}>
-                {isLoading ? (
-                  <>
-                    <Loading small withOverlay={false} />
-                    <ArrowLeft size={32} /> 
-                  </>
-                ) : (
-                  <>
-                    <ArrowLeft size={32} /> 
-                  </>
-                )}
-              </section>
-            </Link>
-          </div>
-
-          <section className="log-in">
-            <Heading>2FA Verification</Heading>
-          </section>
-        </OnboardingHeader>
-        <section className="signin-container">
-          <PasswordComplete />
-        </section>
-      </div>
+      <Verified/>
     </div>
-  );
+  )
 }
 
-export default Page;
+export default VerifiedPage

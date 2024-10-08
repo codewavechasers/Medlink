@@ -1,22 +1,16 @@
-"use client";
-import React, { useEffect } from "react";
-import Patient from "./index";
-import "./styles.scss";
+import React from 'react'
+import Patient from "./patient"
+export const metadata = {
+  title: "Sign Up | Medlink",
+  description: "Create a Medlink account to connect with healthcare professionals and manage your health easily.",
+};
 
-function Page() {
-  useEffect(() => {
-    const hasReloaded = sessionStorage.getItem("hasReloaded");
-    if (!hasReloaded) {
-      sessionStorage.setItem("hasReloaded", "true");
-      window.location.reload();
-    }
-  }, []);
-
+function PatientPage() {
   return (
     <div>
-      <Patient />
+      <Patient/>
     </div>
-  );
+  )
 }
 
-export default Page;
+export default PatientPage

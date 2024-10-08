@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from "react";
 import { Button, Form, Heading, TextInput, Loading } from "@carbon/react";
 import { useRouter, useSearchParams } from "next/navigation";
