@@ -25,7 +25,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowLeft } from "@carbon/icons-react";
 import App from "@/app/api/api";
 import Notifications from "@/components/notification/index";
-import "./styles.scss";
+import signUpStyles from  "./styles.scss";
 
 function PatientRegistration() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -166,7 +166,7 @@ function PatientRegistration() {
             <TextInput
               id="name"
               type="text"
-              className="inputs-fields"
+              className={signUpStyles.inputfields}
               labelText="Name"
               onChange={handleChange}
               value={patientData.name}
@@ -199,7 +199,7 @@ function PatientRegistration() {
             <TextInput
               id="gender"
               type="text"
-              className="inputs-fields"
+              className={signUpStyles.inputfields}
               labelText="Gender"
               onChange={handleChange}
               value={patientData.gender}
@@ -208,7 +208,7 @@ function PatientRegistration() {
               <TextInput
                 id="email"
                 type="text"
-                className="inputs-fields"
+                className={signUpStyles.inputfields}
                 labelText="Contact Information (email)"
                 onChange={handleChange}
                 value={patientData.email}
@@ -216,7 +216,7 @@ function PatientRegistration() {
               <TextInput
                 id="phone_number"
                 type="text"
-                className="inputs-fields"
+                className={signUpStyles.inputfields}
                 labelText="Contact Information (Phone number)"
                 onChange={handleChange}
                 value={patientData.phone_number}
@@ -225,7 +225,7 @@ function PatientRegistration() {
             <TextInput
               id="address"
               type="text"
-              className="inputs-fields"
+              className={signUpStyles.inputfields}
               labelText="Address"
               onChange={handleChange}
               value={patientData.address}
@@ -233,7 +233,7 @@ function PatientRegistration() {
             <TextInput
               id="city"
               type="text"
-              className="inputs-fields"
+              className={signUpStyles.inputfields}
               labelText="City"
               onChange={handleChange}
               value={patientData.city}
@@ -246,7 +246,7 @@ function PatientRegistration() {
             <TextInput
               id="emergency_contact_name"
               type="text"
-              className="inputs-fields"
+              className={signUpStyles.inputfields}
               labelText="Emergency Contact Name"
               onChange={handleChange}
               value={patientData.emergency_contact_name}
@@ -254,7 +254,7 @@ function PatientRegistration() {
             <TextInput
               id="emergency_contact_relationship"
               type="text"
-              className="inputs-fields"
+              className={signUpStyles.inputfields}
               labelText="Emergency Contact Relationship"
               onChange={handleChange}
               value={patientData.emergency_contact_relationship}
@@ -262,7 +262,7 @@ function PatientRegistration() {
             <TextInput
               id="emergency_contact_phone"
               type="text"
-              className="inputs-fields"
+              className={signUpStyles.inputfields}
               labelText="Emergency Contact Phone Number"
               onChange={handleChange}
               value={patientData.emergency_contact_phone}
@@ -270,7 +270,7 @@ function PatientRegistration() {
             <TextInput
               id="emergency_contact_email"
               type="text"
-              className="inputs-fields"
+              className={signUpStyles.inputfields}
               labelText="Emergency Contact Email"
               onChange={handleChange}
               value={patientData.emergency_contact_email}
@@ -283,7 +283,7 @@ function PatientRegistration() {
             <TextInput
               id="current_health_conditions"
               type="text"
-              className="inputs-fields"
+              className={signUpStyles.inputfields}
               labelText="Current Health Conditions"
               onChange={handleChange}
               value={patientData.current_health_conditions}
@@ -291,7 +291,7 @@ function PatientRegistration() {
             <TextInput
               id="past_medical_history"
               type="text"
-              className="inputs-fields"
+              className={signUpStyles.inputfields}
               labelText="Past Medical History (major illnesses, surgeries)"
               onChange={handleChange}
               value={patientData.past_medical_history}
@@ -299,7 +299,7 @@ function PatientRegistration() {
             <TextInput
               id="allergies"
               type="text"
-              className="inputs-fields"
+              className={signUpStyles.inputfields}
               labelText="Allergies (medications, food, environmental)"
               onChange={handleChange}
               value={patientData.allergies}
@@ -307,7 +307,7 @@ function PatientRegistration() {
             <TextInput
               id="current_medications"
               type="text"
-              className="inputs-fields"
+              className={signUpStyles.inputfields}
               labelText="Medications Currently Taking (name, dosage)"
               onChange={handleChange}
               value={patientData.current_medications}
@@ -315,7 +315,7 @@ function PatientRegistration() {
             <TextInput
               id="primary_care_physician"
               type="text"
-              className="inputs-fields"
+              className={signUpStyles.inputfields}
               labelText="Primary Care Physician (name, contact)"
               onChange={handleChange}
               value={patientData.primary_care_physician}
@@ -328,7 +328,7 @@ function PatientRegistration() {
             <TextInput
               id="family_health_conditions"
               type="text"
-              className="inputs-fields"
+              className={signUpStyles.inputfields}
               labelText="Health Conditions that Run in the Family (e.g., diabetes, heart disease)"
               onChange={handleChange}
               value={patientData.family_health_conditions}
@@ -341,7 +341,7 @@ function PatientRegistration() {
             <TextInput
               id="lifestyle_habits"
               type="text"
-              className="inputs-fields"
+              className={signUpStyles.inputfields}
               labelText="Lifestyle Habits (smoking, alcohol use)"
               onChange={handleChange}
               value={patientData.lifestyle_habits}
@@ -349,7 +349,7 @@ function PatientRegistration() {
             <TextInput
               id="exercise_routine"
               type="text"
-              className="inputs-fields"
+              className={signUpStyles.inputfields}
               labelText="Exercise Routine"
               onChange={handleChange}
               value={patientData.exercise_routine}
@@ -357,7 +357,7 @@ function PatientRegistration() {
             <TextInput
               id="dietary_habits"
               type="text"
-              className="inputs-fields"
+              className={signUpStyles.inputfields}
               labelText="Dietary Habits"
               onChange={handleChange}
               value={patientData.dietary_habits}
@@ -370,7 +370,7 @@ function PatientRegistration() {
             <TextInput
               id="insurance_provider"
               type="text"
-              className="inputs-fields"
+              className={signUpStyles.inputfields}
               labelText="Insurance Provider"
               onChange={handleChange}
               value={patientData.insurance_provider}
@@ -378,7 +378,7 @@ function PatientRegistration() {
             <TextInput
               id="policy_number"
               type="text"
-              className="inputs-fields"
+              className={signUpStyles.inputfields}
               labelText="Policy Number"
               onChange={handleChange}
               value={patientData.policy_number}
@@ -386,7 +386,7 @@ function PatientRegistration() {
             <TextInput
               id="insurance_phone"
               type="text"
-              className="inputs-fields"
+              className={signUpStyles.inputfields}
               labelText="Insurance Company Phone Number"
               onChange={handleChange}
               value={patientData.insurance_phone}
@@ -476,10 +476,10 @@ function PatientRegistration() {
           timeout={notificationProps.timeout}
         />
       )}
-      <div className="patient-reg">
-        <div className="reg-body">
+      <div className={signUpStyles.patientreg}>
+        <div className={signUpStyles.regbody}>
           <Header>
-            <section className="flex-left">
+            <section className={signUpStyles.flexleft}>
               <Image
                 width={70}
                 height={70}
@@ -510,27 +510,27 @@ function PatientRegistration() {
             </section>
             <h4>Patient</h4>
           </Header>
-          <section className="reg-form">
-            <div className="svg-part"></div>
-            <div className="cont">
-              <h4 className="reg-title">Register Patient Account</h4>
+          <section className={signUpStyles.regform}>
+            <div className={signUpStyles.svgpart}></div>
+            <div className={signUpStyles.cont}>
+              <h4 className={signUpStyles.regtitle}>Register Patient Account</h4>
               <h4>Please fill in your details.</h4>
-              <div className="my-form">
+              <div className={signUpStyles.myform}>
                 {isSubmitting ? (
-                  <div className="signin-progress"></div>
+                  <div className={signUpStyles.signinprogress}></div>
                 ) : (
                   <Form
                     aria-label="Registration form"
-                    className="form"
+                    className={signUpStyles.form}
                     onSubmit={handleSubmit}
                   >
                     {renderFormFields()}
-                    <div className="flex-btns">
+                    <div className={signUpStyles.flexbtns}>
                       <Button
                         kind="secondary"
                         size="sm"
                         renderIcon={ArrowLeft}
-                        className="some-class"
+                        className={signUpStyles.someclass}
                         onClick={handlePrevious}
                         disabled={currentStep === 0}
                       >
@@ -541,7 +541,7 @@ function PatientRegistration() {
                           kind="secondary"
                           size="sm"
                           renderIcon={ArrowRight}
-                          className="some-class"
+                          className={signUpStyles.someclass}
                           type="button"
                           onClick={handleNext}
                         >
@@ -551,7 +551,7 @@ function PatientRegistration() {
                         <Button
                           kind="primary"
                           size="sm"
-                          className="some-class"
+                          className={signUpStyles.someclass}
                           type="submit"
                         >
                           Submit
@@ -564,7 +564,7 @@ function PatientRegistration() {
             </div>
           </section>
         </div>
-        <section className="reg-progress">
+        <section className={signUpStyles.regprogress}>
           <PatientProgressSteps currentStep={currentStep} />
         </section>
       </div>

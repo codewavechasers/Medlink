@@ -145,11 +145,7 @@ DATABASES = {
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('HOST'), 
         'PORT': os.getenv('PORT'),
-        # 'NAME': 'medlink',
-        # 'USER':'root',
-        # 'PASSWORD': '',
-        # 'HOST': os.getenv('HOST'), 
-        # 'PORT': os.getenv('PORT'),
+        
     }
 }
 

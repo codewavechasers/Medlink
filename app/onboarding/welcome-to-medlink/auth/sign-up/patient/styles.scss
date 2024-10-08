@@ -1,12 +1,12 @@
 
-.flex-left {
+.flexleft {
   width: auto;
   display: flex;
   align-items: center;
   gap: 100px;
   justify-content: center;
 }
-.patient-reg {
+.patientreg {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -17,7 +17,7 @@
 
 }
 
-.reg-body {
+.regbody {
   width: 80%;
   height: auto;
   display: flex;
@@ -27,7 +27,7 @@
   flex-direction: column;
 }
 
-.reg-progress {
+.regprogress {
   width: 20%;
   height: 100vh;
 //   border: 1px solid blue;
@@ -40,18 +40,18 @@ border-left: 1px dashed var(--primary-color);
   justify-content: center;
 }
 
-.progress-step {
+.progressstep {
   display: flex;
   align-items: center;
   position: relative;
   margin-bottom: 20px;
 }
 
-.progress-step:last-child {
+.progressstep:last-child {
   margin-bottom: 0;
 }
 
-.progress-step::before {
+.progressstep::before {
   content: "";
   position: absolute;
   top: 20px;
@@ -62,20 +62,20 @@ border-left: 1px dashed var(--primary-color);
   z-index: -1;
 }
 
-.progress-step:first-child::before {
+.progressstep:first-child::before {
   height: 50%;
   top: 50%;
 }
 
-.progress-step:last-child::before {
+.progressstep:last-child::before {
   height: 50%;
 }
 
-.progress-step.complete::before {
+.progressstep.complete::before {
   background-color: #4caf50;
 }
 
-.progress-dot {
+.progressdot {
   width: 20px;
   height: 20px;
   background-color: #fff;
@@ -84,20 +84,20 @@ border-left: 1px dashed var(--primary-color);
   z-index: 1;
 }
 
-.progress-step.complete .progress-dot {
+.progressstep.complete .progressdot {
   border-color: #4caf50;
 }
 
-.progress-step-title {
+.progresssteptitle {
   margin-left: 10px;
 }
-.reg-title {
+.regtitle {
   width: 50%;
   font-weight: bold;
   font-size: 20px;
   padding: 20px 0;
 }
-.my-form {
+.myform {
   height: auto;
   display: flex;
   align-items: center;
@@ -106,7 +106,7 @@ border-left: 1px dashed var(--primary-color);
 
 }
 
-.svg-part{
+.svgpart{
   height: 100%;
   width: 60%;
   display: flex;
@@ -128,7 +128,7 @@ border-left: 1px dashed var(--primary-color);
   flex-direction: column;
   background-color: var(--tertiary-color);
 }
-.reg-form {
+.regform {
   width: 100%;
   display: flex;
   align-items: center;
@@ -147,7 +147,7 @@ border-left: 1px dashed var(--primary-color);
     // background-color: var(--secondary-color-2);
     margin: 20px;
 }
-.flex-btns{
+.flexbtns{
     width: 100%;
     display: flex;
     align-items: center;
@@ -155,12 +155,12 @@ border-left: 1px dashed var(--primary-color);
     gap: 30px;
     margin-top: 30px;
 }
-.inputs-fields{
+.inputsfields{
     margin-bottom: 20px;
 }
 
 
-.signin-progress {
+.signinprogress {
   width: 500px;
   height: auto;
   box-shadow: 2px 4px 10px var(--text-color-3);
@@ -174,43 +174,43 @@ border-left: 1px dashed var(--primary-color);
   // background-color: rgba(255, 255, 255, 0.8); 
   background-color: var(--secondary-color-2);
 }
-.logo-progress{
+.logoprogress{
   width: 200px;
   height: 100px;
 }
-.my-progress{
+.myprogress{
   width: 100%;
 }
 
 @media screen and (max-width:1300px) {
-  .patient-reg {
+  .patientreg {
     overflow: auto;
   }
-.reg-form{
+.regform{
   display: flex;
   align-items: center;
   justify-content: center;
   height: auto;
   flex-direction: column;
 }
-.svg-part{
+.svgpart{
   height: 50vh;
   position: relative;
 }
-.cont, .svg-part{
+.cont, .svgpart{
   width: 100%;
 }
   
 }
 
 @media screen and (max-width:900px) {
-  .patient-reg{
+  .patientreg{
     overflow-x: hidden;
   }
-  .reg-body{
+  .regbody{
     width: 95%;
   }
-  .reg-progress{
+  .regprogress{
     width: 5%;
   }
   

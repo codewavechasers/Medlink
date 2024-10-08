@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
 import Patient from "./index";
-import "./styles.scss";
 
 function Page() {
   useEffect(() => {
