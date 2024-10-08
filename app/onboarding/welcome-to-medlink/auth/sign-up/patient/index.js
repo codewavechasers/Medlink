@@ -475,7 +475,7 @@ function PatientRegistration() {
           timeout={notificationProps.timeout}
         />
       )}
-      <div className="patientreg1" style={{minHeight:"200vh", overflowY:"auto"}}>
+      <div className="patientreg1" style={{overflowY:"auto"}}>
         <div className="regbody1">
           <Header>
             <section className="flexleft1">
