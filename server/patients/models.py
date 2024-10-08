@@ -32,14 +32,14 @@ class PatientManager(BaseUserManager):
 class Patient(AbstractBaseUser, PermissionsMixin):
     name = models.CharField(max_length=255)
     date_of_birth = models.DateField()
-    gender = models.CharField(max_length=10)
+    gender = models.CharField(max_length=20)
     email = models.EmailField(unique=True, validators=[EmailValidator()])
-    phone_number = models.CharField(max_length=10)
+    phone_number = models.CharField(max_length=20)
     address = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
     emergency_contact_name = models.CharField(max_length=255)
     emergency_contact_relationship = models.CharField(max_length=50)
-    emergency_contact_phone = models.CharField(max_length=10)
+    emergency_contact_phone = models.CharField(max_length=20)
     emergency_contact_email = models.EmailField(validators=[EmailValidator()])
     current_health_conditions = models.TextField()
     past_medical_history = models.TextField()
@@ -52,7 +52,7 @@ class Patient(AbstractBaseUser, PermissionsMixin):
     dietary_habits = models.TextField()
     insurance_provider = models.CharField(max_length=255)
     policy_number = models.CharField(max_length=255)
-    insurance_phone = models.CharField(max_length=10)
+    insurance_phone = models.CharField(max_length=20)
     consent_to_treat = models.BooleanField(default=False)
     privacy_policy = models.BooleanField(default=False)
     enable_2fa = models.BooleanField(default=False)
@@ -63,7 +63,7 @@ class Patient(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['name', 'date_of_birth', 'gender', 'phone_number', 'address']
+    # REQUIRED_FIELDS = ['name', 'date_of_birth', 'gender', 'phone_number', 'address']
 
     objects = PatientManager()
 
