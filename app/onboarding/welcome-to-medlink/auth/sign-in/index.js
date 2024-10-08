@@ -12,7 +12,7 @@ function SignIn() {
   const [isLoading, setIsLoading] = useState(false);
   const [isSignupLoading, setSignupLoading] = useState(false);
   return (
-    <div style={{ overflowX: "hidden", minHeight:"200vh" }}>
+    <div style={{ minHeight:"200vh" }}>
       <OnboardingHeader>
         <div className="logo">
           <Image
