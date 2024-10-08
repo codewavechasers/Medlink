@@ -20,11 +20,13 @@ TIME_ZONE = 'Africa/Nairobi'
 USE_TZ = True
 CELERY_TIMEZONE = 'Africa/Nairobi' 
 # ==================
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-import os
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+# Make sure you also have STATIC_URL defined (should already be present)
+STATIC_URL = '/static/'
 
 RESEND_API_KEY = os.getenv('RESEND_API_KEY')
 # Quick-start development settings - unsuitable for production
@@ -84,6 +86,7 @@ INSTALLED_APPS = [
     'home',
     'django_celery_beat',
 
+
 ]
 AUTH_USER_MODEL = 'authentication.User'
 
@@ -137,16 +140,16 @@ WSGI_APPLICATION = "MedlinkBackend.wsgi.application"
 DATABASES = {
     "default": {
         'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': os.getenv('DBNAME'),
-        # 'USER': os.getenv('USERNAME'),
-        # 'PASSWORD': os.getenv('DB_PASSWORD'),
-        # 'HOST': os.getenv('HOST'), 
-        # 'PORT': os.getenv('PORT'),
-        'NAME': 'medlink',
-        'USER':'root',
-        'PASSWORD': '',
+        'NAME': os.getenv('DBNAME'),
+        'USER': os.getenv('USERNAME'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': os.getenv('HOST'), 
         'PORT': os.getenv('PORT'),
+        # 'NAME': 'medlink',
+        # 'USER':'root',
+        # 'PASSWORD': '',
+        # 'HOST': os.getenv('HOST'), 
+        # 'PORT': os.getenv('PORT'),
     }
 }
 
