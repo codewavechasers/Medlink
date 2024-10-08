@@ -58,7 +58,7 @@ LOGGING = {
         'level': 'DEBUG',
     },
 }
-ALLOWED_HOSTS = ['gregory-retention-dimensional-identity.trycloudflare.com','127.0.0.1']
+ALLOWED_HOSTS = ['gilbert-keter-medlink-backend-1f0e71-da92b5-213-199-42-123.traefik.me','127.0.0.1']
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOW_CREDENTIALS = True
