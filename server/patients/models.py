@@ -39,7 +39,7 @@ class Patient(AbstractBaseUser, PermissionsMixin):
     city = models.CharField(max_length=255)
     emergency_contact_name = models.CharField(max_length=255)
     emergency_contact_relationship = models.CharField(max_length=50)
-    emergency_contact_phone = models.CharField(max_length=20)
+    emergency_contact_phone = models.CharField(max_length=255)
     emergency_contact_email = models.EmailField(validators=[EmailValidator()])
     current_health_conditions = models.TextField()
     past_medical_history = models.TextField()
