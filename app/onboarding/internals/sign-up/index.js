@@ -31,7 +31,7 @@ function SignUp() {
   ];
 
   return (
-    <div>
+    <div style={{minHeight:"200vh"}}>
       <OnboardingHeader>
         <div className="logo">
           <Image
@@ -109,7 +109,7 @@ function SignUp() {
             </div>
           </section>
         </div>
-        <div className="svg-part"></div>
+        <div className="svg-part" style={{minHeight:"300px"}}></div>
       </section>
     </div>
   );

@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import App from '@/app/api/api'
+import App from "@/app/api/api";
 function WithAuthRedirect({ children }) {
   const router = useRouter();
   const [isAuthenticated, setIsAuthenticated] = useState(null);
@@ -11,7 +11,7 @@ function WithAuthRedirect({ children }) {
       try {
         const response = await App.get("/auth/authenticated_user/", {
           method: "GET",
-          withCredentials:true
+          withCredentials: true,
         });
 
         const data = await response.data;
