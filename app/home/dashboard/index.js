@@ -256,7 +256,7 @@ function Dashboard() {
                 <br />
                 <ProgressBar
                   helperText={`Health status: ${OverallHealthScore} %`}
-                  value={OverallHealthScore}
+                  value={OverallHealthScore || 50}
                   style={{ height: "100%" }}
                 />
               </Tile>

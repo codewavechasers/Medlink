@@ -123,7 +123,7 @@ def calculate_overall_health_score(request):
         data = MedicalIssue.objects.filter(email=email)
         
         if not data.exists():
-            return JsonResponse({"success": False, "message": "No records found for this email.", "overall_health_score":50}, status=401)
+            return JsonResponse({"success": False, "message": "No records found for this email.", "overall_health_score":50}, status=200)
         
         total_health_score = sum(item.health_score for item in data)
         record_count = data.count()
