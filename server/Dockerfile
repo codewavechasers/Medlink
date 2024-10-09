@@ -9,7 +9,10 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     libffi-dev \
     libssl-dev \
+    redis-tools \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
+    
 
 WORKDIR /app
 
@@ -29,19 +32,16 @@ ENV NAME="Medlink" \
     USERNAME="root" \
     DB_PASSWORD="" \
     HOST="db" \
-    PORT=3306
+    PORT=3306 \
+    REDIS_HOST="redis" \
+    REDIS_PORT=6379
 
+# Collect static files
 RUN python manage.py collectstatic --noinput
 
 EXPOSE 8080
 
-# Create a startup script
-RUN echo '#!/bin/bash\n\
-python manage.py migrate && \\\n\
-celery -A MedlinkBackend worker --loglevel=info -P solo & \\\n\
-celery -A MedlinkBackend beat --loglevel=info & \\\n\
-python manage.py runserver 0.0.0.0:8080' > /app/start.sh \
-    && chmod +x /app/start.sh
+COPY --chown=myuser:myuser entrypoint.sh .
+RUN chmod +x entrypoint.sh
 
-# Set the entry point to the startup script
-ENTRYPOINT ["/app/start.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
