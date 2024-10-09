@@ -4,7 +4,7 @@ set -e
 
 # Wait for Redis to be ready
 echo "Waiting for Redis..."
-until redis-cli -h $REDIS_HOST -p $REDIS_PORT ping | grep PONG
+until redis-cli -h $REDIS_URL -p $REDIS_PORT ping | grep PONG
 do
     echo "Redis is unavailable - sleeping"
     sleep 1
