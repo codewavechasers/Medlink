@@ -35,6 +35,7 @@ ENV NAME="Medlink" \
     PORT=3306 \
     REDIS_URL="redis://default:yqZZNvUTUG2dU2mr@gilbert-keter-redis-cbb9d9:6379"
 
+    
 # Collect static files
 RUN python manage.py collectstatic --noinput
 
