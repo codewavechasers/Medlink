@@ -89,6 +89,8 @@ INSTALLED_APPS = [
     'online_doctors',
     'home',
     'django_celery_beat',
+    'watson',
+    'healthIssues'
 
 
 ]

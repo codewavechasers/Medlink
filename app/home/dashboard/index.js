@@ -38,12 +38,23 @@ function Dashboard() {
     subtitle: "",
     timeout: "",
   });
+  const [OverallHealthScore, setOverallHealthScore] = useState(null);
+
   useEffect(() => {
     fetchNextAppointmentDate();
     fetchSubscriptionCount();
     fetchNoticeboardUpdates();
   }, []);
-
+  useEffect(() => {
+    const getOveralHealthScore = async () => {
+      const response = await App.get("/api/get-overall-healthscore/", {
+        withCredentials: true,
+      });
+      const overallHealth = response.data.overall_health_score;
+      setOverallHealthScore(overallHealth);
+    };
+    getOveralHealthScore();
+  }, []);
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -243,7 +254,11 @@ function Dashboard() {
                 <Heading className="card-header">Your Overall Health</Heading>
                 <br />
                 <br />
-                <ProgressBar helperText="Health status" value={75} />{" "}
+                <ProgressBar
+                  helperText={`Health status: ${OverallHealthScore} %`}
+                  value={OverallHealthScore}
+                  style={{ height: "100%" }}
+                />
               </Tile>
               <Tile id="tile-2" style={{ width: "100%" }} className="med-card">
                 <Heading className="card-header">Notice Board</Heading>
@@ -295,8 +310,7 @@ function Dashboard() {
                 expanded={true}
                 onClick={handleAppointmentClick}
                 className="app-card"
-                style={{ height: '100%' }}
-
+                style={{ height: "100%" }}
               >
                 <TileAboveTheFoldContent>
                   <Heading className="card-header">Next Appointment</Heading>
@@ -319,7 +333,7 @@ function Dashboard() {
                           </small>
                         </>
                       ) : (
-                        <p >No upcoming appointments</p>
+                        <p>No upcoming appointments</p>
                       )}
                     </div>
                   </div>
