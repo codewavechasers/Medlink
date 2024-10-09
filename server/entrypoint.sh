@@ -3,14 +3,15 @@
 set -e
 
 # Wait for Redis to be ready
-echo "Waiting for Redis..."
-until redis-cli -h $REDIS_URL ping | grep PONG
-do
-    echo "Redis is unavailable - sleeping"
-    sleep 1
-done
 
-echo "Redis is up - executing command"
+# echo "Waiting for Redis..."
+# until redis-cli -h $REDIS_URL ping | grep PONG
+# do
+#     echo "Redis is unavailable - sleeping"
+#     sleep 1
+# done
+
+# echo "Redis is up - executing command"
 
 # Run database migrations
 echo "Running database migrations..."
