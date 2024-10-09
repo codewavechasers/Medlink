@@ -35,5 +35,13 @@ RUN python manage.py collectstatic --noinput
 
 EXPOSE 8080
 
-# Run database migrations and start the server
-CMD ["bash", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8080"]
+# Create a startup script
+RUN echo '#!/bin/bash\n\
+python manage.py migrate && \\\n\
+celery -A MedlinkBackend worker --loglevel=info -P solo & \\\n\
+celery -A MedlinkBackend beat --loglevel=info & \\\n\
+python manage.py runserver 0.0.0.0:8080' > /app/start.sh \
+    && chmod +x /app/start.sh
+
+# Set the entry point to the startup script
+ENTRYPOINT ["/app/start.sh"]
