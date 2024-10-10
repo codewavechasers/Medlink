@@ -138,29 +138,22 @@ def edit_appointment(request):
         try:
             data = json.loads(request.body)
 
-            # Extract data to identify and update the appointment
-            doctor_name = data.get('doctor_name')
             email = request.session.get('email')
             date = data.get('date')
-            time = data.get('time')
+            id = data.get('id')
 
-            # New data for updating the appointment
-            new_date = data.get('new_date')
-            new_time = data.get('new_time')
+     
             new_problem_description = data.get('problem_description')
 
             # Find the appointment
             appointment = Appointment.objects.filter(
-                doctor_name=doctor_name,
-                patient_email=email,
-                date=date,
-                # time=time
-            ).first()
+               id=id,
+               patient_email=email
+            )
 
             if appointment:
                 # Update the appointment details
-                appointment.date = new_date or appointment.date
-                appointment.time = new_time or appointment.time
+                appointment.date = date or appointment.date
                 appointment.problem_description = new_problem_description or appointment.problem_description
                 appointment.save()
 

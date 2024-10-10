@@ -5,7 +5,7 @@ import { Information, TrashCan } from "@carbon/icons-react";
 import Swal from "sweetalert2";
 import Notifications from "@/components/notification/index";
 import App from "@/app/api/api";
-function NextAppCard({ docImage, test, name, date, email, time }) {
+function NextAppCard({ docImage, test, name, date, email, time, id }) {
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [editedName, setEditedName] = useState(name);
@@ -124,6 +124,7 @@ function NextAppCard({ docImage, test, name, date, email, time }) {
             doctor_name: editedName,
             date: editedDate,
             problem_description: editedTest,
+            id: id
           },
           {
             withCredentials: true,
@@ -240,6 +241,12 @@ function NextAppCard({ docImage, test, name, date, email, time }) {
           onRequestClose={handleEditCancel}
           onRequestSubmit={handleEditSave}
         >
+          <TextInput
+          id="appointment-id"
+          labelText="Id"
+          value={id}
+          hidden
+          />
           <TextInput
             id="edit-name"
             labelText="Doctor's Name"

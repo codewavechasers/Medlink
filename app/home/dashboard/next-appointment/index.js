@@ -293,6 +293,7 @@ function NextAppointments({ handleBackToDashboard }) {
             appointments_history.map((appointment) => (
               <NextAppCard
                 key={appointment.id}
+                id={appointment.id}
                 name={appointment.doctor_name}
                 test={appointment.problem_description}
                 date={appointment.date}
