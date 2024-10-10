@@ -12,6 +12,7 @@ const doctorsData = [
     name: "John Doe",
     speciality: "Physio",
     rating: 4,
+    description: "John Doe is an experienced physiotherapist with over 10 years of practice, specializing in sports injuries and rehabilitation."
   },
   {
     id: 2,
@@ -19,6 +20,7 @@ const doctorsData = [
     name: "Jane Smith",
     speciality: "Optometry",
     rating: 5,
+    description: "Jane Smith is a leading optometrist known for her precision in eye examinations and corrective lens prescriptions."
   },
   {
     id: 3,
@@ -26,6 +28,7 @@ const doctorsData = [
     name: "Emily Johnson",
     speciality: "Therapist",
     rating: 3,
+    description: "Emily Johnson is a licensed therapist who focuses on mental health and wellness, providing therapy for individuals and families."
   },
   {
     id: 4,
@@ -33,6 +36,7 @@ const doctorsData = [
     name: "Michael Brown",
     speciality: "Surgeon",
     rating: 4,
+    description: "Michael Brown is a skilled surgeon with expertise in minimally invasive procedures, particularly in gastrointestinal surgeries."
   },
   {
     id: 5,
@@ -40,6 +44,7 @@ const doctorsData = [
     name: "Chris Brown",
     speciality: "Optometry",
     rating: 4,
+    description: "Chris Brown has been practicing optometry for over 8 years, helping patients improve their vision and manage eye health."
   },
   {
     id: 6,
@@ -47,15 +52,18 @@ const doctorsData = [
     name: "Michael Albeart",
     speciality: "Therapist",
     rating: 4,
+    description: "Michael Albeart is a compassionate therapist specializing in cognitive behavioral therapy and stress management."
   },
   {
-    id: 6,
+    id: 7,  // Correcting the duplicate id
     image: "../../doctors/doc-3.jpeg",
     name: "Keter Gilbert",
     speciality: "Therapist",
     rating: 4,
+    description: "Keter Gilbert is a therapist focusing on holistic mental health approaches, offering personalized therapy sessions for his clients."
   },
 ];
+
 
 function Appointments() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -133,6 +141,7 @@ function Appointments() {
                 doctor={doctor}
                 selectedAppointment={selectedAppointment}
                 setSelectedAppointment={setSelectedAppointment}
+                description={doctor.description}
               />
             ))
           ) : (

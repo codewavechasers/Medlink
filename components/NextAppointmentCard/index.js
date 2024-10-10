@@ -38,9 +38,7 @@ function NextAppCard({ docImage, test, name, date, email, time, id }) {
       didOpen: async () => {
         App.delete("/bookings/delete-appointment/", {
           data: {
-            // doctor_name: name,
-            // date: date,
-            // time: time,
+           
             id: id
           },
           withCredentials: true,
