@@ -56,11 +56,12 @@ LOGGING = {
         'level': 'DEBUG',
     },
 }
-ALLOWED_HOSTS = ['gilbert-keter-medlink-backend-1f0e71-da92b5-213-199-42-123.traefik.me','127.0.0.1',]
+ALLOWED_HOSTS = ['gilbert-keter-medlink-backend-1f0e71-da92b5-213-199-42-123.traefik.me','127.0.0.1','medlink-backend.gk.h.cw.co.ke']
 CORS_ALLOWED_ORIGINS = [
     "http://gilbert-keter-medlink-062e6d-eaa33d-213-199-42-123.traefik.me",
     "http://127.0.0.1:3000",
     "http://localhost:3000",
+    "https://medlink.gk.h.cw.co.ke"
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
