@@ -21,8 +21,10 @@
         width: 100%;
     }
     .appointment-image, .img-app{
+        min-width: 150px;
         width: 100% !important;
         height: auto;
+        min-height: 150px;
     }
     
 }
