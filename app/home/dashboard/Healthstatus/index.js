@@ -59,7 +59,7 @@ function MedicalStatus({ handleBackToDashboard }) {
     LeftHand: "/human/LeftHand.png",
     RightHand: "/human/RightHand.png",
     RightLeg: "/human/RightLeg.png",
-    Default: "/human/Default.png",
+    Default: "/human/default.png",
   };
 
   useEffect(() => {
@@ -448,7 +448,7 @@ function MedicalStatus({ handleBackToDashboard }) {
                   width={300}
                   height={300}
                   className="patient-image"
-                  src={"/human/Default.png"}
+                  src={"/human/default.png"}
                   alt={"Full Body"}
                 />
               )}
