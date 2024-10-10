@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import analyze_data
+from .views import get_advice
 urlpatterns = [
-    path('api/analysis/', analyze_data, name="analyzeData"),
-   ]
+path('watson/get-advice/<int:record_id>/', get_advice, name='get_advice'),
+    path('watson/get-advice/', get_advice, name='get_advice_no_id'),   ]

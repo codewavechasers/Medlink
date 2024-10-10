@@ -29,6 +29,6 @@ urlpatterns = [
     path('api/', include('medication.urls')),
     path('api/', include('noticeboard.urls')),
     path('api/', include('online_doctors.urls')),
-    path('watson/', include('watson.urls')),
-    path('api/', include('healthIssues.urls')),
+    path('api/', include('watson.urls')),
+    path('api/', include('healthRecords.urls')),
 ]

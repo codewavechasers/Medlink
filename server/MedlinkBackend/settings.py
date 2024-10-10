@@ -90,7 +90,7 @@ INSTALLED_APPS = [
     'home',
     'django_celery_beat',
     'watson',
-    'healthIssues'
+    'healthRecords'
 
 
 ]
@@ -100,10 +100,10 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-CSRF_COOKIE_SECURE = False
-SESSION_COOKIE_SECURE = False
-CSRF_COOKIE_SAMESITE = 'Lax'
-SESSION_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'
 
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
@@ -147,17 +147,17 @@ WSGI_APPLICATION = "MedlinkBackend.wsgi.application"
 DATABASES = {
     "default": {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv('DBNAME'),
-        'USER': os.getenv('USERNAME'),
-        'PASSWORD': os.getenv('DB_PASSWORD'),
-        'HOST': os.getenv('HOST'), 
-        'PORT': os.getenv('PORT'),
+        # 'NAME': os.getenv('DBNAME'),
+        # 'USER': os.getenv('USERNAME'),
+        # 'PASSWORD': os.getenv('DB_PASSWORD'),
+        # 'HOST': os.getenv('HOST'), 
+        # 'PORT': os.getenv('PORT'),
         
-        # 'NAME': 'medlink',
-        # 'USER': 'root',
-        # 'PASSWORD': '',
-        # 'HOST': 'localhost',
-        # 'PORT': 3306
+        'NAME': 'medlink',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': 3306
         
     }
 }

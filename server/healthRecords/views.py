@@ -1,4 +1,3 @@
-
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
@@ -9,28 +8,25 @@ from .serializer import MedicalIssueSerializer
 def calculate_health_score(medical_data):
     score = 100  
     scoring_rules = {
-        'Eyes': {
-            'visualAcuity': {'poor': -20},
-            'pupilReaction': {'low': -15, 'normal': 0, 'high': 5},
-            'eyePressure': lambda x: -20 if x > 21 else 0,
-            'visualField': lambda x: -20 if x < 100 else 0,
+        'Head': {
+            'headache': lambda x: -10 * x if x else 0,
+            'visionIssues': {'yes': -20, 'no': 0},
         },
-        'Legs': {
-            'bloodPressure': {'high': -20, 'normal': 0, 'low': 5},
-            'pulse': lambda x: -10 if x < 60 or x > 100 else 0,
-            'muscleStrength': lambda x: -15 if x < 3 else 0,
+        'Toros': {
+            'chestPain': lambda x: -10 * x if x else 0,
+            'breathingDifficulty': lambda x: -15 * x if x else 0,
         },
-        'Heart': {
-            'ejectionFraction': lambda x: -20 if x < 50 else 0,
-            'cardiacOutput': lambda x: -15 if x < 4 else 0,
+        'LeftLeg': {
+            'leftLegPain': lambda x: -10 * x if x else 0,
         },
-        'Brain': {
-            'cognitiveFunction': {'impaired': -30, 'normal': 0},
-            'neurologicalExam': {'abnormal': -25, 'normal': 0},
+        'LeftHand': {
+            'leftHandPain': lambda x: -10 * x if x else 0,
         },
-        'Back': {
-            'painLevel': lambda x: -10 * x if x > 0 else 0,
-            'rangeOfMotion': lambda x: -10 if x < 75 else 0,
+        'RightHand': {
+            'rightHandPain': lambda x: -10 * x if x else 0,
+        },
+        'RightLeg': {
+            'rightLegPain': lambda x: -10 * x if x else 0,
         },
     }
 
@@ -57,14 +53,49 @@ def report_health_issue(request):
         if not email:
             return Response({'error': 'User email not found in session'}, status=status.HTTP_400_BAD_REQUEST)
 
-        data = {**request.data, 'email': email}
+        body_part = request.data.get('bodyPart')
+        symptom = request.data.get('symptom')
+        image = request.data.get('image')
+        date = request.data.get('date')
 
-        # Create or update the medical issue record
+        body_part_data = {
+            'Head': {
+                'headache': request.data.get('headache'),
+                'visionIssues': request.data.get('visionIssues'),
+            },
+            'Toros': {
+                'chestPain': request.data.get('chestPain'),
+                'breathingDifficulty': request.data.get('breathingDifficulty'),
+            },
+            'LeftLeg': {
+                'leftLegPain': request.data.get('leftLegPain'),
+            },
+            'LeftHand': {
+                'leftHandPain': request.data.get('leftHandPain'),
+            },
+            'RightHand': {
+                'rightHandPain': request.data.get('rightHandPain'),
+            },
+            'RightLeg': {
+                'rightLegPain': request.data.get('rightLegPain'),
+            }
+        }
+
+        # Add body part-specific data to the main data dictionary
+        data = {
+            'email': email,
+            'bodyPart': body_part,
+            'symptom': symptom,
+            'image': image,
+            'date': date,
+            **body_part_data.get(body_part, {})
+        }
+
         serializer = MedicalIssueSerializer(data=data)
         
         if serializer.is_valid():
             medical_issue = serializer.save()
-            
+
             health_score = calculate_health_score(serializer.data)
 
             medical_issue.health_score = health_score

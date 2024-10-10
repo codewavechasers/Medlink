@@ -25,8 +25,9 @@ import { ArrowRight } from "@carbon/icons-react";
 import Image from "next/image";
 import App from "@/app/api/api";
 import Notifications from "@/components/notification/index";
-
+import AdviceModal from "./LoadingModal";
 function MedicalStatus({ handleBackToDashboard }) {
+  const [loading, setLoading] = useState(false);
   const [selectedBodyPart, setSelectedBodyPart] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [symptom, setSymptom] = useState("");
@@ -40,33 +41,25 @@ function MedicalStatus({ handleBackToDashboard }) {
     subtitle: "",
     timeout: "",
   });
-  const [visualAcuity, setVisualAcuity] = useState("");
-  const [pupilReaction, setPupilReaction] = useState("");
-  const [eyePressure, setEyePressure] = useState("");
-  const [visualField, setVisualField] = useState("");
-  const [bloodPressure, setBloodPressure] = useState("");
-  const [pulse, setPulse] = useState("");
-  const [gaitAnalysis, setGaitAnalysis] = useState("");
-  const [muscleStrength, setMuscleStrength] = useState("");
-  const [ecg, setECG] = useState("");
-  const [cardiacOutput, setCardiacOutput] = useState("");
-  const [ejectionFraction, setEjectionFraction] = useState("");
-  const [cognitiveFunction, setCognitiveFunction] = useState("");
-  const [neurologicalExam, setNeurologicalExam] = useState("");
-  const [mri, setMRI] = useState("");
-  const [eeg, setEEG] = useState("");
-  const [rangeOfMotion, setRangeOfMotion] = useState("");
-  const [painLevel, setPainLevel] = useState("");
-  const [xrayOrMRI, setXrayOrMRI] = useState("");
+  const [headache, setHeadache] = useState("");
+  const [visionIssues, setVisionIssues] = useState("");
+  const [chestPain, setChestPain] = useState("");
+  const [breathingDifficulty, setBreathingDifficulty] = useState("");
+  const [leftLegPain, setLeftLegPain] = useState("");
+  const [leftHandPain, setLeftHandPain] = useState("");
+  const [rightHandPain, setRightHandPain] = useState("");
+  const [rightLegPain, setRightLegPain] = useState("");
   const [Records, setRecords] = useState(null);
   const [OverallHealthScore, setOverallHealthScore] = useState(null);
   const [image, setImage] = useState("");
   const bodyPartImages = {
-    Eyes: "../../../../eye.svg",
-    Legs: "../../../../leg.svg",
-    Heart: "../../../../heart.svg",
-    Brain: "../../../../brain.svg",
-    Back: "../../../../back.svg",
+    Head: "/human/head.png",
+    Torso: "/human/Torso.png",
+    LeftLeg: "/human/LeftLeg.png",
+    LeftHand: "/human/LeftHand.png",
+    RightHand: "/human/RightHand.png",
+    RightLeg: "/human/RightLeg.png",
+    Default: "/human/Default.png",
   };
 
   useEffect(() => {
@@ -84,158 +77,84 @@ function MedicalStatus({ handleBackToDashboard }) {
     if (percentage < 75) return "orange";
     return "green";
   };
+
   const handleBodyPartChange = (selectedPart) => {
     setBodyPart(selectedPart);
-    setImage(bodyPartImages[selectedPart] || "");
+    setImage(bodyPartImages[selectedPart] || bodyPartImages["Default"]);
   };
+
   const renderBodyPartFields = () => {
     switch (bodyPart) {
-      case "Eyes":
+      case "Head":
         return (
           <>
             <TextInput
-              id="visual-acuity"
-              labelText="Visual Acuity"
-              value={visualAcuity}
-              onChange={(e) => setVisualAcuity(e.target.value)}
+              id="headache"
+              labelText="Headache Severity (1-10)"
+              value={headache}
+              onChange={(e) => setHeadache(e.target.value)}
             />
-            <NumberInput
-              id="pupil-reaction"
-              label="Pupil Reaction (ms)"
-              value={pupilReaction}
-              onChange={(e) => setPupilReaction(e.target.value)}
-            />
-            <NumberInput
-              id="eye-pressure"
-              label="Eye Pressure (mmHg)"
-              value={eyePressure}
-              onChange={(e) => setEyePressure(e.target.value)}
-            />
-            <NumberInput
-              id="visual-field"
-              label="Visual Field (degrees)"
-              value={visualField}
-              onChange={(e) => setVisualField(e.target.value)}
+            <TextInput
+              id="vision-issues"
+              labelText="Vision Issues"
+              placeholder="yes or no"
+              value={visionIssues}
+              onChange={(e) => setVisionIssues(e.target.value)}
             />
           </>
         );
-      case "Legs":
+      case "Torso":
         return (
           <>
             <TextInput
-              id="blood-pressure"
-              labelText="Blood Pressure (mmHg)"
-              value={bloodPressure}
-              onChange={(e) => setBloodPressure(e.target.value)}
-            />
-            <NumberInput
-              id="pulse"
-              label="Pulse (bpm)"
-              value={pulse}
-              onChange={(e) => setPulse(e.target.value)}
+              id="chest-pain"
+              labelText="Chest Pain (1-10)"
+              value={chestPain}
+              onChange={(e) => setChestPain(e.target.value)}
             />
             <TextInput
-              id="gait-analysis"
-              labelText="Gait Analysis"
-              value={gaitAnalysis}
-              onChange={(e) => setGaitAnalysis(e.target.value)}
-            />
-            <NumberInput
-              id="muscle-strength"
-              label="Muscle Strength"
-              value={muscleStrength}
-              onChange={(e) => setMuscleStrength(e.target.value)}
+              id="breathing-difficulty"
+              labelText="Breathing Difficulty (1-10)"
+              value={breathingDifficulty}
+              onChange={(e) => setBreathingDifficulty(e.target.value)}
             />
           </>
         );
-      case "Heart":
+      case "LeftLeg":
         return (
-          <>
-            <TextInput
-              id="ecg"
-              labelText="ECG Results"
-              value={ecg}
-              onChange={(e) => setECG(e.target.value)}
-            />
-            <TextInput
-              id="blood-pressure"
-              labelText="Blood Pressure (mmHg)"
-              value={bloodPressure}
-              onChange={(e) => setBloodPressure(e.target.value)}
-            />
-            <NumberInput
-              id="cardiac-output"
-              label="Cardiac Output (L/min)"
-              value={cardiacOutput}
-              onChange={(e) => setCardiacOutput(e.target.value)}
-            />
-            <NumberInput
-              id="ejection-fraction"
-              label="Ejection Fraction (%)"
-              value={ejectionFraction}
-              onChange={(e) => setEjectionFraction(e.target.value)}
-            />
-          </>
+          <TextInput
+            id="left-leg-pain"
+            labelText="Left Leg Pain (1-10)"
+            value={leftLegPain}
+            onChange={(e) => setLeftLegPain(e.target.value)}
+          />
         );
-      case "Brain":
+      case "LeftHand":
         return (
-          <>
-            <TextInput
-              id="cognitive-function"
-              labelText="Cognitive Function Test Results"
-              value={cognitiveFunction}
-              onChange={(e) => setCognitiveFunction(e.target.value)}
-            />
-            <TextInput
-              id="neurological-exam"
-              labelText="Neurological Exam Results"
-              value={neurologicalExam}
-              onChange={(e) => setNeurologicalExam(e.target.value)}
-            />
-            <TextInput
-              id="mri"
-              labelText="MRI Results"
-              value={mri}
-              onChange={(e) => setMRI(e.target.value)}
-            />
-            <TextInput
-              id="eeg"
-              labelText="EEG Results"
-              value={eeg}
-              onChange={(e) => setEEG(e.target.value)}
-            />
-          </>
+          <TextInput
+            id="left-hand-pain"
+            labelText="Left Hand Pain (1-10)"
+            value={leftHandPain}
+            onChange={(e) => setLeftHandPain(e.target.value)}
+          />
         );
-      case "Back":
+      case "RightHand":
         return (
-          <>
-            <NumberInput
-              id="range-of-motion"
-              label="Range of Motion (degrees)"
-              value={rangeOfMotion}
-              onChange={(e) => setRangeOfMotion(e.target.value)}
-            />
-            <NumberInput
-              id="muscle-strength"
-              label="Muscle Strength"
-              value={muscleStrength}
-              onChange={(e) => setMuscleStrength(e.target.value)}
-            />
-            <NumberInput
-              id="pain-level"
-              label="Pain Level (1-10)"
-              min={1}
-              max={10}
-              value={painLevel}
-              onChange={(e) => setPainLevel(e.target.value)}
-            />
-            <TextInput
-              id="xray-or-mri"
-              labelText="X-ray or MRI Results"
-              value={xrayOrMRI}
-              onChange={(e) => setXrayOrMRI(e.target.value)}
-            />
-          </>
+          <TextInput
+            id="right-hand-pain"
+            labelText="Right Hand Pain (1-10)"
+            value={rightHandPain}
+            onChange={(e) => setRightHandPain(e.target.value)}
+          />
+        );
+      case "RightLeg":
+        return (
+          <TextInput
+            id="right-leg-pain"
+            labelText="Right Leg Pain (1-10)"
+            value={rightLegPain}
+            onChange={(e) => setRightLegPain(e.target.value)}
+          />
         );
       default:
         return null;
@@ -247,11 +166,12 @@ function MedicalStatus({ handleBackToDashboard }) {
     try {
       setIsModalOpen(!isModalOpen);
       const bodyPartData = {
-        Eyes: { visualAcuity, pupilReaction, eyePressure, visualField },
-        Legs: { bloodPressure, pulse, gaitAnalysis, muscleStrength },
-        Heart: { ecg, bloodPressure, cardiacOutput, ejectionFraction },
-        Brain: { cognitiveFunction, neurologicalExam, mri, eeg },
-        Back: { rangeOfMotion, muscleStrength, painLevel, xrayOrMRI },
+        Head: { headache, visionIssues },
+        Torso: { chestPain, breathingDifficulty },
+        LeftLeg: { leftLegPain },
+        LeftHand: { leftHandPain },
+        RightHand: { rightHandPain },
+        RightLeg: { rightLegPain },
       };
 
       const response = await App.post(
@@ -302,7 +222,7 @@ function MedicalStatus({ handleBackToDashboard }) {
         kind: "error",
         caption: "",
         title: "Error",
-        subtitle: `An error occured during issueing`,
+        subtitle: `An error occurred during issuing`,
         timeout: 3000,
       });
       setShowNotification(true);
@@ -394,14 +314,20 @@ function MedicalStatus({ handleBackToDashboard }) {
                 <div
                   style={{
                     display: "flex",
-                    alignItems: "center",
+                    alignItems: "flex-start",
                     justifyContent: "space-between",
                     gap: "10px",
-                    height: "100%",
+                    height: "100px",
                   }}
                   className="items"
                 >
-                  <img src={item.image} alt="item" className="list-image" />
+                  <Image
+                    width={100}
+                    height={100}
+                    src={item.image}
+                    alt="item"
+                    className="list-image"
+                  />
                   <p className="list-desc">{item.symptom}</p>
                 </div>
 
@@ -422,6 +348,7 @@ function MedicalStatus({ handleBackToDashboard }) {
                     href="#"
                     renderIcon={() => <ArrowRight aria-label="Arrow Right" />}
                   />
+
                   <div
                     style={{
                       width: "20px",
@@ -508,24 +435,27 @@ function MedicalStatus({ handleBackToDashboard }) {
           </div>
           <div className="body-segment">
             <div className="body-part">
-              {selectedBodyPart && (
+              {selectedBodyPart ? (
                 <Image
                   width={300}
                   height={300}
                   className="patient-image"
-                  src={
-                    selectedBodyPart
-                      ? selectedBodyPart.image
-                      : "../../../../human.svg"
-                  }
-                  alt={
-                    selectedBodyPart ? selectedBodyPart.symptom : "Full Body"
-                  }
+                  src={selectedBodyPart?.image}
+                  alt={selectedBodyPart?.symptom || "Full Body"}
+                />
+              ) : (
+                <Image
+                  width={300}
+                  height={300}
+                  className="patient-image"
+                  src={"/human/Default.png"}
+                  alt={"Full Body"}
                 />
               )}
             </div>
+
             <div className="check-up">
-              <Button kind="ghost">View checkup</Button>
+            <AdviceModal selectedBodyPart={selectedBodyPart} />
               <Button kind="primary" onClick={() => setIsModalOpen(true)}>
                 I dont feel well
               </Button>
@@ -540,36 +470,17 @@ function MedicalStatus({ handleBackToDashboard }) {
           secondaryButtonText="Cancel"
           onRequestSubmit={handleSubmit}
         >
-          {/* <Select
-          id="select-1"
-          defaultValue="placeholder-item"
-          labelText="Body Part"
-          onChange={(e) => setBodyPart(e.target.value)}
-        >
-          <SelectItem
-            disabled
-            hidden
-            value="placeholder-item"
-            text="Choose an option"
-          />
-          {Records.map((item, index) => (
-            <SelectItem
-              key={index}
-              value={item.bodyPart}
-              text={item.bodyPart}
-            />
-          ))}
-        </Select> */}
           <Select
             id="body-part-select"
             labelText="Select Body Part"
             onChange={(e) => handleBodyPartChange(e.target.value)}
           >
-            <SelectItem value="Eyes" text="Eyes" />
-            <SelectItem value="Legs" text="Legs" />
-            <SelectItem value="Heart" text="Heart" />
-            <SelectItem value="Brain" text="Brain" />
-            <SelectItem value="Back" text="Back" />
+            <SelectItem value="Head" text="Head" />
+            <SelectItem value="Torso" text="Torso" />
+            <SelectItem value="LeftLeg" text="Left Leg" />
+            <SelectItem value="LeftHand" text="Left Hand" />
+            <SelectItem value="RightHand" text="Right Hand" />
+            <SelectItem value="RightLeg" text="Right Leg" />
           </Select>
 
           <TextInput
