@@ -24,6 +24,8 @@ function NextAppCard({ docImage, test, name, date, email, time, id }) {
   };
 
   const handleConfirmDelete = () => {
+    setDeleteModalOpen(false);
+
     Swal.fire({
       title: "Deleting your Appointment!",
       text: "Please wait as we delete your appointment...",
