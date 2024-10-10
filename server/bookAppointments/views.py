@@ -93,7 +93,7 @@ def fetch_appointments(request):
     email = request.session.get('email')
     if request.method == 'GET':
         appointments = Appointment.objects.filter(patient_email=email) 
-        appointments_list = list(appointments.values('doctor_name', 'date', 'time', 'doctor_image', 'speciality', 'problem_description', 'patient_email'))
+        appointments_list = list(appointments.values('id','doctor_name', 'date', 'time', 'doctor_image', 'speciality', 'problem_description', 'patient_email'))
         return JsonResponse(appointments_list, safe=False)
 
 @csrf_exempt
