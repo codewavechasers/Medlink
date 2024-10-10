@@ -107,8 +107,8 @@ function AppointmentDoctors({
       <div className="footer-section">
         <Heading
           style={{ color: "blue", cursor: "pointer" }}
-          onClick={setViewModal(true)}
-        >
+          onClick={() => setViewModal(true)}
+          >
           View
         </Heading>
         <Button
@@ -127,20 +127,16 @@ function AppointmentDoctors({
           doctorImage={doctor.image}
         />
       )}
-      {viewModal ? (
-        <Modal
-          modalHeading="About the doctor"
-          modalLabel="Medlink - Doctors"
-          primaryButtonText="Ok"
-          secondaryButtonText="Cancel"
-          height="auto"
-          onRequestClose={() => setViewModal(false)}
-        >
-          <p>{description}</p>
-        </Modal>
-      ) : (
-        ""
-      )}
+      <Modal
+        open={viewModal}
+        modalHeading="About the doctor"
+        modalLabel="Medlink - Doctors"
+        primaryButtonText="Ok"
+        secondaryButtonText="Cancel"
+        onRequestClose={() => setViewModal(false)}
+      >
+        <p>{description}</p>
+      </Modal>
     </div>
   );
 }
