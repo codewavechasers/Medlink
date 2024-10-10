@@ -103,16 +103,14 @@ def delete_appointment(request):
     if request.method == 'DELETE':
         try:
             data = json.loads(request.body)
-            doctor_name = data.get('doctor_name')
-            date = data.get('date')
-            time = data.get('time')
+            # doctor_name = data.get('doctor_name')
+            # date = data.get('date')
+            # time = data.get('time')
+            id= data.get('id')
 
             # Find and delete the specific appointment
             appointment = Appointment.objects.filter(
-                doctor_name=doctor_name,
-                patient_email=email,
-                date=date,
-                time=time
+               id=id
             ).first()
 
             if appointment:
