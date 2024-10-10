@@ -71,6 +71,9 @@ function AppointmentDoctors({
     }
     setMakeBooking(true);
   };
+  const handleModalClose = () => {
+    setViewModal(false);
+  };
 
   return (
     <div className="app-doctors">
@@ -133,9 +136,10 @@ function AppointmentDoctors({
         modalLabel="Medlink - Doctors"
         primaryButtonText="Ok"
         secondaryButtonText="Cancel"
-        onRequestClose={() => setViewModal(false)}
-      >
-        <p>{description}</p>
+        onRequestClose={handleModalClose}
+        onRequestSubmit={handleModalClose}      
+        >
+        <p>Dr. {description}</p>
       </Modal>
     </div>
   );

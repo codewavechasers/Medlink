@@ -54,14 +54,7 @@ const doctorsData = [
     rating: 4,
     description: "Michael Albeart is a compassionate therapist specializing in cognitive behavioral therapy and stress management."
   },
-  {
-    id: 7,  // Correcting the duplicate id
-    image: "../../doctors/doc-3.jpeg",
-    name: "Keter Gilbert",
-    speciality: "Therapist",
-    rating: 4,
-    description: "Keter Gilbert is a therapist focusing on holistic mental health approaches, offering personalized therapy sessions for his clients."
-  },
+  
 ];
 
 
