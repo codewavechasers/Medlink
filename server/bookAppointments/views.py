@@ -146,10 +146,8 @@ def edit_appointment(request):
             new_problem_description = data.get('problem_description')
 
             # Find the appointment
-            appointment = Appointment.objects.filter(
-               id=id,
-               patient_email=email
-            )
+            appointment = Appointment.objects.filter(id=id, patient_email=email).first()
+
 
             if appointment:
                 # Update the appointment details
