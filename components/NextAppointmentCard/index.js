@@ -245,7 +245,7 @@ function NextAppCard({ docImage, test, name, date, email, time, id }) {
           id="appointment-id"
           labelText="Id"
           value={id}
-          hidden
+          // hidden
           />
           <TextInput
             id="edit-name"
