@@ -4,6 +4,9 @@ import json
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 from healthRecords.models import MedicalIssue
+import requests
+import time
+import os
 
 @csrf_exempt
 @require_http_methods(["GET"])
@@ -38,7 +41,11 @@ def get_advice(request, record_id=None):
         return JsonResponse({'error': str(e)}, status=500)
 
 def call_watson_api(input_data):
-    access_token = "eyJraWQiOiIyMDI0MTAwMjA4NDIiLCJhbGciOiJSUzI1NiJ9.eyJpYW1faWQiOiJJQk1pZC02OTUwMDBCMEY5IiwiaWQiOiJJQk1pZC02OTUwMDBCMEY5IiwicmVhbG1pZCI6IklCTWlkIiwianRpIjoiN2FmN2RlYzgtN2MxYi00N2RhLTkzMWItNjVlNjRkYjBkODNhIiwiaWRlbnRpZmllciI6IjY5NTAwMEIwRjkiLCJnaXZlbl9uYW1lIjoiR0lMQkVSVCIsImZhbWlseV9uYW1lIjoiS0lQTEFOR0FUIiwibmFtZSI6IkdJTEJFUlQgS0lQTEFOR0FUIiwiZW1haWwiOiJnaWxiZXJ0a2V0ZXI3NTlAZ21haWwuY29tIiwic3ViIjoiZ2lsYmVydGtldGVyNzU5QGdtYWlsLmNvbSIsImF1dGhuIjp7InN1YiI6ImdpbGJlcnRrZXRlcjc1OUBnbWFpbC5jb20iLCJpYW1faWQiOiJJQk1pZC02OTUwMDBCMEY5IiwibmFtZSI6IkdJTEJFUlQgS0lQTEFOR0FUIiwiZ2l2ZW5fbmFtZSI6IkdJTEJFUlQiLCJmYW1pbHlfbmFtZSI6IktJUExBTkdBVCIsImVtYWlsIjoiZ2lsYmVydGtldGVyNzU5QGdtYWlsLmNvbSJ9LCJhY2NvdW50Ijp7InZhbGlkIjp0cnVlLCJic3MiOiJjNDI2M2I1YmNhZTA0YWI0YmU4MjhiNzZkMWU5Y2VmZCIsImZyb3plbiI6dHJ1ZX0sImlhdCI6MTcyODU2MDg1NCwiZXhwIjoxNzI4NTY0NDU0LCJpc3MiOiJodHRwczovL2lhbS5jbG91ZC5pYm0uY29tL2lkZW50aXR5IiwiZ3JhbnRfdHlwZSI6InVybjppYm06cGFyYW1zOm9hdXRoOmdyYW50LXR5cGU6YXBpa2V5Iiwic2NvcGUiOiJpYm0gb3BlbmlkIiwiY2xpZW50X2lkIjoiZGVmYXVsdCIsImFjciI6MSwiYW1yIjpbInB3ZCJdfQ.U8JmEvmhiTnoZ4I-qpwrzgQ_eHZAAFdBoRjO7EJ0BXJYmCDsELGyHwP7GRfSuHu7xCciskFzLoGPHF_rPqJOOm64z3Z6fVDZ0UNSYUbzbYcI0v7SDDhLez488r1RTqt9YNl3qcWx8miQPgmmyMrMfp6kvFYEQlX8GsqY_32BxQ6F6uWpvr39iPfdfbJ4jbJLOv6LVOC07i2KdxKUc24ewHuylFXgVsr3p2XkYn_8VXukmQIo8lrbT7ReDphETrtG1sNNUGTs_Yh64O1PacAqufDo_tk7MHhUFUkiQEOE7gHwoVoSgrQtw1V0cQpA7cCwrxx5rZrql47hHpsAQ3tEEw" 
+    api_key = os.environ.get('WATSON_API_KEY')
+    valid_token = get_valid_token(api_key)
+
+    access_token = valid_token
+    
     url = "https://eu-de.ml.cloud.ibm.com/ml/v1/text/generation?version=2023-05-29"
     headers = {
         "Accept": "application/json",
@@ -69,7 +76,31 @@ def call_watson_api(input_data):
     except Exception as err:
         print(f"Other error occurred: {err}")
   
-  
+
+def get_token(api_key):
+    url = "https://iam.cloud.ibm.com/identity/token"
+    headers = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Accept": "application/json"
+    }
+    data = {
+        "grant_type": "urn:ibm:params:oauth:grant-type:apikey",
+        "apikey": api_key
+    }
+    response = requests.post(url, headers=headers, data=data)
+    return response.json()
+
+def get_valid_token(api_key):
+    global token_data
+    current_time = time.time()
+    
+    if 'token_data' not in globals() or current_time >= token_data['expiration'] - 300:  # Refresh if within 5 minutes of expiring
+        token_data = get_token(api_key)
+        token_data['expiration'] = current_time + token_data['expires_in']
+    
+    return token_data['access_token']
+
+
   
 def analyze_data(request):
     access_token = "my token"  # Replace with your actual access token
