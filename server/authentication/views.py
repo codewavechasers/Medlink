@@ -31,7 +31,7 @@ def generate_and_send_2fa_code(user):
     otp_code = user.otp_code
     subject = "Your 2FA Code"
     html_content = f"<p>Your 2FA code is: {otp_code}</p>"
-    send_email(subject, usr.email, html_content)
+    send_email(subject, user.email, html_content)
 
 @csrf_exempt
 def resend_2fa_code(request):
@@ -177,27 +177,59 @@ def password_reset_confirm(request, uidb64, token):
 
 @csrf_exempt
 def verify_2fa(request):
+    print(f"Request method: {request.method}")  # Debugging line
     if request.method == 'POST':
         try:
             data = json.loads(request.body)
             email = data.get('email')
             otp_code = data.get('code')
+            
+            print(f"Received email: {email}, code: {otp_code}")  # Debugging line
 
             user = Patient.objects.filter(email=email).first()
             if not user:
                 return JsonResponse({'success': False, 'message': 'User not found!'})
 
             if user.verify_otp(otp_code):
-                login(request, user)
-                return JsonResponse({'success': True, 'message': '2FA verified successfully', 'session_id': request.session.session_key,
-                    'user_id': user.id,
-                    'email': user.email,})
+                try:
+                    request.session.set_expiry(2 * 60 * 60)  # 2 hours
+                    login(request, user)
+                    
+                    response_data = {
+                        'success': True,
+                        'message': 'Verified successfully!',
+                        'user_id': user.id,
+                        'email': user.email,
+                        'session_id': request.session.session_key
+                    }
+                    
+                    response = JsonResponse(response_data)
+                    response.set_cookie(
+                        key='sessionid',
+                        value=request.session.session_key,
+                        max_age=2 * 60 * 60, 
+                        httponly=True,  # Adds security
+                        samesite='Lax'  # Adds security
+                    )
+                    
+                    request.session['user_id'] = user.id
+                    request.session['phonenumber'] = user.phone_number
+                    request.session['email'] = user.email
+                    request.session.save()
+                    
+                    print("Verification successful, response prepared")  # Debugging line
+                    return response
+                except Exception as e:
+                    print(f"Error during login process: {str(e)}")  # Debugging line
+                    return JsonResponse({'success': False, 'message': f'Login error: {str(e)}'})
             else:
                 return JsonResponse({'success': False, 'message': 'Invalid 2FA code'})
+        except json.JSONDecodeError:
+            return JsonResponse({'success': False, 'message': 'Invalid JSON in request body'})
         except Exception as e:
+            print(f"Unexpected error: {str(e)}")  # Debugging line
             return JsonResponse({'success': False, 'message': f'An error occurred: {str(e)}'})
     return JsonResponse({'success': False, 'message': 'Invalid request method'})
-
 
 @csrf_exempt
 def google_signin(request):

@@ -48,6 +48,7 @@ function TwoFactorAuth() {
           headers: {
             "Content-Type": "application/json",
           },
+          withCredentials:true
         }
       );
 

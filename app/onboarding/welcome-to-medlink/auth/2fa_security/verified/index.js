@@ -23,7 +23,24 @@ const useLoadingNavigation = (path) => {
 };
 
 function PassswordComplete() {
+  const router = useRouter();
   const [isLoadingDashboard, handleDashboardClick] = useLoadingNavigation("../../../welcome-to-medlink/auth/sign-in");
+  const [countdown, setCountdown] = useState(3);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCountdown((prevCount) => prevCount - 1);
+    }, 1000);
+
+    const redirect = setTimeout(() => {
+      router.push('/home');
+    }, 3000);
+
+    return () => {
+      clearInterval(timer);
+      clearTimeout(redirect);
+    };
+  }, [router]);
 
   return (
     <div className="form">
@@ -32,18 +49,18 @@ function PassswordComplete() {
         <div className="flex-complete">
           <Heading><strong>Thank you for choosing medlink.</strong></Heading>
           <p>
-            Your 2FA is successfully verified. You may proceed to the dashboard{" "}
-            <Link href="../../../welcome-to-medlink/auth/sign-in" onClick={handleDashboardClick}>
+            Your 2FA is successfully verified. You will be redirected to the dashboard in {countdown} seconds.
+            {' '}
+            <Link href="/home" onClick={handleDashboardClick}>
               {isLoadingDashboard ? (
                 <>
                   <Loading small inline withOverlay={false} />
                   <span style={{ marginLeft: "8px" }}>Loading...</span>
                 </>
               ) : (
-                "here"
+                "Click here to go now"
               )}
             </Link>
-            . Thank you.
           </p>
         </div>
       </div>
