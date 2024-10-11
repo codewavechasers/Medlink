@@ -1,5 +1,3 @@
-// Help.js
-
 import React, { useState, useEffect } from "react";
 import { ExpandableSearch, Heading } from "@carbon/react";
 import { Calendar, Chat, Person } from "@carbon/icons-react";
@@ -9,55 +7,52 @@ import ArticleCard from "../../../components/Article-card";
 import Faqs from "../../../components/faq-card";
 import QuickLink from "../../../components/QuickLink";
 import MoreInquiry from "../../../components/more-inquiry";
-import { link } from "next/link";
-
 function Help() {
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [onlineResults, setOnlineResults] = useState([]);
   const [error, setError] = useState(null);
- 
-  
+
   const QuickLinks = [
     {
       icon: <Chat size={32} />,
       title: "Finding the Right Doctor",
       description: "Tips on finding a doctor specialized in your condition",
-      link: "https://health.gov/myhealthfinder/doctor-visits/regular-checkups/choosing-doctor-quick-tips",
+      link: "https://www.webmd.com/health-insurance/how-to-choose-a-doctor",
     },
     {
       icon: <Person size={32} />,
       title: "Understanding Medical Tests",
       description: "Explaining common medical tests and what they indicate",
-      link: "https://www.msdmanuals.com/professional/special-subjects/clinical-decision-making/understanding-medical-tests-and-test-results",
+      link: "https://www.webmd.com/a-to-z-guides/lab-test-results",
     },
     {
       icon: <Calendar size={32} />,
       title: "Healthcare Providers Near You",
       description:
         "Find healthcare providers and facilities near your location",
-      link: "https://www.vezeeta.co.ke/en/doctor/all-specialities/",
+      link: "https://doctor.webmd.com/",
     },
   ];
 
   const ArticleList = [
     {
       icon: <Chat size={32} />,
-      title: "Dealing with Chronic Pain",
+      title: "Dealing with Chronic Back Pain",
       description: "Effective strategies for managing chronic pain",
-      link: "https://www.merriam-webster.com/dictionary/medical#:~:text=adjective,or%20the%20practice%20of%20medicine",
+      link: "https://www.webmd.com/back-pain/features/causes",
     },
     {
       icon: <Person size={32} />,
       title: "Understanding Diabetes",
       description: "Comprehensive guide to diabetes management and care",
-      link: "https://www.diabetes.org.uk/diabetes-the-basics#:~:text=Diabetes%20is%20a%20serious%20condition,produce%20any%20insulin%20at%20all.",
+      link: "https://www.webmd.com/diabetes/default.htm",
     },
     {
       icon: <Chat size={32} />,
       title: "Understanding Hypertension",
       description: "Essential information on managing high blood pressure",
-      link: "https://www.who.int/health-topics/hypertension#:~:text=Hypertension%2C%20also%20known%20as%20high,pumps%20blood%20into%20the%20vessels.",
+      link: "https://www.webmd.com/hypertension-high-blood-pressure/default.htm",
     },
   ];
 
@@ -66,19 +61,19 @@ function Help() {
       icon: <Chat size={64} />,
       title: "Getting Started",
       description: "Learn how to start using Medlink effectively.",
-      link: "../getting-started",
+      videoUrl: "/videos/rec.mp4",
     },
     {
       icon: <Person size={64} />,
       title: "Know us",
       description: "Discover more about our team and mission.",
-      link: "../about-us",
+      videoUrl: "/videos/rec2.mp4",
     },
     {
       icon: <Calendar size={64} />,
       title: "Medlink",
       description: "Explore the features and benefits of Medlink",
-      link: "../medlink",
+      videoUrl: "/videos/rec.mp4",
     },
   ];
 
@@ -94,7 +89,6 @@ function Help() {
         "Booking an appointment is easy! Log in to your account, navigate to the appointments section, choose your preferred date and time, and confirm your booking. You will receive a confirmation email shortly after.",
     },
   ];
-  
 
   const fetchOnlineResults = async () => {
     setLoading(true);
@@ -169,6 +163,8 @@ function Help() {
       faq.description.toLowerCase().includes(searchQuery)
   );
 
+ 
+
   return (
     <div className="help-container">
       <section className="help-header">
@@ -213,16 +209,18 @@ function Help() {
             {filteredCards.length > 0 ? (
               filteredCards.map((card, index) => (
                 <HelpCard
-                  key={index}
-                  icon={card.icon}
-                  title={card.title}
-                  description={card.description}
-                  link={card.link}
-                />
+                key={index}
+                icon={card.icon}
+                title={card.title}
+                description={card.description}
+                videoUrl={card.videoUrl}  
+              />
+              
               ))
             ) : (
               <div>No data found.</div>
             )}
+            
           </div>
         </section>
         <section className="popular-articles">
@@ -307,6 +305,7 @@ function Help() {
           <MoreInquiry />
         </section>
       </section>
+      
     </div>
   );
 }
