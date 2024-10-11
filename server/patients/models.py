@@ -71,8 +71,8 @@ class Patient(AbstractBaseUser, PermissionsMixin):
         return self.email
 
     def save(self, *args, **kwargs):
-        self.address = base64.urlsafe_b64encode(cipher_suite.encrypt(self.address.encode())).decode()
-        self.emergency_contact_phone = base64.urlsafe_b64encode(cipher_suite.encrypt(self.emergency_contact_phone.encode())).decode()
+        # self.address = base64.urlsafe_b64encode(cipher_suite.encrypt(self.address.encode())).decode()
+        # self.emergency_contact_phone = base64.urlsafe_b64encode(cipher_suite.encrypt(self.emergency_contact_phone.encode())).decode()
         super(Patient, self).save(*args, **kwargs)
 
     def generate_and_store_otp_code(self):
