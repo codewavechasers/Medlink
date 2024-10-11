@@ -2,7 +2,7 @@ import resend
 from django.conf import settings
 
 # Make sure to add your Resend API key to Django settings securely
-resend.api_key = "re_7NTdX12j_BEBuasWwELRx7DFa9JppYao9"
+resend.api_key = settings.RESEND_API_KEY
 
 def send_email(subject, to, html_content):
     params = {

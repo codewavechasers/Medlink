@@ -3,7 +3,7 @@ from django.test import TestCase
 import resend
 from django.conf import settings
 def send_email(subject, to, html_content):
-    resend.api_key = "re_7NTdX12j_BEBuasWwELRx7DFa9JppYao9"
+    resend.api_key = settings.RESEND_API_KEY
 
     params = {
         "from": "Medlink <no-reply@engineerketer.dev>", 

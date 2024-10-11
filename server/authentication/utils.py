@@ -5,7 +5,7 @@ def send_email(subject, to, html_content):
     resend.api_key = settings.RESEND_API_KEY
 
     params = {
-        "from": "Medlink <delivered@resend.dev>",
+        "from": "Medlink <no-reply@engineerketer.dev>", 
         "to": to,
         "subject": subject,
         "html": html_content,
