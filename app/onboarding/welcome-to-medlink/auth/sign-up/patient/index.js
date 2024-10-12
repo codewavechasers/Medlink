@@ -105,6 +105,20 @@ function PatientRegistration() {
     if (currentStep > 6) {
       return;
     }
+    if (password != confirm_password) {
+      setNotificationProps({
+        kind: "error",
+        caption: "",
+        title: "Error",
+        subtitle: `Registration failed: Passswords do not match`,
+        timeout: 3000,
+      });
+      setShowNotification(true);
+
+      setTimeout(() => {
+        setShowNotification(false);
+      }, 3000);
+    }
     setIsSubmitting(true);
     Swal.fire({
       title: "Adding you to Medlink",
