@@ -177,7 +177,7 @@ const AppointmentModal = ({ onClose, appointmentDetails, doctorImage }) => {
             kind: "error",
             caption: "",
             title: "Uknown error!",
-            subtitle: `An error occurred. Please try again later. Error: ${error.message}`,
+            subtitle: `An error occurred. Please try again later. Error`,
             timeout: 3000,
           });
           setShowNotification(true);

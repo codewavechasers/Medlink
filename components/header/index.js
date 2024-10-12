@@ -68,7 +68,7 @@ function Header() {
           kind: "error",
           caption: "",
           title: "An error occured",
-          subtitle: `Error fetching patient data: ${error.message}`,
+          subtitle: `Error fetching patient data`,
           timeout: 3000,
         });
         setShowNotification(true);
@@ -114,7 +114,6 @@ function Header() {
         caption: "",
         title: "Failed!",
         subtitle: data.message || "Log out Failed!",
-        error,
         timeout: 3000,
       });
       setShowNotification(true);

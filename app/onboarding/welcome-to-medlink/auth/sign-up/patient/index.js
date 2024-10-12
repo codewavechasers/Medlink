@@ -141,7 +141,7 @@ function PatientRegistration() {
               kind: "error",
               caption: "",
               title: "Registration failed",
-              subtitle: `Registration failed. Please try again.${error}`,
+              subtitle: `Registration failed. Please try again.`,
               timeout: 3000,
             });
             setShowNotification(true);
@@ -163,6 +163,7 @@ function PatientRegistration() {
         return (
           <>
             <TextInput
+              autoComplete="off"
               id="name"
               type="text"
               className="inputfields1"
@@ -196,6 +197,7 @@ function PatientRegistration() {
               />
             </DatePicker>
             <TextInput
+              autoComplete="off"
               id="gender"
               type="text"
               className="inputfields1"
@@ -205,6 +207,7 @@ function PatientRegistration() {
             />
             <Stack gap={6} orientation="horizontal">
               <TextInput
+                autoComplete="off"
                 id="email"
                 type="text"
                 className="inputfields1"
@@ -213,6 +216,7 @@ function PatientRegistration() {
                 value={patientData.email}
               />
               <TextInput
+                autoComplete="off"
                 id="phone_number"
                 type="text"
                 className="inputfields1"
@@ -222,6 +226,7 @@ function PatientRegistration() {
               />
             </Stack>
             <TextInput
+              autoComplete="off"
               id="address"
               type="text"
               className="inputfields1"
@@ -243,6 +248,7 @@ function PatientRegistration() {
         return (
           <>
             <TextInput
+              autoComplete="off"
               id="emergency_contact_name"
               type="text"
               className="inputfields1"
@@ -251,6 +257,7 @@ function PatientRegistration() {
               value={patientData.emergency_contact_name}
             />
             <TextInput
+              autoComplete="off"
               id="emergency_contact_relationship"
               type="text"
               className="inputfields1"
@@ -259,6 +266,7 @@ function PatientRegistration() {
               value={patientData.emergency_contact_relationship}
             />
             <TextInput
+              autoComplete="off"
               id="emergency_contact_phone"
               type="text"
               className="inputfields1"
@@ -267,6 +275,7 @@ function PatientRegistration() {
               value={patientData.emergency_contact_phone}
             />
             <TextInput
+              autoComplete="off"
               id="emergency_contact_email"
               type="text"
               className="inputfields1"
@@ -280,6 +289,7 @@ function PatientRegistration() {
         return (
           <>
             <TextInput
+              autoComplete="off"
               id="current_health_conditions"
               type="text"
               className="inputfields1"
@@ -288,6 +298,7 @@ function PatientRegistration() {
               value={patientData.current_health_conditions}
             />
             <TextInput
+              autoComplete="off"
               id="past_medical_history"
               type="text"
               className="inputfields1"
@@ -296,6 +307,7 @@ function PatientRegistration() {
               value={patientData.past_medical_history}
             />
             <TextInput
+              autoComplete="off"
               id="allergies"
               type="text"
               className="inputfields1"
@@ -304,6 +316,7 @@ function PatientRegistration() {
               value={patientData.allergies}
             />
             <TextInput
+              autoComplete="off"
               id="current_medications"
               type="text"
               className="inputfields1"
@@ -312,6 +325,7 @@ function PatientRegistration() {
               value={patientData.current_medications}
             />
             <TextInput
+              autoComplete="off"
               id="primary_care_physician"
               type="text"
               className="inputfields1"
@@ -325,6 +339,7 @@ function PatientRegistration() {
         return (
           <>
             <TextInput
+              autoComplete="off"
               id="family_health_conditions"
               type="text"
               className="inputfields1"
@@ -338,6 +353,7 @@ function PatientRegistration() {
         return (
           <>
             <TextInput
+              autoComplete="off"
               id="lifestyle_habits"
               type="text"
               className="inputfields1"
@@ -346,6 +362,7 @@ function PatientRegistration() {
               value={patientData.lifestyle_habits}
             />
             <TextInput
+              autoComplete="off"
               id="exercise_routine"
               type="text"
               className="inputfields1"
@@ -354,6 +371,7 @@ function PatientRegistration() {
               value={patientData.exercise_routine}
             />
             <TextInput
+              autoComplete="off"
               id="dietary_habits"
               type="text"
               className="inputfields1"
@@ -367,6 +385,7 @@ function PatientRegistration() {
         return (
           <>
             <TextInput
+              autoComplete="off"
               id="insurance_provider"
               type="text"
               className="inputfields1"
@@ -375,6 +394,7 @@ function PatientRegistration() {
               value={patientData.insurance_provider}
             />
             <TextInput
+              autoComplete="off"
               id="policy_number"
               type="text"
               className="inputfields1"
@@ -383,6 +403,7 @@ function PatientRegistration() {
               value={patientData.policy_number}
             />
             <TextInput
+              autoComplete="off"
               id="insurance_phone"
               type="text"
               className="inputfields1"
@@ -475,7 +496,7 @@ function PatientRegistration() {
           timeout={notificationProps.timeout}
         />
       )}
-      <div className="patientreg1" style={{overflowY:"auto"}}>
+      <div className="patientreg1" style={{ overflowY: "auto" }}>
         <div className="regbody1">
           <Header>
             <section className="flexleft1">
@@ -510,7 +531,7 @@ function PatientRegistration() {
             <h4>Patient</h4>
           </Header>
           <section className="regform1">
-            <div className="svgpart1" style={{minHeight:"300px"}}></div>
+            <div className="svgpart1" style={{ minHeight: "300px" }}></div>
             <div className="cont1">
               <h4 className="regtitle1">Register Patient Account</h4>
               <h4>Please fill in your details.</h4>

@@ -112,7 +112,7 @@ function MedicationHub({ handleBackToDashboard }) {
               kind: "error",
               caption: "",
               title: "Setting Failed",
-              subtitle: `An error occured: ${error}`,
+              subtitle: `An error occured`,
               timeout: 3000,
             });
             setShowNotification(true);
@@ -136,7 +136,7 @@ function MedicationHub({ handleBackToDashboard }) {
         setTimelines(data);
         // console.log("data", data);
       } catch (error) {
-        console.error(error);
+        console.error("error");
       }
     };
 
@@ -191,7 +191,7 @@ function MedicationHub({ handleBackToDashboard }) {
 
         setTiles(transformedTiles);
       } catch (error) {
-        console.error(error);
+        console.error("error");
       }
     };
 

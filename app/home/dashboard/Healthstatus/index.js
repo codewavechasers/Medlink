@@ -241,7 +241,7 @@ function MedicalStatus({ handleBackToDashboard }) {
           setFilteredRecords(response.data.data);
         }
       } catch (error) {
-        console.log("error", error);
+        console.log("error");
       }
     };
 

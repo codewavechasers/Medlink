@@ -59,21 +59,21 @@ function Help() {
   const cardList = [
     {
       icon: <Chat size={64} />,
-      title: "Getting Started",
-      description: "Learn how to start using Medlink effectively.",
-      videoUrl: "/videos/rec.mp4",
+      title: "Get started with AI Advisor",
+      description: "Learn how WatsonX.ai can transform your illness into recommendation effectively.",
+      videoUrl: "/videos/watsonx.mp4",
     },
     {
       icon: <Person size={64} />,
-      title: "Know us",
-      description: "Discover more about our team and mission.",
-      videoUrl: "/videos/rec2.mp4",
+      title: "Booking Appointments",
+      description: "Discover howw you can book appointments in MEdlink.",
+      videoUrl: "/videos/appointment.mp4",
     },
     {
       icon: <Calendar size={64} />,
       title: "Medlink",
-      description: "Explore the features and benefits of Medlink",
-      videoUrl: "/videos/rec.mp4",
+      description: "Explore how you can add a timeline in Medlink and get notifications on your phone.",
+      videoUrl: "/videos/timeline.mp4",
     },
   ];
 

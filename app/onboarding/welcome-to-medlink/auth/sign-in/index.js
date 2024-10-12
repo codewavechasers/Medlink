@@ -14,16 +14,15 @@ function SignIn() {
   return (
     <div >
       <OnboardingHeader>
-        <div className="logo">
+        <div className="logo-signin">
           <Image
             width={70}
             height={70}
             src="/logov2.svg"
-            alt="logo"
+            alt="logo-signin"
             className="logo-image"
           />
           <Link href="../../welcome-to-medlink">
-            {" "}
             <section className="back" onClick={() => setIsLoading(true)}>
               {isLoading ? (
                 <>

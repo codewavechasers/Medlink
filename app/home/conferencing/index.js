@@ -161,7 +161,7 @@ function Conference() {
         const data =  response.data;
         setUsers(data);
       } catch (error) {
-        console.error("Failed to fetch users:", error);
+        console.error("Failed to fetch users:");
       }
     };
 
@@ -261,7 +261,7 @@ function Conference() {
       </div>
 
       <div className="video-container">
-      {/* {call ? ( */}
+      {call ? (
           <>
             <video
               ref={localVideoRef}
@@ -273,9 +273,9 @@ function Conference() {
             ></video>
             <video ref={remoteVideoRef} className="remote-video"></video>
           </>
-        {/* //  ) : ( 
-        //    <img src="/logov2.svg" alt="No call in progress" />
-        //  )}  */}
+          ) : ( 
+           <img src="/logov2.svg" alt="No call in progress" />
+         )}  
       </div>
 
       <div className="controls">

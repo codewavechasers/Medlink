@@ -25,7 +25,7 @@ const Doctor = ({
     localStorage.setItem("selectedItem", "conferencing");
     const timeout = 2000;
     setTimeout(() => {
-      window.location.href = "../../index.js";
+      window.location.href = "/home";
     }, timeout);
   };
 
@@ -222,7 +222,7 @@ function NextAppointments({ handleBackToDashboard }) {
         const data = response.data;
         setAppointments_history(data);
       } catch (error) {
-        console.error(error);
+        console.error("error");
       }
     };
 
@@ -233,7 +233,7 @@ function NextAppointments({ handleBackToDashboard }) {
 
     const timeout = 2000;
     setTimeout(() => {
-      window.location.href = "http://localhost:3000/home";
+      window.location.href = "/home";
     }, timeout);
   }
   return (

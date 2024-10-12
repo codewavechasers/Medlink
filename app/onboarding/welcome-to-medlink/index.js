@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./styles.sass";
@@ -9,24 +9,18 @@ import {
   Loading,
   ProgressIndicator,
   ProgressStep,
+  ContentSwitcher,
+  Switch,
 } from "@carbon/react";
 import Head from "next/head";
-import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useRouter } from "next/navigation";
 import { ArrowRight } from "@carbon/icons-react";
 import {
   Header,
   HeaderName,
-  HeaderGlobalBar,
-  HeaderGlobalAction,
+  
 } from "@carbon/react";
-import {
-  Search,
-  Notification,
-  Switcher as SwitcherIcon,
-} from "@carbon/icons-react";
-// const Step = Steps.Step;
 
 const useLoadingNavigation = (path) => {
   const router = useRouter();
@@ -71,6 +65,8 @@ const ModalStateManager = ({
 };
 
 const FeaturesModal = ({ open, setOpen }) => {
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
   const router = useRouter();
 
   const handleReturn = () => {
@@ -80,10 +76,40 @@ const FeaturesModal = ({ open, setOpen }) => {
   const handleSkip = () => {
     router.push("/onboarding/welcome-to-medlink/auth/sign-up");
   };
+  const switchContent = () => {
+    switch (selectedIndex) {
+      case 0:
+        return (
+          <>
+            <h3>Register and Schedule Appointments</h3>
+            <p>Seamlessly book virtual or physical appointments.</p>
+            <img alt="appointments" src="/medlink/bookappointment.png" />
+          </>
+        );
+      case 1:
+        return (
+          <>
+            <h3>Connect with Doctors</h3>
+            <p>Experience real-time consultations.</p>
+            <img alt="connect" src="/medlink/connect.png" />
+          </>
+        );
+      case 2:
+        return (
+          <>
+            <h3>Manage Prescriptions and Reminders</h3>
+            <p>Set reminders for your medications.</p>
+            <img alt="reminders" src="/medlink/reminders.png" />
+          </>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <Modal
-      modalHeading="Explore Features - You can swipe"
+      modalHeading="Explore Features"
       modalLabel="Medlink v 0.1.0"
       primaryButtonText="Skip"
       secondaryButtonText="Return"
@@ -93,36 +119,15 @@ const FeaturesModal = ({ open, setOpen }) => {
       onRequestClose={handleReturn}
       className="feature-modal"
     >
-      <Carousel showThumbs={false} className="carousel">
-        <div className="feature">
-          <h3>Register and Schedule Appointments</h3>
-          <p>Seamlessly book virtual or physical appointments.</p>
-          <img src="../../../auth-img/img1.jpg" />
-        </div>
-        <div className="feature">
-          <h3>Connect with Doctors</h3>
-          <p>Experience real-time consultations.</p>
-          <img src="../../../auth-img/img1.jpg" />
-        </div>
-        <div className="feature">
-          <h3>Manage Prescriptions and Reminders</h3>
-          <p>Set reminders for your medications.</p>
-          <img src="../../../auth-img/img1.jpg" />
-        </div>
-        <div className="feature">
-          <h3
-            style={{
-              fontWeight: "bold",
-              fontSize: "20px",
-              fontFamily: "ink-jet",
-            }}
-          >
-            Welcome to Medlink
-          </h3>
-          <p>Your Virtual Medical Clinic!</p>
-          <img className="feature-img" src="../../../logov2.svg" />
-        </div>
-      </Carousel>
+      <ContentSwitcher
+        onChange={(e) => setSelectedIndex(e.index)}
+        className="feature-switcher"
+      >
+        <Switch name="one" text="First section" />
+        <Switch name="two" text="Second section" />
+        <Switch name="three" text="Third section" />
+      </ContentSwitcher>
+      <div className="feature-content">{switchContent()}</div>
     </Modal>
   );
 };
@@ -156,21 +161,24 @@ function Welcome() {
           <style>{"body { overflow: auto !important; }"}</style>
         </Head>
         <div className="index-container">
-          <Header className="medlink-header"
+          <Header
+            className="medlink-header"
             aria-label="Medlink Platform"
             style={{ position: "sticky", top: 0, zIndex: 2, height: "auto" }}
           >
-          <div className="logo-sec">
-          <a href="#" style={{ display: "flex", alignItems: "center" }}>
-              <img
-                src="../../../logov2.svg"
-                alt="Medlink Logo"
-                style={{ height: "70px" }}
-              />
-            </a>
-            <HeaderName href="#" prefix="Your virtual home clinic assistant">
-            </HeaderName>
-          </div>
+            <div className="logo-sec">
+              <a href="#" style={{ display: "flex", alignItems: "center" }}>
+                <img
+                  src="../../../logov2.svg"
+                  alt="Medlink Logo"
+                  style={{ height: "70px" }}
+                />
+              </a>
+              <HeaderName
+                href="#"
+                prefix="Your virtual home clinic assistant"
+              ></HeaderName>
+            </div>
 
             <div className="btn-sec">
               <Button

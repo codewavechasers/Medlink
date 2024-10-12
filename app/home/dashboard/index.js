@@ -85,7 +85,7 @@ function Dashboard() {
           kind: "error",
           caption: "",
           title: "Authentication in failed",
-          subtitle: `Error fetching patient data: ${error.message}`,
+          subtitle: `Error fetching patient data`,
           timeout: 3000,
         });
         setShowNotification(true);
@@ -106,7 +106,7 @@ function Dashboard() {
       });
       setNoticeboardUpdates(response.data.updates);
     } catch (error) {
-      console.error("Error fetching noticeboard updates:", error);
+      console.error("Error fetching noticeboard updates:");
     }
   };
 
@@ -117,7 +117,7 @@ function Dashboard() {
       });
       setNextAppointmentDate(response.data.next_appointment_date);
     } catch (error) {
-      console.error("Error fetching next appointment date:", error);
+      console.error("Error fetching next appointment date:");
     }
   };
 
@@ -128,7 +128,7 @@ function Dashboard() {
       });
       setSubscriptionCount(response.data.subscription_count);
     } catch (error) {
-      console.error("Error fetching subscription count:", error);
+      console.error("Error fetching subscription count:");
     }
   };
   const formatNoticeDate = (dateString) => {

@@ -21,7 +21,7 @@ const AdviceModal = ({ selectedBodyPart }) => {
       });
       setAdvice(response.data.advice);
     } catch (error) {
-      console.error("Error fetching advice:", error);
+      console.error("Error fetching advice:");
       setAdvice("Failed to fetch advice. Please try again.");
     } finally {
       setLoading(false);

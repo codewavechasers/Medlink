@@ -161,7 +161,7 @@ function SignInForm() {
               kind: "error",
               caption: "",
               title: "An error occured",
-              subtitle: 'An error occurred during sign-in:", error',
+              subtitle: 'An error occurred during sign-in',
               timeout: 3000,
             });
             setShowNotification(true);
@@ -245,12 +245,12 @@ function SignInForm() {
       >
         <p> {isLoadingForgotPassword ? "Loading..." : "Forgot password?"}</p>{" "}
       </Heading>
-      <Heading className="or-container">
+      {/* <Heading className="or-container">
         <hr className="or-line" />
         <span className="or-text">OR</span>
         <hr className="or-line" />
-      </Heading>
-      <Button
+      </Heading> */}
+      {/* <Button
         kind="secondary"
         className="btns"
         size="sm"
@@ -258,7 +258,7 @@ function SignInForm() {
         disabled={isLoadingGoogleSignIn}
       >
         {isLoadingGoogleSignIn ? "Loading..." : "Continue with Google"}
-      </Button>
+      </Button> */}
     </Form>
   );
 

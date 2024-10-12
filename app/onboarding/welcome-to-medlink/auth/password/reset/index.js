@@ -82,7 +82,7 @@ function PasswordReset() {
         kind: "error",
         caption: "",
         title: "Unknown error occured",
-        subtitle: err.response?.data?.error || "An error occurred",
+        subtitle: "An error occurred",
         timeout: 3000,
       });
       setShowNotification(true);

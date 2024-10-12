@@ -104,14 +104,14 @@ function TwoFactorAuth() {
       }
     } catch (err) {
       Swal.close();
-      setError(err.response?.data?.message || "An error occurred");
+      setError("An error occurred");
       setSuccess("");
 
       setNotificationProps({
         kind: "error",
         caption: "",
         title: "Error",
-        subtitle: err.response?.data?.message || "An error occurred during 2FA verification",
+        subtitle: "An error occurred during 2FA verification",
         timeout: 3000,
       });
       setShowNotification(true);

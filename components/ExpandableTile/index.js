@@ -127,7 +127,7 @@ const MyExpandableTile = ({
                 kind: "error",
                 caption: "",
                 title: "An error occured!",
-                subtitle:`Requesting medication refill failed. Please try again. ${error}`,
+                subtitle:`Requesting medication refill failed. Please try again`,
                 timeout: 3000,
               });
               setShowNotification(true);

@@ -175,7 +175,6 @@ function NextAppCard({ docImage, test, name, date, email, time, id }) {
               caption: "",
               title: "Unknown error!",
               subtitle: "An error occured during modification:",
-              error,
               timeout: 3000,
             });
             setShowNotification(true);
@@ -244,9 +243,8 @@ function NextAppCard({ docImage, test, name, date, email, time, id }) {
         >
           <TextInput
           id="appointment-id"
-          labelText="Id"
           value={id}
-          // hidden
+          hidden
           />
           <TextInput
             id="edit-name"

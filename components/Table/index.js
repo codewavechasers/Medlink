@@ -46,7 +46,7 @@ const MyTable = () => {
       .then((response) => {
         setRows(response.data);
       })
-      .catch((error) => console.error("Error fetching data:", error));
+      .catch((error) => console.error("Error fetching data:"));
   }, []);
 
   const handlePageChange = ({ page, pageSize }) => {
@@ -93,7 +93,7 @@ const MyTable = () => {
         link.click();
         document.body.removeChild(link);
       } catch (error) {
-        console.error("Error saving data:", error);
+        console.error("Error saving data:");
       }
     } else if (actionType === "download") {
       try {
@@ -111,7 +111,7 @@ const MyTable = () => {
         link.click();
         document.body.removeChild(link);
       } catch (error) {
-        console.error("Error downloading data:", error);
+        console.error("Error downloading data:");
       }
     }
   };

@@ -56,7 +56,7 @@ function Chats() {
         const data = response.data;
         setPatientName(data);
       } catch (error) {
-        console.log(error);
+        console.log("error");
       }
     };
 
