@@ -23,7 +23,7 @@ function PasswordReset() {
   const searchParams = useSearchParams();
   const uid = searchParams.get("uid");
   const token = searchParams.get("token");
-  
+
   const handlePasswordReset = async (e) => {
     e.preventDefault();
 
@@ -81,7 +81,7 @@ function PasswordReset() {
       }, 3000);
     } catch (error) {
       Swal.close();
-      console.log("error:", error)
+      console.log("error:")
       setNotificationProps({
         kind: "error",
         caption: "",
