@@ -91,7 +91,8 @@ INSTALLED_APPS = [
     'home',
     'django_celery_beat',
     'watson',
-    'healthRecords'
+    'healthRecords',
+    'vonageEndpoints',
 
 
 ]

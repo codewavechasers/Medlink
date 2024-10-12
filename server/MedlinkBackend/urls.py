@@ -31,4 +31,5 @@ urlpatterns = [
     path('api/', include('online_doctors.urls')),
     path('api/', include('watson.urls')),
     path('api/', include('healthRecords.urls')),
+    path('vonage_api/', include('vonageEndpoints.urls')),
 ]
