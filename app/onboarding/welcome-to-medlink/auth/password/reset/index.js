@@ -20,7 +20,10 @@ function PasswordReset() {
     subtitle: "",
     timeout: "",
   });
-
+  const searchParams = useSearchParams();
+  const uid = searchParams.get("uid");
+  const token = searchParams.get("token");
+  
   const handlePasswordReset = async (e) => {
     e.preventDefault();
 
@@ -76,8 +79,9 @@ function PasswordReset() {
         setShowNotification(false);
         router.push("/onboarding/welcome-to-medlink/auth/password/complete");
       }, 3000);
-    } catch (err) {
+    } catch (error) {
       Swal.close();
+      console.log("error:", error)
       setNotificationProps({
         kind: "error",
         caption: "",
@@ -121,9 +125,7 @@ function PasswordResetForm({
   showNotification,
   notificationProps,
 }) {
-  const searchParams = useSearchParams();
-  const uid = searchParams.get("uid");
-  const token = searchParams.get("token");
+
 
   return (
     <div className="form">
