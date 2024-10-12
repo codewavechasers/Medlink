@@ -14,7 +14,7 @@ function Page() {
     <div>
       <div style={{ overflowX: "hidden" }}>
         <OnboardingHeader>
-          <div className="logo">
+          <div className="logo-request">
             <Image
               width={70}
               height={70}

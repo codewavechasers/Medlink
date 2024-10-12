@@ -135,7 +135,7 @@ def password_reset_request(request):
         if user:
             token = default_token_generator.make_token(user)
             uid = urlsafe_base64_encode(force_bytes(user.pk))
-            reset_link = f'http://localhost:3000/onboarding/welcome-to-medlink/auth/password/reset/?uid={uid}&token={token}'
+            reset_link = f'https://medlink.gk.h.cw.co.ke/onboarding/welcome-to-medlink/auth/password/reset/?uid={uid}&token={token}'
             subject = "Password Reset Link"
             html_content = f"<p>Click <a href='{reset_link}'>here</a> to reset your password.</p>"
 
