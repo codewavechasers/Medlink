@@ -7,7 +7,7 @@ import {
   Logout,
   Notification,
   Settings,
-  UserAvatarFilled,
+  UserAvatar,
 } from "@carbon/icons-react";
 import {
   Button,
@@ -53,7 +53,7 @@ function Header() {
             kind: "error",
             caption: "",
             title: "An error occured",
-            subtitle: 'User is not authenticated',
+            subtitle: "User is not authenticated",
             timeout: 3000,
           });
           setShowNotification(true);
@@ -61,10 +61,9 @@ function Header() {
           // Redirect after notification
           setTimeout(() => {
             setShowNotification(false);
-          }, 3000);          
+          }, 3000);
         }
       } catch (error) {
-
         setNotificationProps({
           kind: "error",
           caption: "",
@@ -82,7 +81,7 @@ function Header() {
     };
 
     fetchUserData();
-  }, []); 
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -95,7 +94,6 @@ function Header() {
       if (data.success) {
         window.location.href = "/onboarding/welcome-to-medlink/auth/sign-in";
       } else {
-
         setNotificationProps({
           kind: "success",
           caption: "",
@@ -111,12 +109,12 @@ function Header() {
         }, 3000);
       }
     } catch (error) {
-      
       setNotificationProps({
         kind: "error",
         caption: "",
         title: "Failed!",
-        subtitle: data.message || "Log out Failed!", error,
+        subtitle: data.message || "Log out Failed!",
+        error,
         timeout: 3000,
       });
       setShowNotification(true);
@@ -129,7 +127,7 @@ function Header() {
   };
   return (
     <div className="header">
-        {showNotification && (
+      {showNotification && (
         <Notifications
           kind={notificationProps.kind}
           caption={notificationProps.caption}
@@ -139,14 +137,15 @@ function Header() {
         />
       )}
       {messages ? <Messages messages={messages} /> : ""}
-      <div className="notification">
+      <div className="notification icon">
         <Notification size={32} onClick={() => setMessages(!messages)} />
         <span className="notification-count">4</span>
       </div>
 
       <div className="profile">
-        <section className="profile-pic">
-          <UserAvatarFilled
+        <section className="profile-pic icon">
+          <UserAvatar
+            size={32}
             className="user-icon"
             style={{ cursor: "pointer" }}
             onClick={expand}
@@ -184,8 +183,9 @@ function Header() {
         size="lg"
       >
         <div className={`user_info ${expanded ? "expanded" : ""}`}>
-          <section className="user-details">
-            <UserAvatarFilled
+          <section className="user-details icon">
+            <UserAvatar
+              size={32}
               className="user-image"
               style={{ cursor: "pointer" }}
             />

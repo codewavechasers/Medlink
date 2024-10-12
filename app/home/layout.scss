@@ -14,6 +14,9 @@
   display: flex;
   position: relative;
 }
+.abs-navbar svg{
+  fill: var(--primary-color);
+}
 
 .container_comp {
   width: 100%;

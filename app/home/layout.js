@@ -16,8 +16,8 @@ import {
   Workspace,
   Person,
   Video,
-  Switcher ,
-  MobileView,
+  SidePanelOpen,
+  SidePanelClose,
 } from "@carbon/icons-react";
 import Chats from "./chats";
 import Appointments from "./appointments";
@@ -192,10 +192,17 @@ function Container({ defaSelected }) {
       )}
       {isMobile ? (
         <div className="abs-navbar">
-          <Switcher 
-            onClick={() => setMobilebiew(!mobile_bar)}
-            size={32}
-          />
+          {mobile_bar ? (
+            <SidePanelClose
+              onClick={() => setMobilebiew(!mobile_bar)}
+              size={32}
+            />
+          ) : (
+            <SidePanelOpen
+              onClick={() => setMobilebiew(!mobile_bar)}
+              size={32}
+            />
+          )}
         </div>
       ) : (
         ""

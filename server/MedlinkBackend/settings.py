@@ -18,13 +18,7 @@ CELERY_RESULT_SERIALIZER = 'json'
 
 USE_TZ = True
 # ==================
-
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = 'gilbertketer759@gmail.com'  
-# EMAIL_HOST_PASSWORD = 'xvbqkvpsybtmtnes' 
+ 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -106,6 +100,11 @@ AUTH_USER_MODEL = 'authentication.User'
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
 ]
+
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SAMESITE = 'None'
+# SESSION_COOKIE_SAMESITE = 'None'
 
 CSRF_COOKIE_SECURE = False
 SESSION_COOKIE_SECURE = False

@@ -2,7 +2,7 @@ import axios from "axios";
 
 const App = axios.create({
   // baseURL: 'http://gilbert-keter-medlink-backend-1f0e71-da92b5-213-199-42-123.traefik.me',
-  // baseURL: 'http://127.0.0.1:8000',
+  // baseURL: "http://127.0.0.1:8000",
   baseURL: "https://medlink-backend.gk.h.cw.co.ke",
   timeout: 10000,
   headers: {
