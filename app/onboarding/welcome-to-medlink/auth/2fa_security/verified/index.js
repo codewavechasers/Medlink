@@ -33,7 +33,7 @@ function PassswordComplete() {
     }, 1000);
 
     const redirect = setTimeout(() => {
-      // router.push('/home');
+      router.push('/home');
     }, 3000);
 
     return () => {
