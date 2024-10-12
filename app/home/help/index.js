@@ -66,7 +66,7 @@ function Help() {
     {
       icon: <Person size={64} />,
       title: "Booking Appointments",
-      description: "Discover howw you can book appointments in MEdlink.",
+      description: "Discover howw you can book appointments in Medlink.",
       videoUrl: "/videos/appointment.mp4",
     },
     {

@@ -123,9 +123,9 @@ const FeaturesModal = ({ open, setOpen }) => {
         onChange={(e) => setSelectedIndex(e.index)}
         className="feature-switcher"
       >
-        <Switch name="one" text="First section" />
-        <Switch name="two" text="Second section" />
-        <Switch name="three" text="Third section" />
+        <Switch name="one" text="Appointments" />
+        <Switch name="two" text="Connecting" />
+        <Switch name="three" text="Reminders" />
       </ContentSwitcher>
       <div className="feature-content">{switchContent()}</div>
     </Modal>
