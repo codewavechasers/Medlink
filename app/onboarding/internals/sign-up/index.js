@@ -33,7 +33,7 @@ function SignUp() {
   return (
     <div >
       <OnboardingHeader>
-        <div className="logo">
+        <div className="logo-option">
           <Image
             width={70}
             height={70}
@@ -61,8 +61,8 @@ function SignUp() {
           </Link>
         </div>
 
-        <section className="log-in">
-          <h4 className="log-in">
+        <section className="log-in-option">
+          <h4 className="log-in-option">
             <Link
               className="link"
               href="../../welcome-to-medlink/auth/sign-in"
