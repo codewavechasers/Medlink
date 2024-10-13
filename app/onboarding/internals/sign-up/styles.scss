@@ -38,8 +38,8 @@
     align-items: center;
     justify-content: center;
     gap: 0;
-    height: calc(100vh - 10vh);
-    
+    min-height: calc(100vh - 10vh);
+    height: auto;
   // background-image: url('../../../../public/auth-img/bg1.avif');
   // background-size: cover;
   // background-position: center;

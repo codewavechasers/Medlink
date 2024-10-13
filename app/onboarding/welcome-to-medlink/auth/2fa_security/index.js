@@ -194,7 +194,7 @@ function TwoFactorAuth() {
         <div className="svg-part-2fa"></div>
         <div className="form-part-2fa">
           <Form
-            aria-label="request-form"
+            // aria-label="request-form"
             className="fa-form"
             onSubmit={verify2Fa}
           >

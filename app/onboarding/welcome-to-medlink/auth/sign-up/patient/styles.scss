@@ -8,7 +8,8 @@
 }
 .patientreg1 {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -29,7 +30,8 @@
 
 .regprogress1 {
   width: 20%;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
 //   border: 1px solid blue;
 border-left: 1px dashed var(--primary-color);
   background-color: var(--secondary-color-2);
@@ -135,7 +137,8 @@ border-left: 1px dashed var(--primary-color);
   justify-content: space-between;
   // flex-direction: column;
   background-color: var(--tertiary-color);
-  height: calc(100vh - 10vh);
+  min-height: calc(100vh - 10vh);
+  height: auto;
   overflow: auto;
 }
 .form1{
