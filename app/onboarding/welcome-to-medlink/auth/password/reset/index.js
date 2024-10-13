@@ -139,6 +139,8 @@ function PasswordResetForm({
 
 
   return (
+    <Suspense fallback={<Loading />}>
+
     <div className="form">
       <div className="form-part">
         <Form
@@ -198,6 +200,7 @@ function PasswordResetForm({
         />
       )}
     </div>
+    </Suspense>
   );
 }
 

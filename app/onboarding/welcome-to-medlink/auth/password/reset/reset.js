@@ -1,6 +1,6 @@
 
   "use client";
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import PasswordReset from "./index";
 import "./styles.scss";
 import Link from "next/link";
@@ -11,6 +11,7 @@ import { Heading, Loading } from "@carbon/react";
 function Page() {
   const [isLoading, setIsLoading] = useState(false);
   return (
+    <Suspense fallback={<Loading/>}>
     <div>
       <div style={{ overflowX: "hidden" }}>
         <OnboardingHeader>
@@ -23,7 +24,6 @@ function Page() {
               className="logo-image"
             />
             <Link href="../../../welcome-to-medlink/auth/sign-in">
-              {" "}
               <section className="back" onClick={() => setIsLoading(true)}>
                 {isLoading ? (
                   <>
@@ -49,6 +49,7 @@ function Page() {
         </section>
       </div>
     </div>
+    </Suspense>
   );
 };
 
