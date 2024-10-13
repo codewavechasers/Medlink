@@ -541,7 +541,7 @@ function PatientRegistration() {
   };
   const [isLoading, setIsLoading] = useState(false);
   return (
-    <>
+    <div className="registration-container1">
       {showNotification && (
         <Notifications
           kind={notificationProps.kind}
@@ -644,7 +644,7 @@ function PatientRegistration() {
         </section>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 
