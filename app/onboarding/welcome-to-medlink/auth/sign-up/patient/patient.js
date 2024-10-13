@@ -14,9 +14,9 @@ function Page() {
   }, []);
 
   return (
-    <div>
+    <>
       <Patient />
-    </div>
+    </>
   );
 }
 

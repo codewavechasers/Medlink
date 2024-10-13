@@ -7,9 +7,9 @@ export const metadata = {
 
 function PatientPage() {
   return (
-    <div>
+    <>
       <Patient/>
-    </div>
+    </>
   )
 }
 

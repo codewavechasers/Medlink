@@ -14,7 +14,7 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: auto;
-  overflow: hidden;
+  overflow: auto;
 
 }
 
@@ -211,7 +211,7 @@ border-left: 1px dashed var(--primary-color);
 
 @media screen and (max-width:900px) {
   .patientreg1{
-    overflow-x: hidden;
+    overflow-x: auto;
   }
   .regbody1{
     width: 95%;
