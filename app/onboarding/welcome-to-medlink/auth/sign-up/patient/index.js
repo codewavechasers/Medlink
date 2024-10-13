@@ -19,6 +19,7 @@ import {
   Stack,
   PasswordInput,
   Loading,
+  Dropdown,
 } from "@carbon/react";
 import { PatientProgressSteps } from "../progress";
 import Link from "next/link";
@@ -171,6 +172,17 @@ function PatientRegistration() {
     });
   };
 
+  const healthConditions = [
+    { id: "condition1", text: "Hypertension" },
+    { id: "condition2", text: "Diabetes" },
+    { id: "condition3", text: "Asthma" },
+    { id: "condition4", text: "Arthritis" },
+  ];
+  const genderOptions = [
+    { id: "option1", text: "Female" },
+    { id: "option2", text: "Male" },
+    { id: "option3", text: "Other" },
+  ];
   const renderFormFields = () => {
     switch (currentStep) {
       case 0:
@@ -210,7 +222,26 @@ function PatientRegistration() {
                 placeholder="MM/DD/YYYY"
               />
             </DatePicker>
-            <TextInput
+            <Dropdown
+              className="inputfields1"
+              id="gender"
+              titleText="Gender"
+              label="Select your Gender"
+              items={genderOptions}
+              itemToString={(item) => (item ? item.text : "")}
+              selectedItem={genderOptions.find(
+                (option) => option.text === patientData.gender
+              )}
+              onChange={(event) =>
+                handleChange({
+                  target: {
+                    id: "gender",
+                    value: event.selectedItem.text,
+                  },
+                })
+              }
+            />
+            {/* <TextInput
               autoComplete="off"
               id="gender"
               type="text"
@@ -218,7 +249,7 @@ function PatientRegistration() {
               labelText="Gender"
               onChange={handleChange}
               value={patientData.gender}
-            />
+            /> */}
             <Stack gap={6} orientation="horizontal">
               <TextInput
                 autoComplete="off"
@@ -302,14 +333,24 @@ function PatientRegistration() {
       case 2:
         return (
           <>
-            <TextInput
-              autoComplete="off"
+            <Dropdown
               id="current_health_conditions"
-              type="text"
-              className="inputfields1"
-              labelText="Current Health Conditions"
-              onChange={handleChange}
-              value={patientData.current_health_conditions}
+              titleText="Current Health Conditions"
+              label="Select a health condition"
+              items={healthConditions}
+              itemToString={(item) => (item ? item.text : "")}
+              selectedItem={healthConditions.find(
+                (condition) =>
+                  condition.text === patientData.current_health_conditions
+              )}
+              onChange={(event) =>
+                handleChange({
+                  target: {
+                    id: "current_health_conditions",
+                    value: event.selectedItem.text,
+                  },
+                })
+              }
             />
             <TextInput
               autoComplete="off"

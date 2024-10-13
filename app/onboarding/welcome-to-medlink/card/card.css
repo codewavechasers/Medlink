@@ -1,0 +1,42 @@
+.card {
+  width: 100%;
+    min-width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-icon {
+    font-size: 40px;
+    color: #4a90e2; /* You can change the icon color */
+    margin-bottom: 15px;
+  }
+  
+  .card-content {
+    text-align: center;
+  }
+  
+  .card-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .card-description {
+    font-size: 16px;
+    color: #666;
+  }
+  @media screen and (max-width:900px) {
+    .card{
+      width: 100%;
+    }
+    
+  }

@@ -65,7 +65,18 @@ function PasswordReset() {
         { headers: { "Content-Type": "application/json" } }
       );
       Swal.close();
-
+      if(response.status == 400){
+        setNotificationProps({
+          kind: "error",
+          caption: "",
+          title: "Error.",
+          subtitle: `${response.data.error}`,
+          timeout: 3000,
+        });
+        setShowNotification(true);
+  
+      
+      }
       setNotificationProps({
         kind: "success",
         caption: "",

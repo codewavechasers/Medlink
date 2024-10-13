@@ -15,13 +15,15 @@ import {
 import Head from "next/head";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useRouter } from "next/navigation";
-import { ArrowRight } from "@carbon/icons-react";
 import {
-  Header,
-  HeaderName,
-  
-} from "@carbon/react";
-
+  Alarm,
+  ArrowRight,
+  Calendar,
+  IbmTelehealth,
+} from "@carbon/icons-react";
+import { Header, HeaderName } from "@carbon/react";
+import Link from "next/link";
+import Card from "./card";
 const useLoadingNavigation = (path) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -83,15 +85,15 @@ const FeaturesModal = ({ open, setOpen }) => {
           <>
             <h3>Register and Schedule Appointments</h3>
             <p>Seamlessly book virtual or physical appointments.</p>
-            <img alt="appointments" src="/medlink/bookappointment.png" />
+            <video controls muted loop autoPlay src="/videos/appointment.mp4" />
           </>
         );
       case 1:
         return (
           <>
-            <h3>Connect with Doctors</h3>
+            <h3>Connect with Watson</h3>
             <p>Experience real-time consultations.</p>
-            <img alt="connect" src="/medlink/connect.png" />
+            <video controls muted loop autoPlay src="/videos/watsonx.mp4" />
           </>
         );
       case 2:
@@ -99,7 +101,7 @@ const FeaturesModal = ({ open, setOpen }) => {
           <>
             <h3>Manage Prescriptions and Reminders</h3>
             <p>Set reminders for your medications.</p>
-            <img alt="reminders" src="/medlink/reminders.png" />
+            <video controls muted loop autoPlay src="/videos/timeline.mp4" />
           </>
         );
       default:
@@ -150,6 +152,27 @@ function Welcome() {
       setIsLoadingExplore(false);
     }, 2000);
   };
+
+  const CardDetails = [
+    {
+      title: "Appointments",
+      description:
+        "Easily schedule your medical appointments with professionals and get reminders to stay on top of your health.",
+      icon: <Calendar />,
+    },
+    {
+      title: "Set Reminders",
+      description:
+        "Create reminders for medications, checkups, or follow-ups to ensure you never miss important tasks.",
+      icon: <Alarm />,
+    },
+    {
+      title: "Consultations",
+      description:
+        "Connect with medical experts for personalized consultations, advice, and answers to your health concerns.",
+      icon: <IbmTelehealth />,
+    },
+  ];
 
   return (
     <div className="welcome-page">
@@ -217,45 +240,67 @@ function Welcome() {
             </div>
           </Header>
           <div className="index-bg">
-            <div className="tc" type="secondary">
+            <div
+              className="tc"
+              type="secondary"
+              style={{ marginBottom: "30px !important" }}
+            >
               <p className="p-tags">Your Health, Simplified</p>
-              <p className="mark p-tags">
-                Bridging the Gap Between Patients and Doctors Virtually
+              <p
+                className="mark p-tags"
+                style={{ color: "var(--primary-color" }}
+              >
+                Bridging the Gap Between Patients and Doctors <br></br>Virtually
               </p>
             </div>
-            <ModalStateManager
-              renderLauncher={({ setOpen }) => (
-                <Button
-                  kind="primary"
-                  size="sm"
-                  className="start-button"
-                  onClick={() => {
-                    handleExploreClick();
-                    setOpen(true);
-                  }}
-                >
-                  {isLoadingExplore ? (
-                    <>
-                      <Loading
-                        small={true}
-                        className={"some-class"}
-                        withOverlay={false}
-                      />
-                      <span style={{ marginLeft: "8px" }}>Loading...</span>
-                    </>
-                  ) : (
-                    "Explore our Features"
-                  )}
-                </Button>
-              )}
+            <div
+              style={{
+                marginTop: "30px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "20px",
+              }}
             >
-              {({ open, setOpen }) => (
-                <FeaturesModal open={open} setOpen={setOpen} />
-              )}
-            </ModalStateManager>
+              <Link href={"/onboarding/welcome-to-medlink/auth/sign-up"}>
+                <Button kind="secondary" size="sm">
+                  Get Started
+                </Button>
+              </Link>
+              <ModalStateManager
+                renderLauncher={({ setOpen }) => (
+                  <Button
+                    kind="primary"
+                    size="sm"
+                    className="start-button"
+                    onClick={() => {
+                      handleExploreClick();
+                      setOpen(true);
+                    }}
+                  >
+                    {isLoadingExplore ? (
+                      <>
+                        <Loading
+                          small={true}
+                          className={"some-class"}
+                          withOverlay={false}
+                        />
+                        <span style={{ marginLeft: "8px" }}>Loading...</span>
+                      </>
+                    ) : (
+                      "our Features"
+                    )}
+                  </Button>
+                )}
+              >
+                {({ open, setOpen }) => (
+                  <FeaturesModal open={open} setOpen={setOpen} />
+                )}
+              </ModalStateManager>
+            </div>
           </div>
 
-          <ProgressIndicator
+          {/* <ProgressIndicator
             spaceEqually
             className="index-steps"
             style={{
@@ -281,44 +326,121 @@ function Welcome() {
               label="Reminders"
               description="Set reminders for your medications"
             />
-          </ProgressIndicator>
-
-          <div className="index-footer">
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: "10px",
-                fontSize: "1.5em",
-                marginBottom: "50px",
-              }}
-            >
-              <strong>Medlink</strong>
-              <div> | Your Virtual Medical Clinic</div>
-            </div>
-            <Button
-              type="text"
-              kind="secondary"
-              renderIcon={ArrowRight}
-              size="sm"
-              onClick={handleGetStartedClick}
-              disabled={isLoadingGetStarted}
-            >
-              {isLoadingGetStarted ? (
-                <>
-                  <Loading
-                    small={true}
-                    className={"some-class"}
-                    withOverlay={false}
-                  />
-                  <span style={{ marginLeft: "8px" }}>Loading...</span>
-                </>
-              ) : (
-                "Get started free"
-              )}
-            </Button>
+          </ProgressIndicator> */}
+          <div
+            className="index-steps"
+            style={{ display: "flex", gap: "20px", margin: "10px" }}
+          >
+            {CardDetails.map((card, index) => (
+              <Card
+                key={index}
+                title={card.title}
+                description={card.description}
+                icon={card.icon}
+              />
+            ))}
           </div>
+          {/* start */}
+          <div className="index-footer">
+            <div className="my-footer">
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "10px",
+                    fontSize: "1.5em",
+                    marginBottom: "50px",
+                  }}
+                >
+                  <strong>Medlink</strong>
+                  <div> | Your Virtual Medical Clinic</div>
+                </div>
+                <Button
+                  type="text"
+                  kind="secondary"
+                  renderIcon={ArrowRight}
+                  size="sm"
+                  onClick={handleGetStartedClick}
+                  disabled={isLoadingGetStarted}
+                >
+                  {isLoadingGetStarted ? (
+                    <>
+                      <Loading
+                        small={true}
+                        className={"some-class"}
+                        withOverlay={false}
+                      />
+                      <span style={{ marginLeft: "8px" }}>Loading...</span>
+                    </>
+                  ) : (
+                    "Get started free"
+                  )}
+                </Button>
+              </div>
+              <div className="footer-container">
+                <div className="footer-column">
+                  <h4 className="footer-headers">Medlink</h4>
+                  <ul>
+                    <li>
+                      <a href="/onboarding/welcome-to-medlink/auth/sign-up">
+                        Sign Up
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/onboarding/welcome-to-medlink/auth/sign-in">
+                        SIgn in
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/">features</a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="footer-column">
+                  <h4 className="footer-headers">Support</h4>
+                  <ul>
+                    <li>
+                      <a href="/home">FAQ</a>
+                    </li>
+
+                    <li>
+                      <a href="/home">Help Center</a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="footer-column">
+                  <h4 className="footer-headers">Social</h4>
+                  <ul>
+                    <li>
+                      <a href="https://twitter.com">Twitter</a>
+                    </li>
+                    <li>
+                      <a href="https://facebook.com">Facebook</a>
+                    </li>
+                    <li>
+                      <a href="https://linkedin.com">LinkedIn</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="footer-bottom">
+              <p>&copy; 2024 Medlink. All Rights Reserved.</p>
+            </div>
+          </div>
+
+          {/* end */}
         </div>
       </div>
     </div>
