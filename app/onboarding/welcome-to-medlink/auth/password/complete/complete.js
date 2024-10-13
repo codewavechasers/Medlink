@@ -40,11 +40,11 @@ function Page() {
             </Link>
           </div>
 
-          <section className="log-in">
+          <section className="log-in-complete">
           <Heading>Completed</Heading>
           </section>
         </OnboardingHeader>
-        <section className="signin-container">
+        <section className="signin-container-complete">
           <PasswordComplete />
         </section>
       </div>

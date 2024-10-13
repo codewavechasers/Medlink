@@ -85,12 +85,12 @@ function PasswordRequest() {
   };
 
   return (
-    <div className="form">
-      <div className="svg-part"></div>
-      <div className="form-part">
+    <div className="form-request">
+      <div className="svg-part-request"></div>
+      <div className="form-part-request">
         <Form
           aria-label="request-form"
-          className="request-form"
+          className="request-form-request"
           onSubmit={sendResetLink}
         >
           <Heading

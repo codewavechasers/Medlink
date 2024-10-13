@@ -31,7 +31,7 @@
     font-weight: bold;
     width: auto;
   }
-  .sign-up-container{
+  .sign-up-container-options{
     position: relative;
     width: 100%;
     display: flex;
@@ -90,7 +90,7 @@
  }
 
  
-.svg-part{
+.svg-part-options{
   height: 100%;
   width: 60%;
   display: flex;
@@ -102,7 +102,7 @@
   background-repeat: no-repeat;
   // border: 1px solid red;
 }
-.form-part{
+.form-part-options{
   width: 40%;
   height: 100%;
   padding: 20px;
@@ -115,13 +115,13 @@
 }
 @media screen and (max-width:900px) {
 
-  .sign-up-container{
+  .sign-up-container-options{
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column-reverse;
   }
-  .svg-part, .form-part{
+  .svg-part-options, .form-part-options{
     width: 100%;
   }
 }

@@ -38,7 +38,7 @@
     // box-shadow: 2px 4px 10px var(--text-color-3);
     position: relative;
 }
-.form{
+.form-2fa{
     width: 100%;
     height:calc(100vh - 10vh);
     display: flex;
@@ -48,7 +48,7 @@
 .inputs, .input-fields{
     width: 100%;
 }
-.svg-part{
+.svg-part-2fa{
     height: 100%;
     width: 70%;
     display: flex;
@@ -60,7 +60,7 @@
     background-repeat: no-repeat;
     // border: 1px solid red;
 }
-.form-part{
+.form-part-2fa{
     width: 30%;
     height: 100%;
     padding: 20px;
@@ -79,16 +79,16 @@
     gap: 30px;
 }
 @media screen and (max-width:1200px) {
-    .form{
+    .form-2fa{
         display: flex;
         flex-direction: column;
         height: auto;
     }
-    .form-part{
+    .form-part-2fa{
         width: 100%;
         height: auto;
     }
-    .svg-part{
+    .svg-part-2fa{
         width: 100%;
         height: 50vh;
         

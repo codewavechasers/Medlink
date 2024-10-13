@@ -1,4 +1,4 @@
-.signin-container{
+.signin-container-signin{
     height: calc(100vh - 10vh);
     width: 100vw;
     display: flex;
@@ -9,7 +9,7 @@
     // background-size: cover;
     // background-repeat: no-repeat;
 }
-.log-in{
+.log-in-signin{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,7 +47,7 @@
     // box-shadow: 2px 4px 10px var(--text-color-3);
     position: relative;
 }
-.form{
+.form-signin{
     width: 100%;
     height:calc(100vh - 10vh);
     display: flex;
@@ -57,7 +57,7 @@
 .btns, .inputs, .input-fields{
     width: 100%;
 }
-.svg-part{
+.svg-part-signin{
     height: 100%;
     width: 60%;
     display: flex;
@@ -69,7 +69,7 @@
     background-repeat: no-repeat;
     // border: 1px solid red;
 }
-.form-part{
+.form-part-signin{
     width: 40%;
     height: 100%;
     // padding: 20px;
@@ -82,20 +82,20 @@
 
 }
 @media screen and (max-width:900px) {
-    .signin-container{
+    .signin-container-signin{
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
         justify-content: center;
         height: auto;
     }
-    .svg-part{
+    .svg-part-signin{
         height: 50vh;
         width: 100%;
         // border: 2px solid blue;
 
     }
-    .form-part{
+    .form-part-signin{
         width: 100vw;
         height: auto;
         

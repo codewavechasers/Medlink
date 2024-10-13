@@ -38,8 +38,8 @@ function SignIn() {
           </Link>
         </div>
 
-        <section className="log-in">
-          <h4 className="log-in">
+        <section className="log-in-signin">
+          <h4 className="log-in-signin">
             <Link
               className="link"
               href="../../welcome-to-medlink/auth/sign-up"
@@ -61,9 +61,9 @@ function SignIn() {
           </h4>
         </section>
       </OnboardingHeader>
-      <section className="signin-container">
-        <div className="svg-part" style={{minHeight:"300px"}}></div>
-        <div className="form-part">
+      <section className="signin-container-signin">
+        <div className="svg-part-signin" style={{minHeight:"300px"}}></div>
+        <div className="form-part-signin">
           <SignInForm />
         </div>
       </section>

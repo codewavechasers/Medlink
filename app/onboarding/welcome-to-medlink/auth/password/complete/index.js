@@ -20,9 +20,9 @@ function PasswordComplete() {
   const [isLoadingSignIn, handleSignInClick] = useLoadingNavigation("../../../welcome-to-medlink/auth/sign-in");
 
   return (
-    <div className="form">
-      <div className="svg-part"></div>
-      <div className="form-part">
+    <div className="form-complete">
+      <div className="svg-part-complete"></div>
+      <div className="form-part-complete">
         <div className="flex-complete">
           <Heading><strong>Thank you for choosing medlink.</strong></Heading>
           <p>

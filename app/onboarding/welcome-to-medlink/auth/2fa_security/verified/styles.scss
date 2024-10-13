@@ -21,7 +21,7 @@
 .link{
     font-weight: bold;
 }
-.request-form{
+.request-form-verified{
     width: 100%;
     height: auto;
     display: flex;
@@ -33,7 +33,7 @@
     padding: 10px;
     position: relative;
 }
-.form{
+.form-verified{
     width: 100%;
     height:calc(100vh - 10vh);
     display: flex;
@@ -43,7 +43,7 @@
 .btns, .inputs, .input-fields{
     width: 100%;
 }
-.svg-part{
+.svg-part-verified{
     height: 100%;
     width: 70%;
     display: flex;
@@ -55,7 +55,7 @@
     background-repeat: no-repeat;
     // border: 1px solid red;
 }
-.form-part{
+.form-part-verified{
     width: 30%;
     height: 100%;
     padding: 20px;
@@ -74,17 +74,17 @@
     gap: 20px;
 }
 @media screen and (max-width:1200px) {
-    .form{
+    .form-verified{
         display: flex;
         flex-direction: column;
         height: auto;
     }
-    .form-part{
+    .form-part-verified{
         width: 100%;
         height: auto;
         
     }
-    .svg-part{
+    .svg-part-verified{
         width: 100%;
         height: 50vh;
     }

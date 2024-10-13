@@ -84,8 +84,8 @@ function SignUp() {
           </h4>
         </section>
       </OnboardingHeader>
-      <section className="sign-up-container">
-        <div className="form-part">
+      <section className="sign-up-container-options">
+        <div className="form-part-options">
           <section className="join-us">
             <h4 className="signup-title">
               Join Us today and explore features made for you
@@ -109,7 +109,7 @@ function SignUp() {
             </div>
           </section>
         </div>
-        <div className="svg-part" style={{minHeight:"300px"}}></div>
+        <div className="svg-part-options" style={{minHeight:"300px"}}></div>
       </section>
     </div>
   );

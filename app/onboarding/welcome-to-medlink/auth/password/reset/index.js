@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, Suspense } from "react";
 import "@carbon/react";
 import { Button, Form, Heading, PasswordInput, Loading } from "@carbon/react";
@@ -141,8 +142,8 @@ function PasswordResetForm({
   return (
     <Suspense fallback={<Loading />}>
 
-    <div className="form">
-      <div className="form-part">
+    <div className="form-reset">
+      <div className="form-part-reset">
         <Form
           aria-label="reset-form"
           className="reset-form"
@@ -189,7 +190,7 @@ function PasswordResetForm({
           </Button>
         </Form>
       </div>
-      <div className="svg-part"></div>
+      <div className="svg-part-reset"></div>
       {showNotification && (
         <Notifications
           kind={notificationProps.kind}

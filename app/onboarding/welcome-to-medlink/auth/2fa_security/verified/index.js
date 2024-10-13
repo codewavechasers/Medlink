@@ -43,9 +43,9 @@ function PassswordComplete() {
   }, [router]);
 
   return (
-    <div className="form">
-      <div className="svg-part"></div>
-      <div className="form-part">
+    <div className="form-verified">
+      <div className="svg-part-verified"></div>
+      <div className="form-part-verified">
         <div className="flex-complete">
           <Heading><strong>Thank you for choosing medlink.</strong></Heading>
           <p>

@@ -1,12 +1,12 @@
 @use '@carbon/react';
-// @tailwind base;
-// @tailwind components;
-// @tailwind utilities;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 
 *{
     transition: .3s linear !important;
-    font-size: 12px !important;
+    // font-size: 12px !important;
     // user-select: none;
     // overflow-y: auto;
     // overflow: hidden;

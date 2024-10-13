@@ -181,7 +181,7 @@ function TwoFactorAuth() {
   };
 
   return (
-      <div className="form">
+      <div className="form-2fa">
         {showNotification && (
           <Notifications
             kind={notificationProps.kind}
@@ -191,8 +191,8 @@ function TwoFactorAuth() {
             timeout={notificationProps.timeout}
           />
         )}
-        <div className="svg-part"></div>
-        <div className="form-part">
+        <div className="svg-part-2fa"></div>
+        <div className="form-part-2fa">
           <Form
             aria-label="request-form"
             className="fa-form"

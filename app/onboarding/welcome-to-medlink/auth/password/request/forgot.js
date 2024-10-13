@@ -39,11 +39,11 @@ function Page() {
             </Link>
           </div>
 
-          <section className="log-in">
+          <section className="log-in-request">
            <Heading>Reset Link</Heading>
           </section>
         </OnboardingHeader>
-        <section className="signin-container">
+        <section className="signin-container-request">
           <PasswordRequest />
         </section>
       </div>

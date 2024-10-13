@@ -1,6 +1,5 @@
-import React, {Suspense} from "react";
+import React from "react";
 import Reset from "./reset";
-import { Loading } from "@carbon/react";
 export const metadata = {
   title: "Reset Password | Medlink",
   description:
