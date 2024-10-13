@@ -31,7 +31,7 @@ function SignUp() {
   ];
 
   return (
-    <div >
+    < >
       <OnboardingHeader>
         <div className="logo-option">
           <Image
@@ -111,7 +111,7 @@ function SignUp() {
         </div>
         <div className="svg-part-options" ></div>
       </section>
-    </div>
+    </>
   );
 }
 

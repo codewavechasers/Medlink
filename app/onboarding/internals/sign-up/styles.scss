@@ -31,7 +31,7 @@
     width: auto;
   }
   .sign-up-container-options{
-    height: calc(100vh - 10vh);
+    height: auto;
     width: 100vw;
     display: flex;
     align-items: center;
@@ -105,9 +105,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    height: calc(100vh - 10vh);
-    overflow:auto;
+    flex-direction: column-reverse;
+    height: auto;
+    // overflow:auto;
   }
   .svg-part-options{
     min-height: 50vh !important;

@@ -6,7 +6,7 @@ import Sign_Up from '../../../internals/sign-up/index'
 
 function SignUp() {
   return (
-    <div>
+    <div className="signup-first-page">
      <Sign_Up/>
     </div>
   );
