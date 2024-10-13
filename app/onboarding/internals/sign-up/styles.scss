@@ -105,7 +105,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column-reverse;
+    flex-direction: column;
+    height: calc(100vh - 10vh);
+    overflow:auto;
   }
   .svg-part-options{
     min-height: 50vh !important;
