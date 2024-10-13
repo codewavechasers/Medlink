@@ -109,7 +109,7 @@ function SignUp() {
             </div>
           </section>
         </div>
-        <div className="svg-part-options" style={{minHeight:"300px"}}></div>
+        <div className="svg-part-options" ></div>
       </section>
     </div>
   );

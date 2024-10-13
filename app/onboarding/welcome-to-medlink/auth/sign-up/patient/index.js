@@ -586,7 +586,7 @@ function PatientRegistration() {
             <h4>Patient</h4>
           </Header>
           <section className="regform1">
-            <div className="svgpart1" style={{ minHeight: "300px" }}></div>
+            <div className="svgpart1" ></div>
             <div className="cont1">
               <h4 className="regtitle1">Register Patient Account</h4>
               <h4>Please fill in your details.</h4>

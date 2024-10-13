@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, Suspense } from "react";
 import "@carbon/react";
 import { Button, Form, Heading, PasswordInput, Loading } from "@carbon/react";
@@ -66,7 +66,7 @@ function PasswordReset() {
         { headers: { "Content-Type": "application/json" } }
       );
       Swal.close();
-      if(response.status == 400){
+      if (response.status == 400) {
         setNotificationProps({
           kind: "error",
           caption: "",
@@ -75,8 +75,6 @@ function PasswordReset() {
           timeout: 3000,
         });
         setShowNotification(true);
-  
-      
       }
       setNotificationProps({
         kind: "success",
@@ -93,7 +91,7 @@ function PasswordReset() {
       }, 3000);
     } catch (error) {
       Swal.close();
-      console.log("error:")
+      console.log("error:");
       setNotificationProps({
         kind: "error",
         caption: "",
@@ -137,70 +135,74 @@ function PasswordResetForm({
   showNotification,
   notificationProps,
 }) {
-
-
   return (
     <Suspense fallback={<Loading />}>
-
-    <div className="form-reset">
-      <div className="form-part-reset">
-        <Form
-          aria-label="reset-form"
-          className="reset-form"
-          onSubmit={handlePasswordReset}
-        >
-          <Heading
-            style={{
-              textAlign: "left",
-              width: "100%",
-              fontWeight: "bold",
-              fontSize: "20px",
-            }}
+      <div className="form-reset">
+        <div className="form-part-reset">
+          <Form
+            aria-label="reset-form"
+            className="reset-form"
+            onSubmit={handlePasswordReset}
           >
-            Reset your Password
-          </Heading>
-          <div className="password-inputs">
-            <PasswordInput
-              id="password"
-              labelText="New Password"
-              helperText="Your password must meet the following criteria: at least 8 characters long, include both uppercase and lowercase letters, and contain at least one number and one special character."
-              autoComplete="off"
-              className="input-fields"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <PasswordInput
-              id="cpassword"
-              labelText="Confirm Password"
-              helperText="The passwords provided must match in order to proceed."
-              autoComplete="off"
-              className="input-fields"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
-          </div>
-          <Button size="sm" type="submit" className="btns" disabled={isLoading}>
-            {isLoading ? (
-              <>
-                <span style={{ marginLeft: "8px" }}>Changing Password...</span>
-              </>
-            ) : (
-              "Change My Password"
-            )}
-          </Button>
-        </Form>
+            <Heading
+              style={{
+                textAlign: "left",
+                width: "100%",
+                fontWeight: "bold",
+                fontSize: "20px",
+              }}
+            >
+              Reset your Password
+            </Heading>
+            <div className="password-inputs">
+              <PasswordInput
+                id="password"
+                labelText="New Password"
+                helperText="Your password must meet the following criteria: at least 8 characters long, include both uppercase and lowercase letters, and contain at least one number and one special character."
+                autoComplete="off"
+                className="input-fields"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              <PasswordInput
+                id="cpassword"
+                labelText="Confirm Password"
+                helperText="The passwords provided must match in order to proceed."
+                autoComplete="off"
+                className="input-fields"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+              />
+            </div>
+            <Button
+              size="sm"
+              type="submit"
+              className="btns"
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <>
+                  <span style={{ marginLeft: "8px" }}>
+                    Changing Password...
+                  </span>
+                </>
+              ) : (
+                "Change My Password"
+              )}
+            </Button>
+          </Form>
+        </div>
+        <div className="svg-part-reset"></div>
+        {showNotification && (
+          <Notifications
+            kind={notificationProps.kind}
+            caption={notificationProps.caption}
+            title={notificationProps.title}
+            subtitle={notificationProps.subtitle}
+            timeout={notificationProps.timeout}
+          />
+        )}
       </div>
-      <div className="svg-part-reset"></div>
-      {showNotification && (
-        <Notifications
-          kind={notificationProps.kind}
-          caption={notificationProps.caption}
-          title={notificationProps.title}
-          subtitle={notificationProps.subtitle}
-          timeout={notificationProps.timeout}
-        />
-      )}
-    </div>
     </Suspense>
   );
 }

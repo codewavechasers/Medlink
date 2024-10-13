@@ -62,7 +62,7 @@ function SignIn() {
         </section>
       </OnboardingHeader>
       <section className="signin-container-signin">
-        <div className="svg-part-signin" style={{minHeight:"300px"}}></div>
+        <div className="svg-part-signin" ></div>
         <div className="form-part-signin">
           <SignInForm />
         </div>

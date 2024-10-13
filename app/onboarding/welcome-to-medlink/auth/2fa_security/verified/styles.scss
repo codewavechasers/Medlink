@@ -1,10 +1,10 @@
-.signin-container{
-    min-height: calc(100vh - 10vh);
-    height: auto;
+.signin-container-verified{
+    height: calc(100vh - 10vh);
     width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: auto;
 }
 .logo-verified{
     display: flex;
@@ -46,8 +46,8 @@
     width: 100%;
 }
 .svg-part-verified{
-    height: 100%;
-    width: 70%;
+    min-height:calc(100vh - 10vh);
+    height: auto;    width: 70%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -59,8 +59,8 @@
 }
 .form-part-verified{
     width: 30%;
-    height: 100%;
-    padding: 20px;
+    min-height:calc(100vh - 10vh);
+    height: 100%;    padding: 20px;
     background-color: var(--tertiary-color) ;
     display: flex;
     align-items: center;

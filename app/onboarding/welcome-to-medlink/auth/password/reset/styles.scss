@@ -1,16 +1,11 @@
 .signin-container-reset{
     height: calc(100vh - 10vh);
-    // height: auto;
     width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: auto;
-    border: 3px solid green;
-    // background-image: url('../../../../../public/auth-img/bg2.jpg');
-    // background-position: center;
-    // background-size: cover;
-    // background-repeat: no-repeat;
+   
 }
 .logo-reset{
     display: flex;
@@ -37,14 +32,11 @@
     text-align: center;
     flex-direction: column;
     padding: 10px;
-    // background-color: var(--secondary-color-2);
-    // box-shadow: 2px 4px 10px var(--text-color-3);
     position: relative;
 }
 .form-reset{
     width: 100%;
     height: auto;
-    border:2px solid red;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,7 +72,7 @@
 @media screen and (max-width:1200px) {
     .form-reset{
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
     }
     .form-part-reset, .svg-part-reset{
         width: 100%;

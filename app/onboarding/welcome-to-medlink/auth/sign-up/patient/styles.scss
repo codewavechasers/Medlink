@@ -109,8 +109,9 @@ border-left: 1px dashed var(--primary-color);
 }
 
 .svgpart1{
-  height: 100%;
-  width: 60%;
+  height:calc(100vh - 10vh) !important;
+  // height: auto; 
+   width: 60%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -122,8 +123,8 @@ border-left: 1px dashed var(--primary-color);
 }
 .cont1{
   width: 40%;
-  height: 100%;
-  display: flex;
+  min-height:calc(100vh - 10vh);
+  height: 100%;  display: flex;
   align-items: center;
   justify-content: center;
   gap: auto;
@@ -197,7 +198,9 @@ border-left: 1px dashed var(--primary-color);
   flex-direction: column;
 }
 .svgpart1{
-  height: 50vh;
+  width: 100%;
+  height: 50vh !important;
+  height: auto;
   position: relative;
 }
 .cont1, .svgpart1{

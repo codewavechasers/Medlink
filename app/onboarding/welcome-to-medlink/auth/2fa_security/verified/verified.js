@@ -43,7 +43,7 @@ function Page() {
             <Heading>2FA Verification</Heading>
           </section>
         </OnboardingHeader>
-        <section className="signin-container">
+        <section className="signin-container-verified">
           <PasswordComplete />
         </section>
       </div>

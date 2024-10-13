@@ -1,14 +1,11 @@
 .signin-container-request{
-    min-height: calc(100vh - 10vh);
-    height: auto;
+    height: calc(100vh - 10vh);
     width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
-    // background-image: url('../../../../../public/auth-img/bg2.jpg');
-    // background-position: center;
-    // background-size: cover;
-    // background-repeat: no-repeat;
+    overflow: auto;
+  
 }
 .logo-request{
     display: flex;
@@ -41,7 +38,6 @@
 }
 .form-request{
     width: 100%;
-    min-height:calc(100vh - 10vh);
     height: auto;
     display: flex;
     align-items: center;
@@ -51,7 +47,8 @@
     width: 100%;
 }
 .svg-part-request{
-    height: 100%;
+    min-height:calc(100vh - 10vh);
+    height: auto;
     width: 70%;
     display: flex;
     align-items: center;
@@ -64,13 +61,13 @@
 }
 .form-part-request{
     width: 30%;
+    min-height:calc(100vh - 10vh);
     height: 100%;
     padding: 20px;
     background-color: var(--tertiary-color) ;
     display: flex;
     align-items: center;
     justify-content: center;
-    // border: 1px solid black;
 
 }
 @media screen and (max-width:1200px) {

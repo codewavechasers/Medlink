@@ -51,7 +51,7 @@ function Page() {
         </OnboardingHeader>
         
         {/* Wrap TwoFactorAuth in Suspense to handle client-side rendering */}
-        <section className="signin-container">
+        <section className="signin-container-2fa">
           <Suspense fallback={<div>Loading 2FA...</div>}>
             <TwoFactorAuth />
           </Suspense>
