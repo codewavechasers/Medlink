@@ -222,7 +222,7 @@ function PatientRegistration() {
                 placeholder="MM/DD/YYYY"
               />
             </DatePicker>
-            <Dropdown
+            {/* <Dropdown
               className="inputfields1"
               id="gender"
               titleText="Gender"
@@ -240,8 +240,8 @@ function PatientRegistration() {
                   },
                 })
               }
-            />
-            {/* <TextInput
+            /> */}
+            <TextInput
               autoComplete="off"
               id="gender"
               type="text"
@@ -249,7 +249,7 @@ function PatientRegistration() {
               labelText="Gender"
               onChange={handleChange}
               value={patientData.gender}
-            /> */}
+            />
             <Stack gap={6} orientation="horizontal">
               <TextInput
                 autoComplete="off"
@@ -333,7 +333,7 @@ function PatientRegistration() {
       case 2:
         return (
           <>
-            <Dropdown
+            {/* <Dropdown
               id="current_health_conditions"
               titleText="Current Health Conditions"
               label="Select a health condition"
@@ -351,6 +351,15 @@ function PatientRegistration() {
                   },
                 })
               }
+            /> */}
+             <TextInput
+              autoComplete="off"
+              id="current_health_conditions"
+              type="text"
+              className="inputfields1"
+              label="Select a health condition"
+              onChange={handleChange}
+              value={patientData.current_health_conditions}
             />
             <TextInput
               autoComplete="off"
