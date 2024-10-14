@@ -28,11 +28,32 @@
 }
 .index-bg{
   background: var(--secondary-color-2);
-  background-image: url('../../../public/medlink/medical.png');
+  display: flex;
+  align-items: center;
+  // justify-content: space-between;
+  width: 100%;
+ height: 50vh;
+//  border: 2px solid black;
+ position: relative;
+}
+.text-side{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  // gap: 30px;
+  width: 50%;
+  height: 50vh;
+  // border: 2px solid red;
+}
+.bg-side{
+  width: 50%;
+  height: 50vh;
+  // border: 2px solid blue;
+  background-image: url('../../../public/medlink/bg.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
- 
 }
 .navigations ul li {
   cursor: pointer;
@@ -275,6 +296,13 @@
   font-weight: bold;
 }
 @media screen and (max-width:900px) {
+  .text-side, .bg-side{
+    width: 100%;
+  }
+  .index-bg{
+    display: flex;
+    flex-direction: column;
+  }
   .index-steps{
     align-content: center;
     display: grid !important;

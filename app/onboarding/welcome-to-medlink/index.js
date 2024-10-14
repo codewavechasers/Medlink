@@ -240,6 +240,8 @@ function Welcome() {
             </div>
           </Header>
           <div className="index-bg">
+            <div className="bg-side"></div>
+            <div className="text-side">
             <div
               className="tc"
               type="secondary"
@@ -298,7 +300,7 @@ function Welcome() {
                 )}
               </ModalStateManager>
             </div>
-          </div>
+          </div></div>
 
           {/* <ProgressIndicator
             spaceEqually
