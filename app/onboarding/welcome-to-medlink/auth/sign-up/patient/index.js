@@ -357,7 +357,7 @@ function PatientRegistration() {
               id="current_health_conditions"
               type="text"
               className="inputfields1"
-              label="Select a health condition"
+              labelText="Select a health condition"
               onChange={handleChange}
               value={patientData.current_health_conditions}
             />
