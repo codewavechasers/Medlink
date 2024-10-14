@@ -28,6 +28,7 @@ import App from "@/app/api/api";
 import Notifications from "@/components/notification/index";
 
 function PatientRegistration() {
+  const [Globalresponse, setResponse] = useState("");
   const [currentStep, setCurrentStep] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -48,7 +49,6 @@ function PatientRegistration() {
     allergies: "",
     current_medications: "",
     family_health_conditions: "",
-    exercise_routine: "",
     consent_to_treat: false,
     privacy_policy: false,
     password: "",
@@ -94,10 +94,9 @@ function PatientRegistration() {
       setCurrentStep(currentStep - 1);
     }
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (currentStep < 5) {
+    if (currentStep <= 4) {
       return;
     }
     if (patientData.password != patientData.confirm_password) {
@@ -114,6 +113,7 @@ function PatientRegistration() {
         setShowNotification(false);
       }, 3000);
     }
+
     setIsSubmitting(true);
     Swal.fire({
       title: "Adding you to Medlink",
@@ -124,11 +124,15 @@ function PatientRegistration() {
       allowOutsideClick: false,
       allowEscapeKey: false,
       showConfirmButton: false,
-      didOpen: () => {
+      didOpen: async () => {
         Swal.showLoading();
-        App.post("/api/patients/", patientData)
-          .then((response) => {
-            Swal.close();
+        
+        try {
+          const response = await App.post("/api/patients/", patientData); 
+          
+          Swal.close(); 
+          
+          if (response.data.success) {
             setNotificationProps({
               kind: "success",
               caption: "",
@@ -137,33 +141,38 @@ function PatientRegistration() {
               timeout: 3000,
             });
             setShowNotification(true);
-
+    
             setTimeout(() => {
               setShowNotification(false);
               window.location.href = "/home";
             }, 3000);
             localStorage.removeItem("patientData");
-          })
-          .catch((error) => {
-            Swal.close();
+          } else {
+            setCurrentStep(6)
             setNotificationProps({
               kind: "error",
               caption: "",
-              title: "Registration failed",
-              subtitle: `Registration failed. Please try again.`,
+              title: "Registration Failed",
+              subtitle: response.data.message,
               timeout: 3000,
             });
             setShowNotification(true);
-
-            setTimeout(() => {
-              setShowNotification(false);
-            }, 3000);
-          })
-          .finally(() => {
-            setIsSubmitting(false);
+          }
+        } catch (error) {
+          setCurrentStep(6)
+          Swal.close(); 
+          setNotificationProps({
+            kind: "error",
+            caption: "",
+            title: "Registration Failed",
+            subtitle: "An error occurred. Please try again.",
+            timeout: 3000,
           });
+          setShowNotification(true);
+        }
       },
     });
+    
   };
 
   const healthConditions = [
@@ -346,7 +355,7 @@ function PatientRegistration() {
                 })
               }
             /> */}
-             <TextInput
+            <TextInput
               autoComplete="off"
               id="current_health_conditions"
               type="text"
@@ -407,70 +416,6 @@ function PatientRegistration() {
             />
           </>
         );
-      // case 4:
-      //   return (
-      //     <>
-      //       <TextInput
-      //         autoComplete="off"
-      //         id="lifestyle_habits"
-      //         type="text"
-      //         className="inputfields1"
-      //         labelText="Lifestyle Habits (smoking, alcohol use)"
-      //         onChange={handleChange}
-      //         value={patientData.lifestyle_habits}
-      //       />
-      //       <TextInput
-      //         autoComplete="off"
-      //         id="exercise_routine"
-      //         type="text"
-      //         className="inputfields1"
-      //         labelText="Exercise Routine"
-      //         onChange={handleChange}
-      //         value={patientData.exercise_routine}
-      //       />
-      //       <TextInput
-      //         autoComplete="off"
-      //         id="dietary_habits"
-      //         type="text"
-      //         className="inputfields1"
-      //         labelText="Dietary Habits"
-      //         onChange={handleChange}
-      //         value={patientData.dietary_habits}
-      //       />
-      //     </>
-      //   );
-      // case 5:
-      //   return (
-      //     <>
-      //       <TextInput
-      //         autoComplete="off"
-      //         id="insurance_provider"
-      //         type="text"
-      //         className="inputfields1"
-      //         labelText="Insurance Provider"
-      //         onChange={handleChange}
-      //         value={patientData.insurance_provider}
-      //       />
-      //       <TextInput
-      //         autoComplete="off"
-      //         id="policy_number"
-      //         type="text"
-      //         className="inputfields1"
-      //         labelText="Policy Number"
-      //         onChange={handleChange}
-      //         value={patientData.policy_number}
-      //       />
-      //       <TextInput
-      //         autoComplete="off"
-      //         id="insurance_phone"
-      //         type="text"
-      //         className="inputfields1"
-      //         labelText="Insurance Company Phone Number"
-      //         onChange={handleChange}
-      //         value={patientData.insurance_phone}
-      //       />
-      //     </>
-      //   );
       case 4:
         return (
           <>
@@ -507,7 +452,7 @@ function PatientRegistration() {
               checked={patientData.enable_2fa}
             />
           </>
-        );     
+        );
       case 5:
         return (
           <>
@@ -523,7 +468,7 @@ function PatientRegistration() {
               ensure compliance with privacy policies.
             </Heading>
             <Checkbox
-            required
+              required
               id="consent_to_treat"
               labelText="I give my consent to be treated."
               helperText="By checking this box, you agree to allow our medical team to provide necessary treatment."
@@ -531,7 +476,7 @@ function PatientRegistration() {
               checked={patientData.consent_to_treat}
             />
             <Checkbox
-            required
+              required
               id="privacy_policy"
               labelText="I acknowledge the privacy policy (HIPAA compliance)."
               helperText="By checking this box, you acknowledge that you have read and understood our privacy policy in compliance with HIPAA regulations."
@@ -540,7 +485,7 @@ function PatientRegistration() {
             />
           </>
         );
-    default:
+      default:
         return null;
     }
   };
@@ -591,13 +536,53 @@ function PatientRegistration() {
             <h4>Patient</h4>
           </Header>
           <section className="regform1">
-            <div className="svgpart1" ></div>
+            <div className="svgpart1"></div>
             <div className="cont1">
               <h4 className="regtitle1">Register Patient Account</h4>
               <h4>Please fill in your details.</h4>
               <div className="myform1">
                 {isSubmitting ? (
-                  <div className="signinprogress1"></div>
+                  // <div className="signinprogress1"></div>
+                  <Form
+                  aria-label="Registration form"
+                  className="form1"
+                  onSubmit={handleSubmit}
+                >
+                  {renderFormFields()}
+                  <div className="flexbtns1">
+                    <Button
+                      kind="secondary"
+                      size="sm"
+                      renderIcon={ArrowLeft}
+                      className="someclass1"
+                      onClick={handlePrevious}
+                      disabled={currentStep === 0}
+                    >
+                      Previous
+                    </Button>
+                    {currentStep < totalSteps - 1 ? (
+                      <Button
+                        kind="secondary"
+                        size="sm"
+                        renderIcon={ArrowRight}
+                        className="someclass1"
+                        type="button"
+                        onClick={handleNext}
+                      >
+                        Next
+                      </Button>
+                    ) : (
+                      <Button
+                        kind="primary"
+                        size="sm"
+                        className="someclass1"
+                        type="submit"
+                      >
+                        Submit
+                      </Button>
+                    )}
+                  </div>
+                </Form>
                 ) : (
                   <Form
                     aria-label="Registration form"
