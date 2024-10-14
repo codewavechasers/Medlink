@@ -47,14 +47,8 @@ function PatientRegistration() {
     past_medical_history: "",
     allergies: "",
     current_medications: "",
-    primary_care_physician: "",
     family_health_conditions: "",
-    lifestyle_habits: "",
     exercise_routine: "",
-    dietary_habits: "",
-    insurance_provider: "",
-    policy_number: "",
-    insurance_phone: "",
     consent_to_treat: false,
     privacy_policy: false,
     password: "",
@@ -70,7 +64,7 @@ function PatientRegistration() {
     timeout: "",
   });
 
-  const totalSteps = 7;
+  const totalSteps = 6;
 
   useEffect(() => {
     const savedData = localStorage.getItem("patientData");
@@ -103,10 +97,10 @@ function PatientRegistration() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (currentStep > 6) {
+    if (currentStep < 5) {
       return;
     }
-    if (password != confirm_password) {
+    if (patientData.password != patientData.confirm_password) {
       setNotificationProps({
         kind: "error",
         caption: "",
@@ -357,7 +351,7 @@ function PatientRegistration() {
               id="current_health_conditions"
               type="text"
               className="inputfields1"
-              labelText="Select a health condition"
+              labelText="Enter current health condition"
               onChange={handleChange}
               value={patientData.current_health_conditions}
             />
@@ -413,101 +407,71 @@ function PatientRegistration() {
             />
           </>
         );
+      // case 4:
+      //   return (
+      //     <>
+      //       <TextInput
+      //         autoComplete="off"
+      //         id="lifestyle_habits"
+      //         type="text"
+      //         className="inputfields1"
+      //         labelText="Lifestyle Habits (smoking, alcohol use)"
+      //         onChange={handleChange}
+      //         value={patientData.lifestyle_habits}
+      //       />
+      //       <TextInput
+      //         autoComplete="off"
+      //         id="exercise_routine"
+      //         type="text"
+      //         className="inputfields1"
+      //         labelText="Exercise Routine"
+      //         onChange={handleChange}
+      //         value={patientData.exercise_routine}
+      //       />
+      //       <TextInput
+      //         autoComplete="off"
+      //         id="dietary_habits"
+      //         type="text"
+      //         className="inputfields1"
+      //         labelText="Dietary Habits"
+      //         onChange={handleChange}
+      //         value={patientData.dietary_habits}
+      //       />
+      //     </>
+      //   );
+      // case 5:
+      //   return (
+      //     <>
+      //       <TextInput
+      //         autoComplete="off"
+      //         id="insurance_provider"
+      //         type="text"
+      //         className="inputfields1"
+      //         labelText="Insurance Provider"
+      //         onChange={handleChange}
+      //         value={patientData.insurance_provider}
+      //       />
+      //       <TextInput
+      //         autoComplete="off"
+      //         id="policy_number"
+      //         type="text"
+      //         className="inputfields1"
+      //         labelText="Policy Number"
+      //         onChange={handleChange}
+      //         value={patientData.policy_number}
+      //       />
+      //       <TextInput
+      //         autoComplete="off"
+      //         id="insurance_phone"
+      //         type="text"
+      //         className="inputfields1"
+      //         labelText="Insurance Company Phone Number"
+      //         onChange={handleChange}
+      //         value={patientData.insurance_phone}
+      //       />
+      //     </>
+      //   );
       case 4:
-        return (
-          <>
-            <TextInput
-              autoComplete="off"
-              id="lifestyle_habits"
-              type="text"
-              className="inputfields1"
-              labelText="Lifestyle Habits (smoking, alcohol use)"
-              onChange={handleChange}
-              value={patientData.lifestyle_habits}
-            />
-            <TextInput
-              autoComplete="off"
-              id="exercise_routine"
-              type="text"
-              className="inputfields1"
-              labelText="Exercise Routine"
-              onChange={handleChange}
-              value={patientData.exercise_routine}
-            />
-            <TextInput
-              autoComplete="off"
-              id="dietary_habits"
-              type="text"
-              className="inputfields1"
-              labelText="Dietary Habits"
-              onChange={handleChange}
-              value={patientData.dietary_habits}
-            />
-          </>
-        );
-      case 5:
-        return (
-          <>
-            <TextInput
-              autoComplete="off"
-              id="insurance_provider"
-              type="text"
-              className="inputfields1"
-              labelText="Insurance Provider"
-              onChange={handleChange}
-              value={patientData.insurance_provider}
-            />
-            <TextInput
-              autoComplete="off"
-              id="policy_number"
-              type="text"
-              className="inputfields1"
-              labelText="Policy Number"
-              onChange={handleChange}
-              value={patientData.policy_number}
-            />
-            <TextInput
-              autoComplete="off"
-              id="insurance_phone"
-              type="text"
-              className="inputfields1"
-              labelText="Insurance Company Phone Number"
-              onChange={handleChange}
-              value={patientData.insurance_phone}
-            />
-          </>
-        );
-      case 7:
-        return (
-          <>
-            <Heading
-              style={{
-                marginBottom: "20px",
-                fontSize: "12px",
-                fontWeight: "bold",
-              }}
-            >
-              Please review the following consent and authorization information.
-              You must agree to the terms to proceed with the treatment and
-              ensure compliance with privacy policies.
-            </Heading>
-            <Checkbox
-              id="consent_to_treat"
-              labelText="I give my consent to be treated."
-              helperText="By checking this box, you agree to allow our medical team to provide necessary treatment."
-              onChange={handleChange}
-              checked={patientData.consent_to_treat}
-            />
-            <Checkbox
-              id="privacy_policy"
-              labelText="I acknowledge the privacy policy (HIPAA compliance)."
-              helperText="By checking this box, you acknowledge that you have read and understood our privacy policy in compliance with HIPAA regulations."
-              onChange={handleChange}
-              checked={patientData.privacy_policy}
-            />
-          </>
-        );
-      case 6:
         return (
           <>
             <Heading
@@ -543,8 +507,40 @@ function PatientRegistration() {
               checked={patientData.enable_2fa}
             />
           </>
+        );     
+      case 5:
+        return (
+          <>
+            <Heading
+              style={{
+                marginBottom: "20px",
+                fontSize: "12px",
+                fontWeight: "bold",
+              }}
+            >
+              Please review the following consent and authorization information.
+              You must agree to the terms to proceed with the treatment and
+              ensure compliance with privacy policies.
+            </Heading>
+            <Checkbox
+            required
+              id="consent_to_treat"
+              labelText="I give my consent to be treated."
+              helperText="By checking this box, you agree to allow our medical team to provide necessary treatment."
+              onChange={handleChange}
+              checked={patientData.consent_to_treat}
+            />
+            <Checkbox
+            required
+              id="privacy_policy"
+              labelText="I acknowledge the privacy policy (HIPAA compliance)."
+              helperText="By checking this box, you acknowledge that you have read and understood our privacy policy in compliance with HIPAA regulations."
+              onChange={handleChange}
+              checked={patientData.privacy_policy}
+            />
+          </>
         );
-      default:
+    default:
         return null;
     }
   };

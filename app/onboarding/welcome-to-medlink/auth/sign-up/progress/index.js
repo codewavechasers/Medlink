@@ -24,25 +24,16 @@ function PatientProgressSteps({ currentStep }) {
       description: "Step 4: List any health conditions that run in your family, such as diabetes or heart disease.", 
       complete: currentStep > 3
     },
-    { 
-      label: "Social History", 
-      description: "Step 5: Share details about your lifestyle habits, exercise routine, and dietary habits.", 
-      complete: currentStep > 4
-    },
-    { 
-      label: "Insurance Information", 
-      description: "Step 6: Provide your insurance details including provider name, policy number, and company phone number.", 
-      complete: currentStep > 5
-    },
+   
     { 
       label: "Security Information", 
       description: "Step 7: Enter a strong Password for security purposes", 
-      complete: currentStep > 6
+      complete: currentStep > 4
     },
     { 
       label: "Consent and Authorization", 
       description: "Step 8: Give your consent for treatment and acknowledge our privacy policy (HIPAA compliance).", 
-      complete: currentStep > 7
+      complete: currentStep > 5
     },
   ];
   

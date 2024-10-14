@@ -27,15 +27,7 @@ class PatientViewSet(viewsets.ModelViewSet):
                 past_medical_history=serializer.validated_data.get('past_medical_history', ''),
                 allergies=serializer.validated_data.get('allergies', ''),
                 current_medications=serializer.validated_data.get('current_medications', ''),
-                primary_care_physician=serializer.validated_data.get('primary_care_physician', ''),
-                family_health_conditions=serializer.validated_data.get('family_health_conditions', ''),
-                lifestyle_habits=serializer.validated_data.get('lifestyle_habits', ''),
-                exercise_routine=serializer.validated_data.get('exercise_routine', ''),
-                dietary_habits=serializer.validated_data.get('dietary_habits', ''),
-                insurance_provider=serializer.validated_data.get('insurance_provider', ''),
-                policy_number=serializer.validated_data.get('policy_number', ''),
-                insurance_phone=serializer.validated_data.get('insurance_phone', ''),
-                consent_to_treat=serializer.validated_data['consent_to_treat'],
+                family_health_conditions=serializer.validated_data.get('family_health_conditions', ''),                consent_to_treat=serializer.validated_data['consent_to_treat'],
                 privacy_policy=serializer.validated_data['privacy_policy']
             )
             return Response({"message": "Patient registered successfully!"}, status=status.HTTP_201_CREATED)
