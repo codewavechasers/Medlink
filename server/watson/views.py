@@ -7,7 +7,7 @@ from healthRecords.models import MedicalIssue
 import requests
 import time
 import os
-
+from patients.models import Patient
 @csrf_exempt
 @require_http_methods(["GET"])
 def get_advice(request, record_id=None):
@@ -42,6 +42,7 @@ def get_advice(request, record_id=None):
 
 def call_watson_api(input_data):
     api_key = os.environ.get('WATSON_API_KEY')
+    # api_key = "Rt8Tu-Q50VphTOOIl7fRXwc8lLPCebIWi7WknQX0bXLn"
     valid_token = get_valid_token(api_key)
 
     access_token = valid_token
@@ -56,7 +57,7 @@ def call_watson_api(input_data):
         "input": input_data,
         "parameters": {
             "decoding_method": "greedy",
-            "max_new_tokens": 200,
+            "max_new_tokens": 50,
             "repetition_penalty": 1.0
         },
         "model_id": "meta-llama/llama-3-70b-instruct",
@@ -90,6 +91,7 @@ def get_token(api_key):
     response = requests.post(url, headers=headers, data=data)
     return response.json()
 
+
 def get_valid_token(api_key):
     global token_data
     current_time = time.time()
@@ -101,52 +103,77 @@ def get_valid_token(api_key):
     return token_data['access_token']
 
 
-  
-def analyze_data(request):
-    access_token = "my token"  # Replace with your actual access token
 
-    # Load the JSON data from the request body
+def get_response(request):
+    patient_email = request.session.get('email')
+    patient_data = Patient.objects.get(email=patient_email)
+    patient_name = patient_data.name
     data = json.loads(request.body)
-
-    # Extract the patient data from the request payload
-    patient_data = data.get('patients', [])
-
-    if not patient_data:
-        return JsonResponse({'error': 'No patient data provided.'}, status=400)
-
-    # Prepare the input data for Watson API
-    input_data = "Please analyze the following patient data and return health insights as numerical values, including overall health score and individual health scores for each body part.:\n" + \
-                 "\n".join([f"{patient['name']}: " + 
-                             ", ".join([f"{symptom['symptom']} (body part: {symptom['bodyPart']}, date: {symptom['date']})" for symptom in patient['symptoms']]) 
-                             for patient in patient_data])
-
-    url = "https://eu-de.ml.cloud.ibm.com/ml/v1/text/generation?version=2023-05-29"
-    headers = {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {access_token}"
-    }
-
-    body = {
-        "input": input_data,
-        "parameters": {
-            "decoding_method": "greedy",
-            "max_new_tokens": 200,
-            "repetition_penalty": 1.0
-        },
-        "model_id": "meta-llama/llama-3-70b-instruct",
-        "project_id": "4e533532-f043-4916-b9f3-cac2feafe48d"
-    }
-
+    patient_input = data.get('message')
+    input = f"My name is {patient_name} and I hope you answer these questions for me. Please be clear. {patient_input}" 
+     
+    # print("input:", patient_input)
     try:
-        response = requests.post(url, headers=headers, json=body)
-        response.raise_for_status()
-        return JsonResponse(response.json(), status=200)
-    except requests.exceptions.HTTPError as http_err:
-        print(f"HTTP error occurred: {http_err}")
-        if response is not None:
-            print(f"Response body: {response.text}")
-        return JsonResponse({"error": str(http_err)}, status=response.status_code)
-    except Exception as err:
-        print(f"Other error occurred: {err}")
-        return JsonResponse({"error": str(err)}, status=500)
+        
+        # Watson API call
+        watson_response = call_watson_api(input)
+
+        return JsonResponse({
+            'watson': watson_response
+        }, status=200)
+    except MedicalIssue.DoesNotExist:
+        return JsonResponse({'message': 'An error occured while getting you an answer'}, status=404)
+    except Exception as e:
+        return JsonResponse({'message': str(e)}, status=500)
+
+
+
+  
+# def analyze_data(request):
+#     access_token = "my token"  # Replace with your actual access token
+
+#     # Load the JSON data from the request body
+#     data = json.loads(request.body)
+
+#     # Extract the patient data from the request payload
+#     patient_data = data.get('patients', [])
+
+#     if not patient_data:
+#         return JsonResponse({'error': 'No patient data provided.'}, status=400)
+
+#     # Prepare the input data for Watson API
+#     input_data = "Please analyze the following patient data and return health insights as numerical values, including overall health score and individual health scores for each body part.:\n" + \
+#                  "\n".join([f"{patient['name']}: " + 
+#                              ", ".join([f"{symptom['symptom']} (body part: {symptom['bodyPart']}, date: {symptom['date']})" for symptom in patient['symptoms']]) 
+#                              for patient in patient_data])
+
+#     url = "https://eu-de.ml.cloud.ibm.com/ml/v1/text/generation?version=2023-05-29"
+#     headers = {
+#         "Accept": "application/json",
+#         "Content-Type": "application/json",
+#         "Authorization": f"Bearer {access_token}"
+#     }
+
+#     body = {
+#         "input": input_data,
+#         "parameters": {
+#             "decoding_method": "greedy",
+#             "max_new_tokens": 200,
+#             "repetition_penalty": 1.0
+#         },
+#         "model_id": "meta-llama/llama-3-70b-instruct",
+#         "project_id": "4e533532-f043-4916-b9f3-cac2feafe48d"
+#     }
+
+#     try:
+#         response = requests.post(url, headers=headers, json=body)
+#         response.raise_for_status()
+#         return JsonResponse(response.json(), status=200)
+#     except requests.exceptions.HTTPError as http_err:
+#         print(f"HTTP error occurred: {http_err}")
+#         if response is not None:
+#             print(f"Response body: {response.text}")
+#         return JsonResponse({"error": str(http_err)}, status=response.status_code)
+#     except Exception as err:
+#         print(f"Other error occurred: {err}")
+#         return JsonResponse({"error": str(err)}, status=500)
