@@ -25,21 +25,25 @@ import { Header, HeaderName } from "@carbon/react";
 import Link from "next/link";
 import Card from "./card";
 const useLoadingNavigation = (path) => {
-
   useEffect(() => {
     window.watsonAssistantChatOptions = {
       integrationID: "48155efb-fe29-4abd-bda9-59fb57ce2423", // The ID of this integration.
       region: "us-south", // The region your integration is hosted in.
       serviceInstanceID: "acaca65e-f26d-4827-9ccb-9fbecfc1fdad", // The ID of your service instance.
-      onLoad: async (instance) => { await instance.render(); }
+      onLoad: async (instance) => {
+        await instance.render();
+      },
     };
-    setTimeout(function(){
-      const t=document.createElement('script');
-      t.src="https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + (window.watsonAssistantChatOptions.clientVersion || 'latest') + "/WatsonAssistantChatEntry.js";
+    setTimeout(function () {
+      const t = document.createElement("script");
+      t.src =
+        "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" +
+        (window.watsonAssistantChatOptions.clientVersion || "latest") +
+        "/WatsonAssistantChatEntry.js";
       document.head.appendChild(t);
     });
   }, []);
-  
+
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -255,95 +259,69 @@ function Welcome() {
             </div>
           </Header>
           <div className="index-bg">
-            <div className="bg-side"></div>
             <div className="text-side">
-            <div
-              className="tc"
-              type="secondary"
-              style={{ marginBottom: "30px !important" }}
-            >
-              <p className="p-tags">Your Health, Simplified</p>
-              <p
-                className="mark p-tags"
-                style={{ color: "var(--primary-color" }}
+              <div
+                className="tc"
+                type="secondary"
+                style={{ marginBottom: "30px !important" }}
               >
-                Bridging the Gap Between Patients and Doctors <br></br>Virtually
-              </p>
-            </div>
-            <div
-              style={{
-                marginTop: "30px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: "20px",
-              }}
-            >
-              <Link href={"/onboarding/welcome-to-medlink/auth/sign-up"}>
-                <Button kind="secondary" size="sm">
-                  Get Started
-                </Button>
-              </Link>
-              <ModalStateManager
-                renderLauncher={({ setOpen }) => (
-                  <Button
-                    kind="primary"
-                    size="sm"
-                    className="start-button"
-                    onClick={() => {
-                      handleExploreClick();
-                      setOpen(true);
-                    }}
-                  >
-                    {isLoadingExplore ? (
-                      <>
-                        <Loading
-                          small={true}
-                          className={"some-class"}
-                          withOverlay={false}
-                        />
-                        <span style={{ marginLeft: "8px" }}>Loading...</span>
-                      </>
-                    ) : (
-                      "our Features"
-                    )}
+                <p className="p-tags"  style={{fontSize:"30px !important", marginBottom:"20px"}}>Your Health, Simplified</p>
+                <p
+                  className="mark p-tags"
+                  style={{ color: "var(--primary-color" }}
+                >
+                  Bridging the Gap Between Patients and Doctors <br></br>
+                  Virtually
+                </p>
+              </div>
+              <div
+                style={{
+                  marginTop: "30px",
+                  display: "flex",
+                  alignItems: "flex-start",
+                  justifyContent: "flex-start",
+                  gap: "20px",
+                }}
+              >
+                <Link href={"/onboarding/welcome-to-medlink/auth/sign-up"}>
+                  <Button kind="secondary" size="sm">
+                    Get Started
                   </Button>
-                )}
-              >
-                {({ open, setOpen }) => (
-                  <FeaturesModal open={open} setOpen={setOpen} />
-                )}
-              </ModalStateManager>
+                </Link>
+                <ModalStateManager
+                  renderLauncher={({ setOpen }) => (
+                    <Button
+                      kind="primary"
+                      size="sm"
+                      className="start-button"
+                      onClick={() => {
+                        handleExploreClick();
+                        setOpen(true);
+                      }}
+                    >
+                      {isLoadingExplore ? (
+                        <>
+                          <Loading
+                            small={true}
+                            className={"some-class"}
+                            withOverlay={false}
+                          />
+                          <span style={{ marginLeft: "8px" }}>Loading...</span>
+                        </>
+                      ) : (
+                        "our Features"
+                      )}
+                    </Button>
+                  )}
+                >
+                  {({ open, setOpen }) => (
+                    <FeaturesModal open={open} setOpen={setOpen} />
+                  )}
+                </ModalStateManager>
+              </div>
             </div>
-          </div></div>
-
-          {/* <ProgressIndicator
-            spaceEqually
-            className="index-steps"
-            style={{
-              height: "400px",
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <ProgressStep
-              complete
-              label="Appointments"
-              description="Seamlessly book virtual or physical appointments"
-            />
-            <ProgressStep
-              complete
-              label="Consultations"
-              description="Experience real-time consultations"
-            />
-            <ProgressStep
-              complete
-              label="Reminders"
-              description="Set reminders for your medications"
-            />
-          </ProgressIndicator> */}
+            <div className="bg-side"></div>
+          </div>
           <div
             className="index-steps"
             style={{ display: "flex", gap: "20px", margin: "10px" }}

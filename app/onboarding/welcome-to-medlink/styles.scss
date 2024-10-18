@@ -200,7 +200,7 @@
 .p-tags{
   font-size: 20px;
   font-weight: bold;
-  text-align: center;
+  text-align: left;
 }
 .feature-img{
   height: auto;
@@ -301,7 +301,7 @@
   }
   .index-bg{
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
   .index-steps{
     align-content: center;

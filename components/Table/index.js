@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import {
   TableContainer,
@@ -34,6 +33,7 @@ const MyTable = () => {
     { key: "date", header: "Date" },
     { key: "note", header: "Doctor's Notes" },
     { key: "status", header: "Status" },
+    { key: "advice", header: "Advice" },
   ]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
@@ -46,6 +46,8 @@ const MyTable = () => {
     })
       .then((response) => {
         setRows(response.data);
+        // console.log("rows:", rows)
+        console.log("data:", response.data);
       })
       .catch((error) => console.error("Error fetching data:"));
   }, []);
@@ -233,14 +235,21 @@ const MyTable = () => {
                             className="demo-expanded-td"
                             {...getExpandedRowProps({ row })}
                           >
+                            <div style={{ width:"100%", display:"flex", gap:"10px",alignItems:"center", justifyContent:"flex-start"}}>
                             <h6>Patient Advice:</h6>
-                            <div>{row.advice}</div>
+                            <div>
+                              {row.cells.find((cell) =>
+                              cell.id.endsWith(":advice")
+                            )?.value || "No advice available"}
+                            </div>
+                            </div>
+                            
                           </TableExpandedRow>
                         </React.Fragment>
                       ))}
                     </>
                   ) : (
-                    <tr style={{height:"40vh"}}>
+                    <tr style={{ height: "40vh" }}>
                       <td colSpan={headers.length + 2}>
                         <NoDataDisplay />
                       </td>
