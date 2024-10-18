@@ -3,19 +3,21 @@
   overflow: auto;
   width: 100%;
 // border: 20px solid red;
-  padding: 1em;
+  padding: 0 1em;
 }
 .dash-title {
   width: 100%;
   padding: 1em 0;
   font-weight: bold;
   height: auto;
+  max-height: 10vh;
   font-size: 20px;
 }
 .dashboard-body {
   width: 100%;
-  height: auto;
-  min-height: 90%;
+  min-height: calc(100vh - 20vh);
+  // min-height: 90%;
+  // border: 3px solid green;
 }
 
 .top-dash {
@@ -25,6 +27,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  // border: 2px solid blue;
 }
 .med_cards {
   width: 100%;
@@ -43,15 +46,18 @@
 
 .main_dash {
   width: 100%;
-  height: auto; //
+  // height: auto; 
   min-height: 70%;
   display: flex;
   gap: 20px;
   justify-content: flex-start;
+  // border: 2px solid red;
+  position: relative;
 }
 .doctor-notes {
   width: 75%;
-  height: auto;
+  height: 56vh;
+  box-sizing: border-box;
   display: flex;
 //   align-items: start;
 //   justify-content: flex-start;
@@ -69,16 +75,16 @@
   justify-content: flex-start;
 }
 .appoint-medic {
-    height: 100%;
+    // height: 100%;
     width: 25%;
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: stretch;
+    // border: 2px solid red;
 }
 .app-card {
     height: 100%;
-    // border: 2px solid red;
     flex: 1;
 
 }
@@ -106,7 +112,9 @@
   .dash-title{
     padding-left: 10px ;
   }
-  
+  .doctor-notes{
+    height: auto;
+  }
 }
 
 @media screen and (max-width: 1200px) {

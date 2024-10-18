@@ -12,6 +12,7 @@ import {
   PhoneVoiceFilled,
 } from "@carbon/icons-react";
 import App from "@/app/api/api";
+import NoDataDisplay from "./NoDataDisplay";
 const Doctor = ({
   imageSrc,
   name,
@@ -212,13 +213,10 @@ function NextAppointments({ handleBackToDashboard }) {
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
-        const response = await App.get(
-          `/bookings/fetch-appointments/`,
-          {
-            withCredentials:true,
-            method:'GET'
-          }
-        );
+        const response = await App.get(`/bookings/fetch-appointments/`, {
+          withCredentials: true,
+          method: "GET",
+        });
         const data = response.data;
         setAppointments_history(data);
       } catch (error) {
@@ -303,7 +301,17 @@ function NextAppointments({ handleBackToDashboard }) {
               />
             ))
           ) : (
-            <Heading> You have not booked an appointment yet.</Heading>
+            <div
+              style={{
+                width: "100% !important",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+
+              }}
+            >
+              <NoDataDisplay />
+            </div>
           )}
 
           <div className="new-app">
@@ -318,18 +326,21 @@ function NextAppointments({ handleBackToDashboard }) {
           </div>
         </section>
       </div>
-
-      <Pagination
-        totalItems={appointments.length}
-        backwardText="Previous page"
-        forwardText="Next page"
-        itemsPerPageText="Appointments per page"
-        page={currentAppointmentPage}
-        pageNumberText="Page Number"
-        pageSize={itemsPerPage}
-        pageSizes={[itemsPerPage]}
-        onChange={handleAppointmentPageChange}
-      />
+      {appointments_history.length > 0 ? (
+        <Pagination
+          totalItems={appointments.length}
+          backwardText="Previous page"
+          forwardText="Next page"
+          itemsPerPageText="Appointments per page"
+          page={currentAppointmentPage}
+          pageNumberText="Page Number"
+          pageSize={itemsPerPage}
+          pageSizes={[itemsPerPage]}
+          onChange={handleAppointmentPageChange}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

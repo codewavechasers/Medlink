@@ -33,7 +33,7 @@ import "./styles.scss";
 import App from "@/app/api/api";
 import Notifications from "@/components/notification/index";
 
-
+import NoDataDisplay from "./NoDataDisplay";
 function MedicationHub({ handleBackToDashboard }) {
   const [timelines, setTimelines] = useState([]);
   const [tiles, setTiles] = useState([]);
@@ -73,7 +73,7 @@ function MedicationHub({ handleBackToDashboard }) {
                 kind: "error",
                 caption: "",
                 title: "Network response invalid",
-                subtitle: 'Timeline setting failed',
+                subtitle: "Timeline setting failed",
                 timeout: 3000,
               });
               setShowNotification(true);
@@ -103,7 +103,6 @@ function MedicationHub({ handleBackToDashboard }) {
             setTimeout(() => {
               setShowNotification(false);
             }, 3000);
-
           })
           .catch((error) => {
             Swal.close();
@@ -132,7 +131,7 @@ function MedicationHub({ handleBackToDashboard }) {
           method: "GET",
           withCredentials: true,
         });
-        const data =  response.data;
+        const data = response.data;
         setTimelines(data);
         // console.log("data", data);
       } catch (error) {
@@ -422,59 +421,68 @@ function MedicationHub({ handleBackToDashboard }) {
           {timelines.length > 0 ? (
             <Timeline appointments={timelines} />
           ) : (
-            <Heading>You have no timelines yet</Heading>
-          )}
+            <NoDataDisplay title="No Timelines set to show." text="There are no timelines to display. Add one at the top right." />          )}
         </div>
         <div className="my-prescriptions">
-          <AnimatePresence>
-            {loading ? (
-              <SkeletonPlaceholder style={{ width: "100%", height: "100%" }} />
-            ) : (
-              tiles.map((tile) => (
-                <motion.div
-                  key={tile.id}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  <MyExpandableTile
-                    dbid={tile.dbid}
-                    id={tile.id}
-                    heading={tile.heading}
-                    firstUseIcon={tile.firstUseIcon}
-                    secondUseIcon={tile.secondUseIcon}
-                    thirdUseIcon={tile.thirdUseIcon}
-                    spoons={tile.spoons}
-                    afterBefore={tile.afterBefore}
-                    AmPm={tile.AmPm}
-                    daysLeft={tile.daysLeft}
-                    description={tile.description}
-                    expanded={expandedTile === tile.id}
-                    onToggleExpand={handleExpand}
-                  />
-                </motion.div>
-              ))
-            )}
-          </AnimatePresence>
+          {tiles.length > 0 ? (
+            <AnimatePresence>
+              {loading ? (
+                <SkeletonPlaceholder
+                  style={{ width: "100%", height: "100%" }}
+                />
+              ) : (
+                tiles.map((tile) => (
+                  <motion.div
+                    key={tile.id}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    <MyExpandableTile
+                      dbid={tile.dbid}
+                      id={tile.id}
+                      heading={tile.heading}
+                      firstUseIcon={tile.firstUseIcon}
+                      secondUseIcon={tile.secondUseIcon}
+                      thirdUseIcon={tile.thirdUseIcon}
+                      spoons={tile.spoons}
+                      afterBefore={tile.afterBefore}
+                      AmPm={tile.AmPm}
+                      daysLeft={tile.daysLeft}
+                      description={tile.description}
+                      expanded={expandedTile === tile.id}
+                      onToggleExpand={handleExpand}
+                    />
+                  </motion.div>
+                ))
+              )}
+            </AnimatePresence>
+          ) : (
+            <NoDataDisplay title="No Prescriptions set to show." text="You are not yet prescribed any medication." />
+          )}
         </div>
-        <div className="pagination">
-          <Button
-            onClick={handlePrevPage}
-            disabled={currentPage === 1}
-            hasIconOnly
-            iconDescription="Previous page"
-            renderIcon={ChevronLeft}
-          />
+        {tiles.length > 0 ? (
+          <div className="pagination">
+            <Button
+              onClick={handlePrevPage}
+              disabled={currentPage === 1}
+              hasIconOnly
+              iconDescription="Previous page"
+              renderIcon={ChevronLeft}
+            />
 
-          <span>{`Page ${currentPage} of ${totalPages}`}</span>
-          <Button
-            onClick={handleNextPage}
-            disabled={currentPage === totalPages}
-            hasIconOnly
-            iconDescription="Next page"
-            renderIcon={ChevronRight}
-          />
-        </div>
+            <span>{`Page ${currentPage} of ${totalPages}`}</span>
+            <Button
+              onClick={handleNextPage}
+              disabled={currentPage === totalPages}
+              hasIconOnly
+              iconDescription="Next page"
+              renderIcon={ChevronRight}
+            />
+          </div>
+        ) : (
+          <></>
+        )}
       </motion.div>
     </>
   );

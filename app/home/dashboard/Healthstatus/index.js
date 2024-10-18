@@ -26,6 +26,7 @@ import Image from "next/image";
 import App from "@/app/api/api";
 import Notifications from "@/components/notification/index";
 import AdviceModal from "./LoadingModal";
+import NoDataDisplay from "./NoDataDisplay";
 function MedicalStatus({ handleBackToDashboard }) {
   const [loading, setLoading] = useState(false);
   const [selectedBodyPart, setSelectedBodyPart] = useState(null);
@@ -238,7 +239,6 @@ function MedicalStatus({ handleBackToDashboard }) {
         const response = await App.get("/api/health-records/");
         if (response.data) {
           setRecords(response.data.data);
-          setFilteredRecords(response.data.data);
         }
       } catch (error) {
         console.log("error");
@@ -296,70 +296,81 @@ function MedicalStatus({ handleBackToDashboard }) {
             />
           }
         >
-          {paginatedResults.map((item, key) => (
-            <ContainedListItem
-              key={key}
-              style={{ border: "1px solid whitesmoke", fontSize: "16px" }}
-              onClick={() => setSelectedBodyPart(item)}
-            >
-              <div
-                style={{
-                  position: "relative",
-                  minHeight: "70px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    justifyContent: "space-between",
-                    gap: "10px",
-                    height: "100px",
-                  }}
-                  className="items"
+          {paginatedResults.length > 0 ? (
+            <>
+              {paginatedResults.map((item, key) => (
+                <ContainedListItem
+                  key={key}
+                  style={{ border: "1px solid whitesmoke", fontSize: "16px" }}
+                  onClick={() => setSelectedBodyPart(item)}
                 >
-                  <Image
-                    width={100}
-                    height={100}
-                    src={item.image}
-                    alt="item"
-                    className="list-image"
-                  />
-                  <p className="list-desc">{item.symptom}</p>
-                </div>
-
-                <div
-                  className="items"
-                  style={{
-                    height: "100%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    gap: "10px",
-                    fontSize: "10px",
-                  }}
-                >
-                  <p className="items">{item.date}</p>
-                  <Link
-                    className="items"
-                    href="#"
-                    renderIcon={() => <ArrowRight aria-label="Arrow Right" />}
-                  />
-
                   <div
                     style={{
-                      width: "20px",
-                      height: "70px",
-                      backgroundColor: getHealthColor(item.health_score),
+                      position: "relative",
+                      minHeight: "70px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
                     }}
-                  />
-                </div>
-              </div>
-            </ContainedListItem>
-          ))}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "flex-start",
+                        justifyContent: "space-between",
+                        gap: "10px",
+                        height: "100px",
+                      }}
+                      className="items"
+                    >
+                      <Image
+                        width={100}
+                        height={100}
+                        src={item.image}
+                        alt="item"
+                        className="list-image"
+                      />
+                      <p className="list-desc">{item.symptom}</p>
+                    </div>
+
+                    <div
+                      className="items"
+                      style={{
+                        height: "100%",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        gap: "10px",
+                        fontSize: "10px",
+                      }}
+                    >
+                      <p className="items">{item.date}</p>
+                      <Link
+                        className="items"
+                        href="#"
+                        renderIcon={() => (
+                          <ArrowRight aria-label="Arrow Right" />
+                        )}
+                      />
+
+                      <div
+                        style={{
+                          width: "20px",
+                          height: "70px",
+                          backgroundColor: getHealthColor(item.health_score),
+                        }}
+                      />
+                    </div>
+                  </div>
+                </ContainedListItem>
+              ))}
+            </>
+          ) : (
+            <>
+              {" "}
+              <NoDataDisplay />
+            </>
+          )}
         </ContainedList>
         <Pagination
           page={currentPage}
@@ -455,7 +466,7 @@ function MedicalStatus({ handleBackToDashboard }) {
             </div>
 
             <div className="check-up">
-            <AdviceModal selectedBodyPart={selectedBodyPart} />
+              <AdviceModal selectedBodyPart={selectedBodyPart} />
               <Button kind="primary" onClick={() => setIsModalOpen(true)}>
                 I dont feel well
               </Button>

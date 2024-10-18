@@ -124,6 +124,43 @@ function Header() {
       }, 3000);
     }
   };
+  const [notificationCount, setNotificationsCount] = useState(0);
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const appointmentResponse = await App.get(
+          "/bookings/api/notifications/"
+        );
+        if (appointmentResponse.status !== 200) {
+          throw new Error("Network response was not ok");
+        }
+
+        const medicationResponse = await App.get("/api/get-notifications/");
+        if (medicationResponse.status !== 200) {
+          throw new Error("Network response was not ok");
+        }
+
+        const timelineResponse = await App.get(
+          "/reminders/get-timeline-notifications/"
+        );
+        if (timelineResponse.status !== 200) {
+          throw new Error("Network response was not ok");
+        }
+
+        const combinedNotifications = [
+          ...appointmentResponse.data,
+          ...medicationResponse.data,
+          ...timelineResponse.data,
+        ];
+
+        setNotificationsCount(combinedNotifications.length);
+      } catch (error) {
+        console.error("Error fetching notifications:", error);
+      }
+    };
+
+    fetchNotifications();
+  }, []);
   return (
     <div className="header">
       {showNotification && (
@@ -135,10 +172,15 @@ function Header() {
           timeout={notificationProps.timeout}
         />
       )}
-      {messages ? <Messages messages={messages} /> : ""}
+      {messages ? <Messages  /> : ""}
       <div className="notification icon">
-        <Notification size={32} onClick={() => setMessages(!messages)} />
-        <span className="notification-count">4</span>
+        <Notification
+          size={32}
+          onClick={() => setMessages(!messages)}
+        />
+        {notificationCount > 0 && (
+          <span className="notification-count">{notificationCount}</span>
+        )}
       </div>
 
       <div className="profile">

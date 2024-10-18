@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.scss";
-import { PillsSubtract } from "@carbon/icons-react";
+import { Calendar, PillsSubtract } from "@carbon/icons-react";
 import {
   Loading,
   ExpandableTile,
@@ -229,7 +229,7 @@ function Dashboard() {
           subtitle={notificationProps.subtitle}
           timeout={notificationProps.timeout}
         />
-      )}{" "}
+      )}
       <div className="medlink-dashboard">
         <div className="floating-doctor">
           <Button
@@ -333,7 +333,32 @@ function Dashboard() {
                           </small>
                         </>
                       ) : (
-                        <p>No upcoming appointments</p>
+                        <div style={{ height: "auto" }}>
+                    <div className="med-below">
+                      <div>
+                        <Calendar fill="#A4BCD2" size={64} />
+                      </div>
+                      <small
+                        style={{
+                          position: "relative",
+                          padding: "5px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          gap: "auto",
+                          borderRadius: "5px",
+                          cursor: "pointer",
+                          zIndex: "20",
+                          maxWidth: "300px",
+                          width: "100%",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        No Appointments to show. Book one.
+                        
+                      </small>
+                    </div>
+                  </div>
                       )}
                     </div>
                   </div>
@@ -361,7 +386,7 @@ function Dashboard() {
                   <div style={{ height: "auto" }}>
                     <div className="med-below">
                       <div>
-                        <PillsSubtract size={64} />
+                        <PillsSubtract fill="#A4BCD2" size={64} />
                       </div>
                       <small
                         style={{

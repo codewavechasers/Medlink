@@ -23,6 +23,8 @@ import {
 } from "@carbon/react";
 import WithAuthRedirect from "@/app/api/withAuthRedirect.js";
 import App from "@/app/api/api";
+import ChatInterface from "@/components/chatInterface/chatinterface";
+
 function Conference() {
   const [peerId, setPeerId] = useState("");
   const [remotePeerId, setRemotePeerId] = useState("");
@@ -302,9 +304,7 @@ function Conference() {
             )}
           </div>
         </div>
-        <div className="chats-interface">
-          <Chat size={32} />
-        </div>
+        
       </div>
 
       {incomingCall && (

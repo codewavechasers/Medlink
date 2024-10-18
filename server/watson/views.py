@@ -42,7 +42,7 @@ def get_advice(request, record_id=None):
 
 def call_watson_api(input_data):
     api_key = os.environ.get('WATSON_API_KEY')
-    # api_key = "Rt8Tu-Q50VphTOOIl7fRXwc8lLPCebIWi7WknQX0bXLn"
+    # api_key = ""
     valid_token = get_valid_token(api_key)
 
     access_token = valid_token
@@ -110,7 +110,7 @@ def get_response(request):
     patient_name = patient_data.name
     data = json.loads(request.body)
     patient_input = data.get('message')
-    input = f"My name is {patient_name} and I hope you answer these questions for me. Please be clear. {patient_input}" 
+    input = f"My name is {patient_name} and I hope you answer this question for me. Please be clear. {patient_input}" 
      
     # print("input:", patient_input)
     try:

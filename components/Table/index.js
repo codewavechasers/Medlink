@@ -26,6 +26,7 @@ import {
 } from "@carbon/react";
 import { TrashCan, Save, Download } from "@carbon/icons-react";
 import App from "@/app/api/api";
+import NoDataDisplay from "./NoDataDisplay";
 const MyTable = () => {
   const [rows, setRows] = useState([]);
   const [headers] = useState([
@@ -199,8 +200,8 @@ const MyTable = () => {
                 </TableToolbarContent>
               </TableToolbar>
               <Table {...getTableProps()} aria-label="Doctor's Notes">
-                <TableHead style={{ fontSize: "10px", width:'auto' }}>
-                  <TableRow style={{ fontSize: "10px", width:'auto' }}>
+                <TableHead style={{ fontSize: "10px", width: "auto" }}>
+                  <TableRow style={{ fontSize: "10px", width: "auto" }}>
                     <TableExpandHeader aria-label="expand row" />
                     <TableSelectAll {...getSelectionProps()} />
                     {headers.map((header, i) => (
@@ -210,41 +211,62 @@ const MyTable = () => {
                     ))}
                   </TableRow>
                 </TableHead>
-                <TableBody style={{ fontSize: "10px", width:'auto' }}>
-                  {rows.map((row) => (
-                    <React.Fragment key={row.id}>
-                      <TableExpandRow {...getRowProps({ row })} >
-                        <TableSelectRow {...getSelectionProps({ row })} />
-                        {row.cells.map((cell) => (
-                          <TableCell key={cell.id}>{cell.value}</TableCell>
-                        ))}
-                      </TableExpandRow>
-                      <TableExpandedRow
-                        colSpan={headers.length + 3}
-                        className="demo-expanded-td"
-                        {...getExpandedRowProps({ row })}
-                      >
-                        <h6>Patient Advice:</h6>
-                        <div>{row.advice}</div>
-                      </TableExpandedRow>
-                    </React.Fragment>
-                  ))}
+                <TableBody
+                  style={{
+                    position: "relative",
+                    fontSize: "10px",
+                    width: "auto",
+                  }}
+                >
+                  {rows.length > 0 ? (
+                    <>
+                      {rows.map((row) => (
+                        <React.Fragment key={row.id}>
+                          <TableExpandRow {...getRowProps({ row })}>
+                            <TableSelectRow {...getSelectionProps({ row })} />
+                            {row.cells.map((cell) => (
+                              <TableCell key={cell.id}>{cell.value}</TableCell>
+                            ))}
+                          </TableExpandRow>
+                          <TableExpandedRow
+                            colSpan={headers.length + 3}
+                            className="demo-expanded-td"
+                            {...getExpandedRowProps({ row })}
+                          >
+                            <h6>Patient Advice:</h6>
+                            <div>{row.advice}</div>
+                          </TableExpandedRow>
+                        </React.Fragment>
+                      ))}
+                    </>
+                  ) : (
+                    <tr style={{height:"40vh"}}>
+                      <td colSpan={headers.length + 2}>
+                        <NoDataDisplay />
+                      </td>
+                    </tr>
+                  )}
                 </TableBody>
               </Table>
             </TableContainer>
           );
         }}
       />
-      <Pagination
-        backwardText="Previous page"
-        forwardText="Next page"
-        itemsPerPageText="Items per page:"
-        onChange={handlePageChange}
-        page={currentPage}
-        pageSize={itemsPerPage}
-        pageSizes={[5]}
-        totalItems={rows.length}
-      />
+      {rows.length > 0 ? (
+        <Pagination
+          backwardText="Previous page"
+          forwardText="Next page"
+          itemsPerPageText="Items per page:"
+          onChange={handlePageChange}
+          page={currentPage}
+          pageSize={itemsPerPage}
+          pageSizes={[5]}
+          totalItems={rows.length}
+        />
+      ) : (
+        <></>
+      )}
+
       <Modal
         open={isDeleteModalOpen}
         modalHeading="Delete Rows"
