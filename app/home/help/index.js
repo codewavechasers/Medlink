@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useEffect } from "react";
 import { ExpandableSearch, Heading } from "@carbon/react";
 import { Calendar, Chat, Person } from "@carbon/icons-react";
@@ -60,7 +61,8 @@ function Help() {
     {
       icon: <Chat size={64} />,
       title: "Get started with AI Advisor",
-      description: "Learn how WatsonX.ai can transform your illness into recommendation effectively.",
+      description:
+        "Learn how WatsonX.ai can transform your illness into recommendation effectively.",
       videoUrl: "/videos/watsonx.mp4",
     },
     {
@@ -72,7 +74,8 @@ function Help() {
     {
       icon: <Calendar size={64} />,
       title: "Medlink",
-      description: "Explore how you can add a timeline in Medlink and get notifications on your phone.",
+      description:
+        "Explore how you can add a timeline in Medlink and get notifications on your phone.",
       videoUrl: "/videos/timeline.mp4",
     },
   ];
@@ -163,8 +166,6 @@ function Help() {
       faq.description.toLowerCase().includes(searchQuery)
   );
 
- 
-
   return (
     <div className="help-container">
       <section className="help-header">
@@ -209,18 +210,16 @@ function Help() {
             {filteredCards.length > 0 ? (
               filteredCards.map((card, index) => (
                 <HelpCard
-                key={index}
-                icon={card.icon}
-                title={card.title}
-                description={card.description}
-                videoUrl={card.videoUrl}  
-              />
-              
+                  key={index}
+                  icon={card.icon}
+                  title={card.title}
+                  description={card.description}
+                  videoUrl={card.videoUrl}
+                />
               ))
             ) : (
               <div>No data found.</div>
             )}
-            
           </div>
         </section>
         <section className="popular-articles">
@@ -305,7 +304,6 @@ function Help() {
           <MoreInquiry />
         </section>
       </section>
-      
     </div>
   );
 }

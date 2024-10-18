@@ -23,7 +23,6 @@ import {
 } from "@carbon/react";
 import WithAuthRedirect from "@/app/api/withAuthRedirect.js";
 import App from "@/app/api/api";
-import ChatInterface from "@/components/chatInterface/chatinterface";
 
 function Conference() {
   const [peerId, setPeerId] = useState("");

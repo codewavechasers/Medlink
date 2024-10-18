@@ -26,12 +26,14 @@ import Dashboard from "./dashboard";
 import nprogress from "nprogress";
 import "nprogress/nprogress.css";
 import Conferencing from "./conferencing";
-
-function Container({ defaSelected }) {
+import { useRouter } from "next/navigation";
+function Container() {
+  const router = useRouter();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [contentLoading, setContentLoading] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(defaSelected);
+  // const [selectedItem, setSelectedItem] = useState(defaSelected);
+  const [selectedItem, setSelectedItem] = useState('');
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -57,15 +59,15 @@ function Container({ defaSelected }) {
   const updateSelectedItem = () => {
     const storedItem = localStorage.getItem("selectedItem");
     console.log("Stored item:", storedItem);
-    console.log("Default selected:", defaSelected);
 
     if (!storedItem) {
-      setSelectedItem(defaSelected);
-      console.log("Setting default selected item:", defaSelected);
-      localStorage.setItem("selectedItem", defaSelected);
+      setSelectedItem("Dashboard");
+      // setSelectedItem(defaSelected);
+      // localStorage.setItem("selectedItem", defaSelected);
+      localStorage.setItem("selectedItem", selectedItem);
     } else {
       setSelectedItem(storedItem);
-      console.log("Setting stored item:", storedItem);
+      // console.log("Setting stored item:", storedItem);
     }
   };
 
@@ -79,7 +81,7 @@ function Container({ defaSelected }) {
     };
 
     window.addEventListener("storage", handleStorageChange);
-    window.addEventListener("localStorageChange", handleStorageChange);
+    // window.addEventListener("localStorageChange", handleStorageChange);
 
     return () => {
       window.removeEventListener("storage", handleStorageChange);
@@ -106,8 +108,8 @@ function Container({ defaSelected }) {
   }, []);
   const speaktoDoctor = () => {
     localStorage.setItem("selectedItem", "conferencing");
-    window.location.href = "/home";
-  };
+    
+    router.push("/home");  };
   const handleMenuItemClick = (item) => {
     nprogress.start();
     setContentLoading(true);

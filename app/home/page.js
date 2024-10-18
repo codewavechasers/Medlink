@@ -8,7 +8,7 @@ export const metadata = {
 function page() {
   return (
       <WithAuthRedirect>
-        <Layout defaSelected="Dashboard"></Layout>
+        <Layout ></Layout>
        </WithAuthRedirect>
   );
 }
