@@ -33,7 +33,6 @@ const MyTable = () => {
     { key: "date", header: "Date" },
     { key: "note", header: "Doctor's Notes" },
     { key: "status", header: "Status" },
-    { key: "advice", header: "Advice" },
   ]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
