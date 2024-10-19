@@ -33,12 +33,17 @@ const MyTable = () => {
     { key: "date", header: "Date" },
     { key: "note", header: "Doctor's Notes" },
     { key: "status", header: "Status" },
+    { key: "advice", header: "Advice" },
   ]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(5);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [rowsToDelete, setRowsToDelete] = useState([]);
-
+  const styles = `
+  .hide-advice-column {
+    display: none;
+  }
+`;
   useEffect(() => {
     App.get("/api/doctornotes/", {
       withCredentials: true,
@@ -123,6 +128,8 @@ const MyTable = () => {
 
   return (
     <>
+      <style>{styles}</style>
+
       <DataTable
         rows={paginatedRows}
         headers={headers}
@@ -206,7 +213,13 @@ const MyTable = () => {
                     <TableExpandHeader aria-label="expand row" />
                     <TableSelectAll {...getSelectionProps()} />
                     {headers.map((header, i) => (
-                      <TableHeader key={i} {...getHeaderProps({ header })}>
+                      <TableHeader
+                        key={i}
+                        {...getHeaderProps({ header })}
+                        className={
+                          header.key === "advice" ? "hide-advice-column" : ""
+                        }
+                      >
                         {header.header}
                       </TableHeader>
                     ))}
@@ -226,7 +239,16 @@ const MyTable = () => {
                           <TableExpandRow {...getRowProps({ row })}>
                             <TableSelectRow {...getSelectionProps({ row })} />
                             {row.cells.map((cell) => (
-                              <TableCell key={cell.id}>{cell.value}</TableCell>
+                              <TableCell
+                                key={cell.id}
+                                className={
+                                  cell.id.endsWith(":advice")
+                                    ? "hide-advice-column"
+                                    : ""
+                                }
+                              >
+                                {cell.value}
+                              </TableCell>
                             ))}
                           </TableExpandRow>
                           <TableExpandedRow
@@ -234,15 +256,22 @@ const MyTable = () => {
                             className="demo-expanded-td"
                             {...getExpandedRowProps({ row })}
                           >
-                            <div style={{ width:"100%", display:"flex", gap:"10px",alignItems:"center", justifyContent:"flex-start"}}>
-                            <h6>Patient Advice:</h6>
-                            <div>
-                              {row.cells.find((cell) =>
-                              cell.id.endsWith(":advice")
-                            )?.value || "No advice available"}
+                            <div
+                              style={{
+                                width: "100%",
+                                display: "flex",
+                                gap: "10px",
+                                alignItems: "center",
+                                justifyContent: "flex-start",
+                              }}
+                            >
+                              <h6>Patient Advice:</h6>
+                              <div>
+                                {row.cells.find((cell) =>
+                                  cell.id.endsWith(":advice")
+                                )?.value || "No advice available"}
+                              </div>
                             </div>
-                            </div>
-                            
                           </TableExpandedRow>
                         </React.Fragment>
                       ))}

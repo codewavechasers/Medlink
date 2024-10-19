@@ -321,11 +321,11 @@ function Dashboard() {
                       {nextAppointmentDate ? (
                         <>
                           <h3
-                            style={{ fontSize: "5rem", fontWeight: "bolder" }}
+                            style={{ fontSize: "5rem", fontWeight: "bolder", color:"var(--primary-color)" }}
                           >
                             {formatDate(nextAppointmentDate).day}
                           </h3>
-                          <small style={{ fontSize: "20px" }}>
+                          <small style={{ fontSize: "20px", color:"var(--primary-color)" }}>
                             {new Date(nextAppointmentDate).toLocaleString(
                               "default",
                               { month: "long" }
