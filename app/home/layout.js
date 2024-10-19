@@ -81,7 +81,7 @@ function Container() {
     };
 
     window.addEventListener("storage", handleStorageChange);
-    // window.addEventListener("localStorageChange", handleStorageChange);
+    window.addEventListener("localStorageChange", handleStorageChange);
 
     return () => {
       window.removeEventListener("storage", handleStorageChange);
