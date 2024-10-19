@@ -57,7 +57,7 @@ def call_watson_api(input_data):
         "input": input_data,
         "parameters": {
             "decoding_method": "greedy",
-            "max_new_tokens": 50,
+            "max_new_tokens": 200,
             "repetition_penalty": 1.0
         },
         "model_id": "meta-llama/llama-3-70b-instruct",
