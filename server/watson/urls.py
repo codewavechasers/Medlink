@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import get_advice,get_response, report_health_issues, add_timeline, get_timelines, edit_appointment, get_appointments, delete_appointment, book_appointment, get_doctor_notes,get_medication
+from .views import get_advice,get_response, report_health_issues, get_health_score,add_timeline, get_timelines, edit_appointment, get_appointments, delete_appointment, book_appointment, get_doctor_notes,get_medication
 urlpatterns = [
     path('watson/get-advice/<int:record_id>/', get_advice, name='get_advice'),
     path('watson/get-advice/', get_advice, name='get_advice_no_id'),   
