@@ -1,0 +1,1144 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "User Sign-in and Appointment Booking API",
+        "version": "1.0.0",
+        "description": "API for user sign-in, two-factor authentication, and booking appointments"
+    },
+    "servers": [
+        {
+            "url": "https://medlink-backend.gk.h.cw.co.ke",
+            "description": "Development server"
+        }
+    ],
+    "paths": {
+        "/auth/login/": {
+            "post": {
+                "summary": "User Sign-in",
+                "operationId": "signInUser",
+                "description": "Allows a user to sign in with email and password",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "description": "The user's email"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "description": "The user's password"
+                                    }
+                                },
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "example": {
+                                    "email": "user@example.com",
+                                    "password": "examplePassword123"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful sign-in",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "session_id": {
+                                            "type": "string",
+                                            "description": "Session ID for the user"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "description": "The user's email"
+                                        },
+                                        "user_id": {
+                                            "type": "integer",
+                                            "description": "The user's ID"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Login message"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "description": "Indicates if the login was successful"
+                                        },
+                                        "requires_2fa": {
+                                            "type": "boolean",
+                                            "description": "Indicates if the user is required to complete 2FA"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "session_id": "dkpvqd5vu96hkzl8dzawddk3dyq8zehs",
+                                    "email": "codewavechasers@gmail.com",
+                                    "user_id": 1,
+                                    "message": "Login successful. 2FA required.",
+                                    "success": true,
+                                    "requires_2fa": true
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized - Invalid credentials",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Invalid email or password"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/verify_2fa/": {
+            "post": {
+                "summary": "2FA Verification",
+                "operationId": "verify2FA",
+                "description": "Allows a user to verify with email and OTP code",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "description": "The user's email"
+                                    },
+                                    "otp_code": {
+                                        "type": "string",
+                                        "description": "The OTP code sent to the user's email"
+                                    }
+                                },
+                                "required": [
+                                    "email",
+                                    "otp_code"
+                                ],
+                                "example": {
+                                    "email": "user@example.com",
+                                    "otp_code": "123456"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful 2FA verification",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "session_id": {
+                                            "type": "string",
+                                            "description": "Session ID for the user"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "description": "The user's email"
+                                        },
+                                        "user_id": {
+                                            "type": "integer",
+                                            "description": "The user's ID"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Verification message"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "description": "Indicates if the verification was successful"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "session_id": "dkpvqd5vu96hkzl8dzawddk3dyq8zehs",
+                                    "email": "codewavechasers@gmail.com",
+                                    "user_id": 1,
+                                    "message": "2FA verification successful. Welcome!",
+                                    "success": true
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized - Invalid OTP code",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Invalid OTP code"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/watson/book-appointment/": {
+    "post": {
+        "summary": "Book Appointment",
+        "operationId": "bookAppointment",
+        "description": "Allows a user to book an appointment with a doctor",
+        "requestBody": {
+            "required": true,
+            "content": {
+                "application/json": {
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "email": {
+                                "type": "string",
+                                "description": "The email of the patient"
+                            },
+                            "speciality": {
+                                "type": "string",
+                                "description": "The doctor's speciality"
+                            },
+                            "date": {
+                                "type": "string",
+                                "description": "The date of the appointment (YYYY-MM-DD)"
+                            },
+                            "time": {
+                                "type": "string",
+                                "description": "The time of the appointment (HH:MM)"
+                            },
+                            "period": {
+                                "type": "string",
+                                "description": "The period of the appointment (e.g., AM or PM)"
+                            },
+                            "consultationType": {
+                                "type": "string",
+                                "description": "Type of consultation (e.g., In-Person or Virtual)"
+                            },
+                            "problemDescription": {
+                                "type": "string",
+                                "description": "A brief description of the medical issue"
+                            }
+                        },
+                        "required": [
+                            "email",
+                            "speciality",
+                            "date",
+                            "time",
+                            "period",
+                            "consultationType",
+                            "problemDescription"
+                        ],
+                        "example": {
+                            "email": "patient@example.com",
+                            "speciality": "Cardiology",
+                            "date": "2024-10-20",
+                            "time": "10:30",
+                            "period": "AM",
+                            "consultationType": "In-Person",
+                            "problemDescription": "Shortness of breath and chest pain"
+                        }
+                    }
+                }
+            }
+        },
+        "responses": {
+            "200": {
+                "description": "Appointment successfully booked",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "appointment_id": {
+                                    "type": "integer",
+                                    "description": "The ID of the booked appointment"
+                                },
+                                "message": {
+                                    "type": "string",
+                                    "description": "Booking confirmation message"
+                                },
+                                "success": {
+                                    "type": "boolean",
+                                    "description": "Indicates if the booking was successful"
+                                }
+                            }
+                        },
+                        "example": {
+                            "appointment_id": 12345,
+                            "message": "Appointment successfully booked",
+                            "success": true
+                        }
+                    }
+                }
+            },
+            "400": {
+                "description": "Invalid booking request",
+                "content": {
+                    "application/json": {
+                        "example": {
+                            "message": "Invalid date or time format"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+,
+"/api/watson/report-health-issue/": {
+              "post": {
+                "summary": "Report Health issues",
+                "operationId": "Report Health Issues",
+                "description": "Allows a user to report an illness",
+                "requestBody": {
+                  "required": true,
+                  "content": {
+                    "application/json": {
+                      "schema": {
+                        "type": "object",
+                        "properties": {
+                          "email": {
+                            "type": "string",
+                            "description": "The patient email"
+                          },
+                          "bodyPart": {
+                            "type": "string",
+                            "description": "The part of the body that is ill (Head, Torso, LeftLeg, RightLeg, LeftHand, RightHand)"
+                          },
+                          "symptom": {
+                            "type": "string",
+                            "description": "The symptom descriptions"
+                          },
+                          "date": {
+                            "type": "string",
+                            "description": "The date of submission (YYYY-MM-DD)"
+                          },
+                          "headache": {
+                            "type": "integer",
+                            "description": "Headache severity (if body part is Head)",
+                            "nullable": true
+                          },
+                          "visionIssues": {
+                            "type": "string",
+                            "description": "Yes/No for vision problems (if body part is Head)",
+                            "nullable": true
+                          },
+                          "chestPain": {
+                            "type": "integer",
+                            "description": "Chest pain severity (if body part is Torso)",
+                            "nullable": true
+                          },
+                          "breathingDifficulty": {
+                            "type": "integer",
+                            "description": "Breathing difficulty severity (if body part is Torso)",
+                            "nullable": true
+                          },
+                          "leftLegPain": {
+                            "type": "integer",
+                            "description": "Left leg pain severity (if body part is LeftLeg)",
+                            "nullable": true
+                          },
+                          "rightLegPain": {
+                            "type": "integer",
+                            "description": "Right leg pain severity (if body part is RightLeg)",
+                            "nullable": true
+                          },
+                          "leftHandPain": {
+                            "type": "integer",
+                            "description": "Left hand pain severity (if body part is LeftHand)",
+                            "nullable": true
+                          },
+                          "rightHandPain": {
+                            "type": "integer",
+                            "description": "Right hand pain severity (if body part is RightHand)",
+                            "nullable": true
+                          }
+                        },
+                        "required": [
+                          "email",
+                          "date",
+                          "symptom",
+                          "bodyPart"
+                        ],
+                        "example": {
+                          "email": "jdoe@gmail.com",
+                          "date": "2024-10-22",
+                          "symptom": "I am having severe headache and blurry vision.",
+                          "bodyPart": "Head",
+                          "headache": 5,
+                          "visionIssues": "Yes"
+                        }
+                      }
+                    }
+                  }
+                },
+                "responses": {
+                  "200": {
+                    "description": "Illness reported successfully",
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "type": "object",
+                          "properties": {
+                            "message": {
+                              "type": "string",
+                              "description": "Submission confirmation message"
+                            },
+                            "success": {
+                              "type": "boolean",
+                              "description": "Indicates if the submission was successful"
+                            },
+                            "id": {
+                              "type": "integer",
+                              "description": "The ID of the reported medical issue"
+                            }
+                          }
+                        },
+                        "example": {
+                          "id": 12345,
+                          "message": "Health issue reported successfully",
+                          "success": true
+                        }
+                      }
+                    }
+                  },
+                  "400": {
+                    "description": "Invalid request",
+                    "content": {
+                      "application/json": {
+                        "example": {
+                          "message": "Invalid body part or missing required fields"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ,          
+        "/api/watson/get-health-score/": {
+            "get": {
+                "summary": "Fetch Health Score",
+                "operationId": "fetchHealthScore",
+                "description": "Allows a user to fetch their health score",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "email",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "The user's email"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful fetch of health score",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "health_score": {
+                                            "type": "integer",
+                                            "description": "The user's health score"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Health score fetch message"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "description": "Indicates if the fetch was successful"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "health_score": 85,
+                                    "message": "Health score fetched successfully",
+                                    "success": true
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Invalid email format"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/watson/add-timeline/": {
+            "post": {
+                "summary": "Add Timeline",
+                "operationId": "addTimeline",
+                "description": "Allows a user to add a new timeline entry",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "description": "The user's email"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "description": "The date of the timeline entry (YYYY-MM-DD)"
+                                    },
+                                    "time": {
+                                        "type": "string",
+                                        "description": "The time of the timeline entry (HH:MM)"
+                                    },
+                                    "long_description": {
+                                        "type": "string",
+                                        "description": "Detailed description of the timeline entry"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "description": "Brief description of the timeline entry"
+                                    }
+                                },
+                                "required": [
+                                    "email",
+                                    "date",
+                                    "time",
+                                    "long_description",
+                                    "description"
+                                ],
+                                "example": {
+                                    "email": "jdoe@example.com",
+                                    "date": "2024-04-05",
+                                    "time": "14:30",
+                                    "long_description": "Visited the doctor for a routine check-up. Everything seems to be in order.",
+                                    "description": "Routine check-up"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Timeline entry added successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "timeline_id": {
+                                            "type": "integer",
+                                            "description": "The ID of the added timeline entry"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Timeline entry addition confirmation message"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "description": "Indicates if the addition was successful"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "timeline_id": 1001,
+                                    "message": "Timeline entry added successfully",
+                                    "success": true
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Invalid date or time format"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/watson/medication/": {
+            "get": {
+                "summary": "Fetch Medication",
+                "operationId": "fetchMedication",
+                "description": "Allows a user to fetch their medication information",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "email",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "The user's email"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful fetch of medication",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "medications": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "description": "The name of the medication"
+                                                    },
+                                                    "dosage": {
+                                                        "type": "string",
+                                                        "description": "The dosage of the medication"
+                                                    },
+                                                    "frequency": {
+                                                        "type": "string",
+                                                        "description": "The frequency of the medication"
+                                                    },
+                                                    "start_date": {
+                                                        "type": "string",
+                                                        "description": "The start date of the medication (YYYY-MM-DD)"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Medication fetch message"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "description": "Indicates if the fetch was successful"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "medications": [
+                                        {
+                                            "name": "Aspirin",
+                                            "dosage": "81mg",
+                                            "frequency": "Daily",
+                                            "start_date": "2024-04-01"
+                                        },
+                                        {
+                                            "name": "Metformin",
+                                            "dosage": "500mg",
+                                            "frequency": "Twice Daily",
+                                            "start_date": "2023-11-15"
+                                        }
+                                    ],
+                                    "message": "Medication information fetched successfully",
+                                    "success": true
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Invalid email format"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/watson/get-timeline/": {
+            "get": {
+                "summary": "Fetch Timelines",
+                "operationId": "fetchTimelines",
+                "description": "Allows a user to fetch their timeline entries",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "email",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "The user's email"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful fetch of timelines",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "timelines": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "timeline_id": {
+                                                        "type": "integer",
+                                                        "description": "The ID of the timeline entry"
+                                                    },
+                                                    "date": {
+                                                        "type": "string",
+                                                        "description": "The date of the timeline entry (YYYY-MM-DD)"
+                                                    },
+                                                    "time": {
+                                                        "type": "string",
+                                                        "description": "The time of the timeline entry (HH:MM)"
+                                                    },
+                                                    "long_description": {
+                                                        "type": "string",
+                                                        "description": "Detailed description of the timeline entry"
+                                                    },
+                                                    "description": {
+                                                        "type": "string",
+                                                        "description": "Brief description of the timeline entry"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Timeline fetch message"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "description": "Indicates if the fetch was successful"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "timelines": [
+                                        {
+                                            "timeline_id": 1001,
+                                            "date": "2024-04-05",
+                                            "time": "14:30",
+                                            "long_description": "Visited the doctor for a routine check-up. Everything seems to be in order.",
+                                            "description": "Routine check-up"
+                                        },
+                                        {
+                                            "timeline_id": 1002,
+                                            "date": "2024-03-15",
+                                            "time": "10:00",
+                                            "long_description": "Picked up new prescription for high blood pressure medication.",
+                                            "description": "Medication pickup"
+                                        }
+                                    ],
+                                    "message": "Timeline entries fetched successfully",
+                                    "success": true
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Invalid email format"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/watson/edit-appointment/": {
+            "put": {
+                "summary": "Edit Appointment",
+                "operationId": "editAppointment",
+                "description": "Allows a user to edit an existing appointment",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "integer",
+                                        "description": "The ID of the appointment to be edited"
+                                    },
+                                   
+                                   
+                                    "date": {
+                                        "type": "string",
+                                        "description": "The date of the appointment (YYYY-MM-DD)"
+                                    },
+                                    "time": {
+                                        "type": "string",
+                                        "description": "The time of the appointment (HH:MM)"
+                                    },
+                                    "period": {
+                                        "type": "string",
+                                        "description": "The period of the appointment (e.g., AM or PM)"
+                                    },
+                                    "consultationType": {
+                                        "type": "string",
+                                        "description": "Type of consultation (e.g., In-Person or Virtual)"
+                                    },
+                                    "problem_description": {
+                                        "type": "string",
+                                        "description": "A brief description of the medical issue"
+                                    }
+                                },
+                                "required": [
+                                    "id",
+                                    "date",
+                                    "time",
+                                    "period",
+                                    "consultationType",
+                                    "problemDescription"
+                                ],
+                                "example": {
+                                    "id": 12345,
+                                    "speciality": "Dermatology",
+                                    "date": "2024-11-15",
+                                    "time": "14:00",
+                                    "period": "PM",
+                                    "consultationType": "Virtual",
+                                    "problemDescription": "Skin rash"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Appointment successfully edited",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "appointment_id": {
+                                            "type": "integer",
+                                            "description": "The ID of the edited appointment"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Appointment edit confirmation message"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "description": "Indicates if the edit was successful"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "appointment_id": 12345,
+                                    "message": "Appointment successfully edited",
+                                    "success": true
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Invalid date or time format"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/watson/get-doctor-notes/": {
+            "get": {
+                "summary": "Fetch Doctor Notes",
+                "operationId": "fetchDoctorNotes",
+                "description": "Allows a user to fetch their doctor notes",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "email",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "The user's email"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful fetch of doctor notes",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "doctor_notes": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "note_id": {
+                                                        "type": "integer",
+                                                        "description": "The ID of the doctor note"
+                                                    },
+                                                    "date": {
+                                                        "type": "string",
+                                                        "description": "The date of the doctor note (YYYY-MM-DD)"
+                                                    },
+                                                    "note_text": {
+                                                        "type": "string",
+                                                        "description": "The text content of the doctor note"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Doctor notes fetch message"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "description": "Indicates if the fetch was successful"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "doctor_notes": [
+                                        {
+                                            "note_id": 1001,
+                                            "date": "2024-04-15",
+                                            "note_text": "Patient reported shortness of breath and chest pain. Prescribed Aspirin and scheduled follow-up appointment."
+                                        },
+                                        {
+                                            "note_id": 1002,
+                                            "date": "2024-03-30",
+                                            "note_text": "Patient's blood pressure is within normal range. Continued current medication regimen."
+                                        }
+                                    ],
+                                    "message": "Doctor notes fetched successfully",
+                                    "success": true
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Invalid email format"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/watson/delete-appointment/": {
+            "delete": {
+                "summary": "Delete Appointment",
+                "operationId": "deleteAppointment",
+                "description": "Allows a user to delete their specific appointment",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "email",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "The user's email"
+                    },
+                    {
+                        "in": "query",
+                        "name": "id",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "The unique identifier of the appointment"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful deletion of appointment",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Deletion confirmation message"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "description": "Indicates if the deletion was successful"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "Appointment deleted successfully",
+                                    "success": true
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Invalid email format or appointment ID"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Appointment not found",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Appointment not found"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/watson/get-appointments/": {
+            "get": {
+                "summary": "Fetch Appointments",
+                "operationId": "fetchAppointments",
+                "description": "Allows a user to fetch all their appointments",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "email",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true,
+                        "description": "The user's email"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful fetch of appointments",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "appointments": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "description": "Unique identifier for the appointment"
+                                                    },
+                                                    "date": {
+                                                        "type": "string",
+                                                        "description": "Date of the appointment (YYYY-MM-DD)"
+                                                    },
+                                                    "time": {
+                                                        "type": "string",
+                                                        "description": "Time of the appointment (HH:MM)"
+                                                    },
+                                                    "doctor": {
+                                                        "type": "string",
+                                                        "description": "Name of the doctor"
+                                                    },
+                                                    "type": {
+                                                        "type": "string",
+                                                        "description": "Type of appointment"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "description": "Status of the appointment"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Appointment fetch message"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "description": "Indicates if the fetch was successful"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "appointments": [
+                                        {
+                                            "id": "apt123",
+                                            "date": "2024-05-15",
+                                            "time": "14:30",
+                                            "doctor": "Dr. Smith",
+                                            "type": "Regular Checkup",
+                                            "status": "Scheduled"
+                                        },
+                                        {
+                                            "id": "apt124",
+                                            "date": "2024-06-01",
+                                            "time": "10:00",
+                                            "doctor": "Dr. Johnson",
+                                            "type": "Follow-up",
+                                            "status": "Pending"
+                                        }
+                                    ],
+                                    "message": "Appointments fetched successfully",
+                                    "success": true
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Invalid email format"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {},
+    "security": [
+        {}
+    ]
+}

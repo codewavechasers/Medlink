@@ -11,7 +11,7 @@ from rest_framework.response import Response
 @csrf_exempt
 def set_reminder(request):
     patient_email = request.session.get('email')
-    print("My email", patient_email)
+    # print("My email", patient_email)
     patientData = Patient.objects.get(email=patient_email)
     print(patientData)
     patient_name = patientData.name

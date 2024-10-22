@@ -38,8 +38,7 @@ function NextAppCard({ docImage, test, name, date, email, time, id }) {
       didOpen: async () => {
         App.delete("/bookings/delete-appointment/", {
           data: {
-           
-            id: id
+            id: id,
           },
           withCredentials: true,
         })
@@ -125,7 +124,7 @@ function NextAppCard({ docImage, test, name, date, email, time, id }) {
             doctor_name: editedName,
             date: editedDate,
             problem_description: editedTest,
-            id: id
+            id: id,
           },
           {
             withCredentials: true,
@@ -204,13 +203,15 @@ function NextAppCard({ docImage, test, name, date, email, time, id }) {
             timeout={notificationProps.timeout}
           />
         )}
-        <div className="appointment-image">
-          <img className="img-app" src={docImage} alt="appointment" />
-        </div>
-        <div className="test-description">
-          <Heading className="test">{test}</Heading>
-          <Heading className="name">Dr. {name}</Heading>
-          <p>ADV: {date}</p>
+        <div className="detailst">
+          <div className="appointment-image">
+            <img className="img-app" src={docImage} alt="appointment" />
+          </div>
+          <div className="test-description">
+            <Heading className="test">{test}</Heading>
+            <Heading className="name">Dr. {name}</Heading>
+            <p>ADV: {date}</p>
+          </div>
         </div>
         <div className="edit-icons">
           <TrashCan
@@ -241,11 +242,7 @@ function NextAppCard({ docImage, test, name, date, email, time, id }) {
           onRequestClose={handleEditCancel}
           onRequestSubmit={handleEditSave}
         >
-          <TextInput
-          id="appointment-id"
-          value={id}
-          hidden
-          />
+          <TextInput id="appointment-id" value={id} hidden />
           <TextInput
             id="edit-name"
             labelText="Doctor's Name"

@@ -99,7 +99,6 @@ def fetch_appointments(request):
 @csrf_exempt
 def delete_appointment(request):
     email = request.session.get('email')
-    print("email on session", email)
     if request.method == 'DELETE':
         try:
             data = json.loads(request.body)
@@ -108,7 +107,8 @@ def delete_appointment(request):
 
             # Find and delete the specific appointment
             appointment = Appointment.objects.filter(
-               id=id
+               id=id,
+               patient_email=email
             ).first()
 
             if appointment:

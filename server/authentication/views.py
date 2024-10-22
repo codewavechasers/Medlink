@@ -177,7 +177,7 @@ def password_reset_confirm(request, uidb64, token):
 
 @csrf_exempt
 def verify_2fa(request):
-    print(f"Request method: {request.method}")  # Debugging line
+    # print(f"Request method: {request.method}")  # Debugging line
     if request.method == 'POST':
         try:
             data = json.loads(request.body)
