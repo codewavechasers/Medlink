@@ -318,11 +318,13 @@ def edit_appointment(request):
                 appointment.save()
 
                 return JsonResponse({
+                    'success':True,
                     'status': 'success',
                     'message': 'Appointment updated successfully.'
                 })
             else:
                 return JsonResponse({
+                    'success':False,
                     'status': 'error',
                     'message': 'Appointment not found.'
                 }, status=404)
@@ -340,7 +342,7 @@ def get_appointments(request):
     if request.method == 'GET':
         appointments = Appointment.objects.filter(patient_email=email) 
         appointments_list = list(appointments.values('id','doctor_name', 'date', 'time', 'doctor_image', 'speciality', 'problem_description', 'patient_email'))
-        return JsonResponse(appointments_list, safe=False)
+        return JsonResponse({"message":"Fetched successfully", "success":True,appointments_list, safe=False})
 
 @csrf_exempt
 def delete_appointment(request):
@@ -360,11 +362,13 @@ def delete_appointment(request):
             if appointment:
                 appointment.delete()
                 return JsonResponse({
+                    'success':True,
                     'status': 'success',
                     'message': 'Appointment deleted successfully.'
                 })
             else:
                 return JsonResponse({
+                    'success':False,
                     'status': 'error',
                     'message': 'Appointment not found.'
                 }, status=404)
