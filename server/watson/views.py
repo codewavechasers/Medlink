@@ -342,7 +342,7 @@ def get_appointments(request):
     if request.method == 'GET':
         appointments = Appointment.objects.filter(patient_email=email) 
         appointments_list = list(appointments.values('id','doctor_name', 'date', 'time', 'doctor_image', 'speciality', 'problem_description', 'patient_email'))
-        return JsonResponse({"message":"Fetched successfully", "success":True,appointments_list, safe=False})
+        return JsonResponse({"message":"Fetched successfully", "success":True,"appointments":appointments_list, safe=False})
 
 @csrf_exempt
 def delete_appointment(request):
