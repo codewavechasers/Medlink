@@ -517,12 +517,31 @@ def book_appointment(request):
 
 @csrf_exempt
 def get_doctor_notes(request):
-    data = json.loads(request.body)
-    email = data.get('email')
-    notes = DoctorNote.objects.filter(
-        patient_email=email)
-    serializer = DoctorNoteSerializer(notes, many=True)
-    return JsonResponse({"success":True, "message":"Doctor notes found for this account", "data":serializer.data})
+    try:
+        data = json.loads(request.body)
+        email = data.get('email')
+
+        if not email:
+            return JsonResponse({"success": False, "message": "Email is required"}, status=400)
+
+        notes = DoctorNote.objects.filter(patient_email=email)
+
+        if not notes.exists():
+            return JsonResponse({"success": False, "message": "No doctor notes found"}, status=404)
+
+        serializer = DoctorNoteSerializer(notes, many=True)
+        return JsonResponse({"success": True, "data": serializer.data})
+    except json.JSONDecodeError:
+        return JsonResponse({"success": False, "message": "Invalid JSON format"}, status=400)
+    except Exception as e:
+        return JsonResponse({"success": False, "message": str(e)}, status=500)
+# def get_doctor_notes(request):
+#     data = json.loads(request.body)
+#     email = data.get('email')
+#     notes = DoctorNote.objects.filter(
+#         patient_email=email)
+#     serializer = DoctorNoteSerializer(notes, many=True)
+#     return JsonResponse({"success":True, "message":"Doctor notes found for this account", "data":serializer.data})
 
 @csrf_exempt
 def get_medication(request):
