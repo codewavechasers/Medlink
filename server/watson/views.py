@@ -520,17 +520,22 @@ def get_doctor_notes(request):
     try:
         data = json.loads(request.body)
         email = data.get('email')
-
+        
         if not email:
             return JsonResponse({"success": False, "message": "Email is required"}, status=400)
-
+        
         notes = DoctorNote.objects.filter(patient_email=email)
-
+        
         if not notes.exists():
             return JsonResponse({"success": False, "message": "No doctor notes found"}, status=404)
-
+        
         serializer = DoctorNoteSerializer(notes, many=True)
-        return JsonResponse({"success": True, "data": serializer.data})
+        return JsonResponse({
+            "success": True, 
+            "message": "Doctor notes fetched successfully",
+            "doctor_notes": serializer.data  # Changed from "data" to "doctor_notes"
+        })
+        
     except json.JSONDecodeError:
         return JsonResponse({"success": False, "message": "Invalid JSON format"}, status=400)
     except Exception as e:

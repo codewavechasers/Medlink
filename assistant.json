@@ -904,7 +904,7 @@
                                             "items": {
                                                 "type": "object",
                                                 "properties": {
-                                                    "note_id": {
+                                                    "note": {
                                                         "type": "integer",
                                                         "description": "The ID of the doctor note"
                                                     },
@@ -912,9 +912,17 @@
                                                         "type": "string",
                                                         "description": "The date of the doctor note (YYYY-MM-DD)"
                                                     },
-                                                    "note_text": {
+                                                    "doctor": {
                                                         "type": "string",
                                                         "description": "The text content of the doctor note"
+                                                    },
+                                                    "status": {
+                                                        "type": "string",
+                                                        "description": "The status content of the doctor note"
+                                                    },
+                                                    "advice": {
+                                                        "type": "string",
+                                                        "description": "The advice content of the doctor note"
                                                     }
                                                 }
                                             }
