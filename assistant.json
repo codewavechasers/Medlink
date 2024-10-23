@@ -579,7 +579,7 @@
             }
         },
         "/api/watson/medication/": {
-            "get": {
+            "post": {
                 "summary": "Fetch Medication",
                 "operationId": "fetchMedication",
                 "description": "Allows a user to fetch their medication information",
@@ -602,29 +602,9 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "medications": {
+                                        "data": {
                                             "type": "array",
-                                            "items": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "name": {
-                                                        "type": "string",
-                                                        "description": "The name of the medication"
-                                                    },
-                                                    "dosage": {
-                                                        "type": "string",
-                                                        "description": "The dosage of the medication"
-                                                    },
-                                                    "frequency": {
-                                                        "type": "string",
-                                                        "description": "The frequency of the medication"
-                                                    },
-                                                    "start_date": {
-                                                        "type": "string",
-                                                        "description": "The start date of the medication (YYYY-MM-DD)"
-                                                    }
-                                                }
-                                            }
+                                            "description": "Medication array"
                                         },
                                         "message": {
                                             "type": "string",
@@ -769,7 +749,7 @@
             }
         },
         "/api/watson/edit-appointment/": {
-            "put": {
+            "post": {
                 "summary": "Edit Appointment",
                 "operationId": "editAppointment",
                 "description": "Allows a user to edit an existing appointment",

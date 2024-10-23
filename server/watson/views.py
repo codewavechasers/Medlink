@@ -457,6 +457,7 @@ def book_appointment(request):
             if not doctor:
                 return JsonResponse({
                     'status': 'error',
+                    'success':True,
                     'message': f'No doctors found with the speciality: {speciality}'
                 }, status=404)
 
@@ -473,6 +474,7 @@ def book_appointment(request):
             if existing_appointment:
                 return JsonResponse({
                     'status': 'error',
+                    'success':False,
                     'message': 'You already have an appointment with this doctor at this time.'
                 }, status=400)
 
@@ -486,6 +488,7 @@ def book_appointment(request):
             if doctor_appointment:
                 return JsonResponse({
                     'status': 'error',
+                    'success':False,
                     'message': 'The doctor is not available at this time. Please choose another time slot.'
                 }, status=400)
 
@@ -506,14 +509,15 @@ def book_appointment(request):
 
             return JsonResponse({
                 'status': 'success',
+                'success':True,
                 'appointment_id': appointment.id,
                 'message': 'You have successfully booked an appointment!'
             })
 
         except json.JSONDecodeError:
-            return JsonResponse({'status': 'error', 'message': 'Invalid JSON'}, status=400)
+            return JsonResponse({'success':False,'status': 'error', 'message': 'Invalid JSON'}, status=400)
 
-    return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
+    return JsonResponse({'success':False,'status': 'error', 'message': 'Invalid request method'}, status=400)
 
 @csrf_exempt
 def get_doctor_notes(request):
