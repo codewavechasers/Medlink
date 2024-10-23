@@ -303,7 +303,6 @@ def edit_appointment(request):
             id = data.get('id')
             time = data.get('time')
             consultation_type = data.get('consultationType')
-            new_problem_description = data.get('problem_description')
             period = data.get('period')
             # Find the appointment
             appointment = Appointment.objects.filter(id=id, patient_email=email).first()
@@ -315,7 +314,7 @@ def edit_appointment(request):
                 appointment.period = period or appointment.period
                 appointment.consultation_type = consultation_type or appointment.consultation_type
                 appointment.date = date or appointment.date
-                appointment.problem_description = new_problem_description or appointment.problem_description
+                appointment.problem_description = appointment.problem_description
                 appointment.save()
 
                 return JsonResponse({
