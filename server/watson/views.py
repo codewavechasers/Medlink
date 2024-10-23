@@ -303,7 +303,6 @@ def edit_appointment(request):
             id = data.get('id')
             time = data.get('time')
             consultation_type = data.get('consultationType')
-            new_problem_description = data.get('problem_description')
             period = data.get('period')
             # Find the appointment
             appointment = Appointment.objects.filter(id=id, patient_email=email).first()
@@ -311,19 +310,21 @@ def edit_appointment(request):
 
             if appointment:
                 # Update the appointment details
-                appointment.time = time or appointment.time
-                appointment.period = period or appointment.period
-                appointment.consultation_type = consultation_type or appointment.consultation_type
-                appointment.date = date or appointment.date
-                appointment.problem_description = new_problem_description or appointment.problem_description
+                appointment.time = time
+                appointment.period = period
+                appointment.consultation_type = consultation_type
+                appointment.date = date
+                appointment.problem_description = appointment.problem_description
                 appointment.save()
 
                 return JsonResponse({
+                    'success':True,
                     'status': 'success',
                     'message': 'Appointment updated successfully.'
                 })
             else:
                 return JsonResponse({
+                    'success':False,
                     'status': 'error',
                     'message': 'Appointment not found.'
                 }, status=404)
@@ -341,7 +342,7 @@ def get_appointments(request):
     if request.method == 'GET':
         appointments = Appointment.objects.filter(patient_email=email) 
         appointments_list = list(appointments.values('id','doctor_name', 'date', 'time', 'doctor_image', 'speciality', 'problem_description', 'patient_email'))
-        return JsonResponse(appointments_list, safe=False)
+        return JsonResponse({"message":"Fetched successfully", "success":True,"appointments":appointments_list, safe=False})
 
 @csrf_exempt
 def delete_appointment(request):
@@ -361,11 +362,13 @@ def delete_appointment(request):
             if appointment:
                 appointment.delete()
                 return JsonResponse({
+                    'success':True,
                     'status': 'success',
                     'message': 'Appointment deleted successfully.'
                 })
             else:
                 return JsonResponse({
+                    'success':False,
                     'status': 'error',
                     'message': 'Appointment not found.'
                 }, status=404)
