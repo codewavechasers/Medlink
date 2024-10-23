@@ -310,10 +310,10 @@ def edit_appointment(request):
 
             if appointment:
                 # Update the appointment details
-                appointment.time = time or appointment.time
-                appointment.period = period or appointment.period
-                appointment.consultation_type = consultation_type or appointment.consultation_type
-                appointment.date = date or appointment.date
+                appointment.time = time
+                appointment.period = period
+                appointment.consultation_type = consultation_type
+                appointment.date = date
                 appointment.problem_description = appointment.problem_description
                 appointment.save()
 
