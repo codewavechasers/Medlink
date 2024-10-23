@@ -190,243 +190,241 @@
             }
         },
         "/api/watson/book-appointment/": {
-    "post": {
-        "summary": "Book Appointment",
-        "operationId": "bookAppointment",
-        "description": "Allows a user to book an appointment with a doctor",
-        "requestBody": {
-            "required": true,
-            "content": {
-                "application/json": {
-                    "schema": {
-                        "type": "object",
-                        "properties": {
-                            "email": {
-                                "type": "string",
-                                "description": "The email of the patient"
-                            },
-                            "speciality": {
-                                "type": "string",
-                                "description": "The doctor's speciality"
-                            },
-                            "date": {
-                                "type": "string",
-                                "description": "The date of the appointment (YYYY-MM-DD)"
-                            },
-                            "time": {
-                                "type": "string",
-                                "description": "The time of the appointment (HH:MM)"
-                            },
-                            "period": {
-                                "type": "string",
-                                "description": "The period of the appointment (e.g., AM or PM)"
-                            },
-                            "consultationType": {
-                                "type": "string",
-                                "description": "Type of consultation (e.g., In-Person or Virtual)"
-                            },
-                            "problemDescription": {
-                                "type": "string",
-                                "description": "A brief description of the medical issue"
+            "post": {
+                "summary": "Book Appointment",
+                "operationId": "bookAppointment",
+                "description": "Allows a user to book an appointment with a doctor",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "description": "The email of the patient"
+                                    },
+                                    "speciality": {
+                                        "type": "string",
+                                        "description": "The doctor's speciality"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "description": "The date of the appointment (YYYY-MM-DD)"
+                                    },
+                                    "time": {
+                                        "type": "string",
+                                        "description": "The time of the appointment (HH:MM)"
+                                    },
+                                    "period": {
+                                        "type": "string",
+                                        "description": "The period of the appointment (e.g., AM or PM)"
+                                    },
+                                    "consultationType": {
+                                        "type": "string",
+                                        "description": "Type of consultation (e.g., In-Person or Virtual)"
+                                    },
+                                    "problemDescription": {
+                                        "type": "string",
+                                        "description": "A brief description of the medical issue"
+                                    }
+                                },
+                                "required": [
+                                    "email",
+                                    "speciality",
+                                    "date",
+                                    "time",
+                                    "period",
+                                    "consultationType",
+                                    "problemDescription"
+                                ],
+                                "example": {
+                                    "email": "patient@example.com",
+                                    "speciality": "Cardiology",
+                                    "date": "2024-10-20",
+                                    "time": "10:30",
+                                    "period": "AM",
+                                    "consultationType": "In-Person",
+                                    "problemDescription": "Shortness of breath and chest pain"
+                                }
                             }
-                        },
-                        "required": [
-                            "email",
-                            "speciality",
-                            "date",
-                            "time",
-                            "period",
-                            "consultationType",
-                            "problemDescription"
-                        ],
-                        "example": {
-                            "email": "patient@example.com",
-                            "speciality": "Cardiology",
-                            "date": "2024-10-20",
-                            "time": "10:30",
-                            "period": "AM",
-                            "consultationType": "In-Person",
-                            "problemDescription": "Shortness of breath and chest pain"
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Appointment successfully booked",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "appointment_id": {
+                                            "type": "integer",
+                                            "description": "The ID of the booked appointment"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Booking confirmation message"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "description": "Indicates if the booking was successful"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "appointment_id": 12345,
+                                    "message": "Appointment successfully booked",
+                                    "success": true
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid booking request",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Invalid date or time format"
+                                }
+                            }
                         }
                     }
                 }
             }
         },
-        "responses": {
-            "200": {
-                "description": "Appointment successfully booked",
-                "content": {
-                    "application/json": {
-                        "schema": {
-                            "type": "object",
-                            "properties": {
-                                "appointment_id": {
-                                    "type": "integer",
-                                    "description": "The ID of the booked appointment"
-                                },
-                                "message": {
-                                    "type": "string",
-                                    "description": "Booking confirmation message"
-                                },
-                                "success": {
-                                    "type": "boolean",
-                                    "description": "Indicates if the booking was successful"
-                                }
-                            }
-                        },
-                        "example": {
-                            "appointment_id": 12345,
-                            "message": "Appointment successfully booked",
-                            "success": true
-                        }
-                    }
-                }
-            },
-            "400": {
-                "description": "Invalid booking request",
-                "content": {
-                    "application/json": {
-                        "example": {
-                            "message": "Invalid date or time format"
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-,
-"/api/watson/report-health-issue/": {
-              "post": {
+        "/api/watson/report-health-issue/": {
+            "post": {
                 "summary": "Report Health issues",
                 "operationId": "Report Health Issues",
                 "description": "Allows a user to report an illness",
                 "requestBody": {
-                  "required": true,
-                  "content": {
-                    "application/json": {
-                      "schema": {
-                        "type": "object",
-                        "properties": {
-                          "email": {
-                            "type": "string",
-                            "description": "The patient email"
-                          },
-                          "bodyPart": {
-                            "type": "string",
-                            "description": "The part of the body that is ill (Head, Torso, LeftLeg, RightLeg, LeftHand, RightHand)"
-                          },
-                          "symptom": {
-                            "type": "string",
-                            "description": "The symptom descriptions"
-                          },
-                          "date": {
-                            "type": "string",
-                            "description": "The date of submission (YYYY-MM-DD)"
-                          },
-                          "headache": {
-                            "type": "integer",
-                            "description": "Headache severity (if body part is Head)",
-                            "nullable": true
-                          },
-                          "visionIssues": {
-                            "type": "string",
-                            "description": "Yes/No for vision problems (if body part is Head)",
-                            "nullable": true
-                          },
-                          "chestPain": {
-                            "type": "integer",
-                            "description": "Chest pain severity (if body part is Torso)",
-                            "nullable": true
-                          },
-                          "breathingDifficulty": {
-                            "type": "integer",
-                            "description": "Breathing difficulty severity (if body part is Torso)",
-                            "nullable": true
-                          },
-                          "leftLegPain": {
-                            "type": "integer",
-                            "description": "Left leg pain severity (if body part is LeftLeg)",
-                            "nullable": true
-                          },
-                          "rightLegPain": {
-                            "type": "integer",
-                            "description": "Right leg pain severity (if body part is RightLeg)",
-                            "nullable": true
-                          },
-                          "leftHandPain": {
-                            "type": "integer",
-                            "description": "Left hand pain severity (if body part is LeftHand)",
-                            "nullable": true
-                          },
-                          "rightHandPain": {
-                            "type": "integer",
-                            "description": "Right hand pain severity (if body part is RightHand)",
-                            "nullable": true
-                          }
-                        },
-                        "required": [
-                          "email",
-                          "date",
-                          "symptom",
-                          "bodyPart"
-                        ],
-                        "example": {
-                          "email": "jdoe@gmail.com",
-                          "date": "2024-10-22",
-                          "symptom": "I am having severe headache and blurry vision.",
-                          "bodyPart": "Head",
-                          "headache": 5,
-                          "visionIssues": "Yes"
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "description": "The patient email"
+                                    },
+                                    "bodyPart": {
+                                        "type": "string",
+                                        "description": "The part of the body that is ill (Head, Torso, LeftLeg, RightLeg, LeftHand, RightHand)"
+                                    },
+                                    "symptom": {
+                                        "type": "string",
+                                        "description": "The symptom descriptions"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "description": "The date of submission (YYYY-MM-DD)"
+                                    },
+                                    "headache": {
+                                        "type": "integer",
+                                        "description": "Headache severity (if body part is Head)",
+                                        "nullable": true
+                                    },
+                                    "visionIssues": {
+                                        "type": "string",
+                                        "description": "Yes/No for vision problems (if body part is Head)",
+                                        "nullable": true
+                                    },
+                                    "chestPain": {
+                                        "type": "integer",
+                                        "description": "Chest pain severity (if body part is Torso)",
+                                        "nullable": true
+                                    },
+                                    "breathingDifficulty": {
+                                        "type": "integer",
+                                        "description": "Breathing difficulty severity (if body part is Torso)",
+                                        "nullable": true
+                                    },
+                                    "leftLegPain": {
+                                        "type": "integer",
+                                        "description": "Left leg pain severity (if body part is LeftLeg)",
+                                        "nullable": true
+                                    },
+                                    "rightLegPain": {
+                                        "type": "integer",
+                                        "description": "Right leg pain severity (if body part is RightLeg)",
+                                        "nullable": true
+                                    },
+                                    "leftHandPain": {
+                                        "type": "integer",
+                                        "description": "Left hand pain severity (if body part is LeftHand)",
+                                        "nullable": true
+                                    },
+                                    "rightHandPain": {
+                                        "type": "integer",
+                                        "description": "Right hand pain severity (if body part is RightHand)",
+                                        "nullable": true
+                                    }
+                                },
+                                "required": [
+                                    "email",
+                                    "date",
+                                    "symptom",
+                                    "bodyPart"
+                                ],
+                                "example": {
+                                    "email": "jdoe@gmail.com",
+                                    "date": "2024-10-22",
+                                    "symptom": "I am having severe headache and blurry vision.",
+                                    "bodyPart": "Head",
+                                    "headache": 5,
+                                    "visionIssues": "Yes"
+                                }
+                            }
                         }
-                      }
                     }
-                  }
                 },
                 "responses": {
-                  "200": {
-                    "description": "Illness reported successfully",
-                    "content": {
-                      "application/json": {
-                        "schema": {
-                          "type": "object",
-                          "properties": {
-                            "message": {
-                              "type": "string",
-                              "description": "Submission confirmation message"
-                            },
-                            "success": {
-                              "type": "boolean",
-                              "description": "Indicates if the submission was successful"
-                            },
-                            "id": {
-                              "type": "integer",
-                              "description": "The ID of the reported medical issue"
+                    "200": {
+                        "description": "Illness reported successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "description": "Submission confirmation message"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "description": "Indicates if the submission was successful"
+                                        },
+                                        "id": {
+                                            "type": "integer",
+                                            "description": "The ID of the reported medical issue"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "id": 12345,
+                                    "message": "Health issue reported successfully",
+                                    "success": true
+                                }
                             }
-                          }
-                        },
-                        "example": {
-                          "id": 12345,
-                          "message": "Health issue reported successfully",
-                          "success": true
                         }
-                      }
-                    }
-                  },
-                  "400": {
-                    "description": "Invalid request",
-                    "content": {
-                      "application/json": {
-                        "example": {
-                          "message": "Invalid body part or missing required fields"
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "message": "Invalid body part or missing required fields"
+                                }
+                            }
                         }
-                      }
                     }
-                  }
                 }
-              }
             }
-          ,          
+        },
         "/api/watson/get-health-score/": {
             "get": {
                 "summary": "Fetch Health Score",
@@ -786,8 +784,10 @@
                                         "type": "integer",
                                         "description": "The ID of the appointment to be edited"
                                     },
-                                   
-                                   
+                                    "email": {
+                                        "type": "string",
+                                        "description": "The email address"
+                                    },
                                     "date": {
                                         "type": "string",
                                         "description": "The date of the appointment (YYYY-MM-DD)"
@@ -803,28 +803,24 @@
                                     "consultationType": {
                                         "type": "string",
                                         "description": "Type of consultation (e.g., In-Person or Virtual)"
-                                    },
-                                    "problem_description": {
-                                        "type": "string",
-                                        "description": "A brief description of the medical issue"
                                     }
                                 },
                                 "required": [
                                     "id",
+                                    "email",
                                     "date",
                                     "time",
                                     "period",
-                                    "consultationType",
-                                    "problemDescription"
+                                    "consultationType"
                                 ],
                                 "example": {
                                     "id": 12345,
                                     "speciality": "Dermatology",
                                     "date": "2024-11-15",
                                     "time": "14:00",
-                                    "period": "PM",
+                                    "period": "afternoon",
                                     "consultationType": "Virtual",
-                                    "problemDescription": "Skin rash"
+                                    "email": "d@gmail.com"
                                 }
                             }
                         }
@@ -838,10 +834,6 @@
                                 "schema": {
                                     "type": "object",
                                     "properties": {
-                                        "appointment_id": {
-                                            "type": "integer",
-                                            "description": "The ID of the edited appointment"
-                                        },
                                         "message": {
                                             "type": "string",
                                             "description": "Appointment edit confirmation message"
@@ -853,7 +845,6 @@
                                     }
                                 },
                                 "example": {
-                                    "appointment_id": 12345,
                                     "message": "Appointment successfully edited",
                                     "success": true
                                 }
@@ -878,17 +869,28 @@
                 "summary": "Fetch Doctor Notes",
                 "operationId": "fetchDoctorNotes",
                 "description": "Allows a user to fetch their doctor notes",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "email",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "required": true,
-                        "description": "The user's email"
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "description": "The user's email address"
+                                    }
+                                },
+                                "required": [
+                                    "email"
+                                ],
+                                "example": {
+                                    "email": "user@example.com"
+                                }
+                            }
+                        }
                     }
-                ],
+                },
                 "responses": {
                     "200": {
                         "description": "Successful fetch of doctor notes",
@@ -964,26 +966,34 @@
                 "summary": "Delete Appointment",
                 "operationId": "deleteAppointment",
                 "description": "Allows a user to delete their specific appointment",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "email",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "required": true,
-                        "description": "The user's email"
-                    },
-                    {
-                        "in": "query",
-                        "name": "id",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "required": true,
-                        "description": "The unique identifier of the appointment"
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "description": "The user's email address"
+                                    },
+                                    "id": {
+                                        "type": "string",
+                                        "description": "The unique identifier of the appointment"
+                                    }
+                                },
+                                "required": [
+                                    "email",
+                                    "id"
+                                ],
+                                "example": {
+                                    "email": "user@example.com",
+                                    "id": "apt12345"
+                                }
+                            }
+                        }
                     }
-                ],
+                },
                 "responses": {
                     "200": {
                         "description": "Successful deletion of appointment",
@@ -1037,17 +1047,28 @@
                 "summary": "Fetch Appointments",
                 "operationId": "fetchAppointments",
                 "description": "Allows a user to fetch all their appointments",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "email",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "required": true,
-                        "description": "The user's email"
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "description": "The user's email address"
+                                    }
+                                },
+                                "required": [
+                                    "email"
+                                ],
+                                "example": {
+                                    "email": "user@example.com"
+                                }
+                            }
+                        }
                     }
-                ],
+                },
                 "responses": {
                     "200": {
                         "description": "Successful fetch of appointments",
@@ -1058,35 +1079,7 @@
                                     "properties": {
                                         "appointments": {
                                             "type": "array",
-                                            "items": {
-                                                "type": "object",
-                                                "properties": {
-                                                    "id": {
-                                                        "type": "string",
-                                                        "description": "Unique identifier for the appointment"
-                                                    },
-                                                    "date": {
-                                                        "type": "string",
-                                                        "description": "Date of the appointment (YYYY-MM-DD)"
-                                                    },
-                                                    "time": {
-                                                        "type": "string",
-                                                        "description": "Time of the appointment (HH:MM)"
-                                                    },
-                                                    "doctor": {
-                                                        "type": "string",
-                                                        "description": "Name of the doctor"
-                                                    },
-                                                    "type": {
-                                                        "type": "string",
-                                                        "description": "Type of appointment"
-                                                    },
-                                                    "status": {
-                                                        "type": "string",
-                                                        "description": "Status of the appointment"
-                                                    }
-                                                }
-                                            }
+                                            "description": "Apointment list"
                                         },
                                         "message": {
                                             "type": "string",
@@ -1099,24 +1092,7 @@
                                     }
                                 },
                                 "example": {
-                                    "appointments": [
-                                        {
-                                            "id": "apt123",
-                                            "date": "2024-05-15",
-                                            "time": "14:30",
-                                            "doctor": "Dr. Smith",
-                                            "type": "Regular Checkup",
-                                            "status": "Scheduled"
-                                        },
-                                        {
-                                            "id": "apt124",
-                                            "date": "2024-06-01",
-                                            "time": "10:00",
-                                            "doctor": "Dr. Johnson",
-                                            "type": "Follow-up",
-                                            "status": "Pending"
-                                        }
-                                    ],
+                                    "appointments": [],
                                     "message": "Appointments fetched successfully",
                                     "success": true
                                 }

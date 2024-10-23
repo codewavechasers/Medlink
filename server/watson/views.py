@@ -213,7 +213,7 @@ def report_health_issues(request):
             # Create the MedicalIssue object with the data
             issue = MedicalIssue.objects.create(**kwargs)
             
-            return JsonResponse({'message': 'Health issue reported successfully.', 'id': issue.id}, status=201)
+            return JsonResponse({"success":True,'message': 'Health issue reported successfully.', 'id': issue.id}, status=201)
         
         except Exception as e:
             return JsonResponse({'message': str(e)}, status=400)
@@ -236,7 +236,7 @@ def get_health_score(request):
             max_health_score = 100  # Adjust this if your max score is different
             overall_health_score = (total_health_score / (record_count * max_health_score)) * 100
         
-            return JsonResponse({"success": True, "overall_health_score": overall_health_score}, status=200)
+            return JsonResponse({"success": True, "message":"The overall score is fetched", "overall_health_score": overall_health_score}, status=200)
     
         except Exception as e:
             return JsonResponse({"success": False, "message": str(e)}, status=500)
@@ -290,7 +290,7 @@ def get_timelines(request):
     if request.method == 'GET':
         reminders = Timelines.objects.filter(patient_email=email) 
         reminders_list = list(reminders.values('date', 'time', 'description', 'patient_name', 'patient_email', 'long_description'))
-        return JsonResponse(reminders_list, safe=False)
+        return JsonResponse({"success":True, "message":"Medication found for this account","data":reminders_list },safe=False)
     
 @csrf_exempt
 def edit_appointment(request):
@@ -330,9 +330,9 @@ def edit_appointment(request):
                 }, status=404)
 
         except json.JSONDecodeError:
-            return JsonResponse({'status': 'error', 'message': 'Invalid JSON'}, status=400)
+            return JsonResponse({'success':False,'status': 'error', 'message': 'Invalid JSON'}, status=400)
 
-    return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
+    return JsonResponse({'success':False,'status': 'error', 'message': 'Invalid request method'}, status=400)
 
 
 @csrf_exempt
@@ -522,7 +522,7 @@ def get_doctor_notes(request):
     notes = DoctorNote.objects.filter(
         patient_email=email)
     serializer = DoctorNoteSerializer(notes, many=True)
-    return JsonResponse({"success":True, "data":serializer.data})
+    return JsonResponse({"success":True, "message":"Doctor notes found for this account", "data":serializer.data})
 
 @csrf_exempt
 def get_medication(request):
@@ -531,7 +531,7 @@ def get_medication(request):
     try:
         medications = Medication.objects.filter(email=email)
         serializer = MedicationSerializer(medications, many=True)
-        return JsonResponse({"success":True, "data":serializer.data}, status=200)
+        return JsonResponse({"success":True, "message":"Medication found for this account","data":serializer.data}, status=200)
     except Medication.DoesNotExist:
         return JsonResponse({"success":True, "message":"No medication found for this account"}, status=200)
 
