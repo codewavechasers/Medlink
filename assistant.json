@@ -426,7 +426,7 @@
             }
         },
         "/api/watson/get-health-score/": {
-            "get": {
+            "post": {
                 "summary": "Fetch Health Score",
                 "operationId": "fetchHealthScore",
                 "description": "Allows a user to fetch their health score",
@@ -671,7 +671,7 @@
             }
         },
         "/api/watson/get-timeline/": {
-            "get": {
+            "post": {
                 "summary": "Fetch Timelines",
                 "operationId": "fetchTimelines",
                 "description": "Allows a user to fetch their timeline entries",
@@ -865,7 +865,7 @@
             }
         },
         "/api/watson/get-doctor-notes/": {
-            "get": {
+            "post": {
                 "summary": "Fetch Doctor Notes",
                 "operationId": "fetchDoctorNotes",
                 "description": "Allows a user to fetch their doctor notes",
@@ -1051,7 +1051,7 @@
             }
         },
         "/api/watson/get-appointments/": {
-            "get": {
+            "post": {
                 "summary": "Fetch Appointments",
                 "operationId": "fetchAppointments",
                 "description": "Allows a user to fetch all their appointments",

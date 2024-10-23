@@ -220,7 +220,7 @@ def report_health_issues(request):
 
 @csrf_exempt
 def get_health_score(request):
-    if request.method == 'GET':
+    if request.method == 'POST':
         try:
             data = json.loads(request.body)
             email = data.get('email')
@@ -287,7 +287,7 @@ def add_timeline(request):
 def get_timelines(request):
     data = json.loads(request.body)
     email=data.get('email')
-    if request.method == 'GET':
+    if request.method =='POST':
         reminders = Timelines.objects.filter(patient_email=email) 
         reminders_list = list(reminders.values('date', 'time', 'description', 'patient_name', 'patient_email', 'long_description'))
         return JsonResponse({"success":True, "message":"Medication found for this account","data":reminders_list },safe=False)
@@ -339,7 +339,7 @@ def edit_appointment(request):
 def get_appointments(request):
     data = json.loads(request.body)
     email = data.get('email')
-    if request.method == 'GET':
+    if request.method == 'POST':
         appointments = Appointment.objects.filter(patient_email=email) 
         appointments_list = list(appointments.values('id','doctor_name', 'date', 'time', 'doctor_image', 'speciality', 'problem_description', 'patient_email'))
         return JsonResponse({
