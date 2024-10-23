@@ -194,8 +194,8 @@ def get_response(request):
     patient_name = patient_data.name
     data = json.loads(request.body)
     patient_input = data.get('message')
-    input = f"My name is {patient_name} and I hope you answer these medical questions for me. Please be clear: {patient_input}" 
-     
+    # input = f"My name is {patient_name} and I hope you answer these medical questions for me. Please be clear: {patient_input}" 
+    input=patient_input
     # print("input:", patient_input)
     try:
         
