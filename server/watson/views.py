@@ -49,37 +49,112 @@ def get_advice(request, record_id=None):
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
 
-def call_watson_api(input_data):
-    api_key = os.environ.get('WATSON_API_KEY')
-    # api_key = ""
-    valid_token = get_valid_token(api_key)
+# def call_watson_api(input_data):
+#     api_key = os.environ.get('WATSON_API_KEY')
+#     # api_key = "Dw_UYZgBBHvphsxqVRfHCRl5ea4KAJED6MVS8itbrGPW"
+#     valid_token = get_valid_token(api_key)
 
-    access_token = valid_token
+#     access_token = valid_token
     
-    url = "https://eu-de.ml.cloud.ibm.com/ml/v1/text/generation?version=2023-05-29"
+#     url = "https://eu-de.ml.cloud.ibm.com/ml/v1/text/generation?version=2023-05-29"
+#     headers = {
+#         "Accept": "application/json",
+#         "Content-Type": "application/json",
+#         "Authorization": f"Bearer {access_token}"
+#     }
+#     body = {
+#         "input": input_data,
+#         "parameters": {
+#             "decoding_method": "greedy",
+#             "max_new_tokens": 200,
+#             "repetition_penalty": 1.0
+#         },
+#         "model_id": "meta-llama/llama-3-70b-instruct",
+#         "project_id": "4e533532-f043-4916-b9f3-cac2feafe48d"
+#     }
+
+#     try:
+#         response = requests.post(url, headers=headers, json=body)
+#         response.raise_for_status()
+#         result = response.json()
+#         # Extract the generated text from the Watson response
+#         advice = result.get('results', [{}])[0].get('generated_text', '')
+#         return advice
+#     except requests.exceptions.HTTPError as http_err:
+#         print(f"HTTP error occurred: {http_err}")
+#         raise
+#     except Exception as err:
+#         print(f"Other error occurred: {err}")
+        
+import os
+import requests
+
+def call_watson_api(input_data):
+    # Get the API key from environment variables
+    api_key = os.environ.get('WATSON_API_KEY')
+    # api_key = os.environ.get('WATSON_API_KEY')
+
+    # Get a valid access token (you need to implement get_valid_token)
+    valid_token = get_valid_token(api_key)
+    access_token = valid_token
+
+    # The updated URL for the Watson API
+    url = "https://us-south.ml.cloud.ibm.com/ml/v1/text/generation?version=2023-05-29"
+
+    # Updated request body
+    body = {
+        "input": input_data,
+        "parameters": {
+            "decoding_method": "sample",
+            "max_new_tokens": 200,
+            "random_seed": 1,
+            "stop_sequences": ["\n\n"],
+            "temperature": 0.7,
+            "top_k": 50,
+            "top_p": 1,
+            "repetition_penalty": 1
+        },
+        "model_id": "meta-llama/llama-3-2-3b-instruct",
+        "project_id": "14abe357-8154-40e6-baef-48800cce6b9c",
+        "moderations": {
+            "hap": {
+                "input": {
+                    "enabled": True,
+                    "threshold": 0.5,
+                    "mask": {
+                        "remove_entity_value": True
+                    }
+                },
+                "output": {
+                    "enabled": True,
+                    "threshold": 0.5,
+                    "mask": {
+                        "remove_entity_value": True
+                    }
+                }
+            }
+        }
+    }
+
+    # Set the request headers
     headers = {
         "Accept": "application/json",
         "Content-Type": "application/json",
         "Authorization": f"Bearer {access_token}"
     }
-    body = {
-        "input": input_data,
-        "parameters": {
-            "decoding_method": "greedy",
-            "max_new_tokens": 200,
-            "repetition_penalty": 1.0
-        },
-        "model_id": "meta-llama/llama-3-70b-instruct",
-        "project_id": "4e533532-f043-4916-b9f3-cac2feafe48d"
-    }
 
     try:
+        # Make the POST request to the Watson API
         response = requests.post(url, headers=headers, json=body)
         response.raise_for_status()
+
+        # Parse the JSON response
         result = response.json()
+
         # Extract the generated text from the Watson response
         advice = result.get('results', [{}])[0].get('generated_text', '')
         return advice
+
     except requests.exceptions.HTTPError as http_err:
         print(f"HTTP error occurred: {http_err}")
         raise
@@ -544,13 +619,6 @@ def get_doctor_notes(request):
         return JsonResponse({"success": False, "message": "Invalid JSON format"}, status=400)
     except Exception as e:
         return JsonResponse({"success": False, "message": str(e)}, status=500)
-# def get_doctor_notes(request):
-#     data = json.loads(request.body)
-#     email = data.get('email')
-#     notes = DoctorNote.objects.filter(
-#         patient_email=email)
-#     serializer = DoctorNoteSerializer(notes, many=True)
-#     return JsonResponse({"success":True, "message":"Doctor notes found for this account", "data":serializer.data})
 
 @csrf_exempt
 def get_medication(request):
