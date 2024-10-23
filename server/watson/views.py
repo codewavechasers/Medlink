@@ -294,7 +294,7 @@ def get_timelines(request):
     
 @csrf_exempt
 def edit_appointment(request):
-    if request.method == 'PUT':
+    if request.method == 'POST':
         try:
             data = json.loads(request.body)
 
