@@ -11,7 +11,7 @@
 - **🔐 2FA Implementation**: Enhanced security using OTP codes for 2FA during login.
 - **🔗 Seamless Backend-Frontend Integration**: Built with Next.js for the frontend and Django as the backend, connected via RESTful APIs.
 
-## Please use this link to view our live site : https://medlink.gk.h.cw.co.ke/ - Username: codewavechasers@gmail.com Password: keter.
+## Please use this link to view our live site : https://medlink.gk.h.cw.co.ke/ - Username: codewavechasers@gmail.com Password: medlink10.
 
 ## 📸 Screenshots
 
