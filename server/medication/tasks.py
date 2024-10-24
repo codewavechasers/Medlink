@@ -4,7 +4,7 @@ from celery import shared_task
 import vonage
 from patients.models import Patient
 
-client = vonage.Client(key="e43d4a38", secret="pMV5CUINuTwLxZAt")
+client = vonage.Client(key="9bf34abe", secret="ggAEFn2CDeLc47OW")
 sms = vonage.Sms(client)
 
 @shared_task
@@ -39,13 +39,13 @@ def send_medication_reminders():
         phonenumber = user.phone_number
 
         # Send the SMS notification
-        # responseData = sms.send_message(
-        #     {
-        #         "from": "Medlink",
-        #         "to": f"254{phonenumber}", 
-        #         "text": message,
-        #     }
-        # )
+        responseData = sms.send_message(
+            {
+                "from": "Medlink",
+                "to": f"254{phonenumber}", 
+                "text": message,
+            }
+        )
 
         # # Check SMS status
         # if responseData["messages"][0]["status"] == "0":

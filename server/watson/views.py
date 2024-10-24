@@ -116,13 +116,11 @@ def get_valid_token(api_key):
 def get_response(request):
     patient_email = request.session.get('email')
     patient_data = Patient.objects.get(email=patient_email)
-    patient_name = patient_data.name
+    # patient_name = patient_data.name
     data = json.loads(request.body)
     patient_input = data.get('message')
     input = patient_input
-    # input = f"My name is {patient_name} and I hope you answer these medical questions for me. Please be clear: {patient_input}" 
      
-    # print("input:", patient_input)
     try:
         
         # Watson API call
@@ -132,9 +130,9 @@ def get_response(request):
             'watson': watson_response
         }, status=200)
     except MedicalIssue.DoesNotExist:
-        return JsonResponse({'message': 'An error occured while getting you an answer'}, status=404)
+        return JsonResponse({'watson': 'An error occured while getting you an answer'}, status=404)
     except Exception as e:
-        return JsonResponse({'message': str(e)}, status=500)
+        return JsonResponse({'watson': str(e)}, status=500)
 
 
 #watson assistant APIs below

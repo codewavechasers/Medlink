@@ -7,7 +7,7 @@ import vonage
 import requests
 
 # Initialize the Vonage client
-client = vonage.Client(key="e43d4a38", secret="pMV5CUINuTwLxZAt")
+client = vonage.Client(key="9bf34abe", secret="ggAEFn2CDeLc47OW")
 sms = vonage.Sms(client)
 
 @shared_task
@@ -27,13 +27,13 @@ def generate_notifications():
         )
 
         # Send SMS
-        # responseData = sms.send_message(
-        #     {
-        #         "from": "Vonage APIs",
-        #         "to": f"254{appointment.phonenumber}", 
-        #         "text": message,
-        #     }
-        # )
+        responseData = sms.send_message(
+            {
+                "from": "Vonage APIs",
+                "to": f"254{appointment.phonenumber}", 
+                "text": message,
+            }
+        )
 
         # if responseData["messages"][0]["status"] == "0":
         #     print("SMS sent successfully.")
