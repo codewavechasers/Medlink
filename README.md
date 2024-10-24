@@ -12,6 +12,13 @@
 - **🔗 Seamless Backend-Frontend Integration**: Built with Next.js for the frontend and Django as the backend, connected via RESTful APIs.
 
 ## Please use this link to view our live site : https://medlink.gk.h.cw.co.ke/ - Username: codewavechasers@gmail.com Password: medlink10.
+Access to the database is as follows:
+- DBNAME=medlink.
+- USERNAME=medlink.
+- DB_PASSWORD=FN)moPv.zy.9qXl_
+- HOST=gilbert-keter-dba7af1c
+- PORT=3306
+- https://phpmyadmin-34b18d.con-de-1.net.cw.co.ke/
 
 ## 📸 Screenshots
 
